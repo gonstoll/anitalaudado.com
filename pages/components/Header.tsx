@@ -2,7 +2,7 @@ import * as React from 'react';
 
 type Theme = 'light' | 'dark';
 
-const THEME: Theme =
+const THEME =
   typeof window !== 'undefined'
     ? (localStorage.getItem('theme') as Theme | null) || 'light'
     : 'light';
@@ -29,11 +29,11 @@ function useTheme() {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
-  return [theme, toggleTheme] as const;
+  return {toggleTheme};
 }
 
 export default function Header() {
-  const [theme, toggleTheme] = useTheme();
+  const {toggleTheme} = useTheme();
 
   return (
     <div className="h-full bg-white dark:bg-black">
