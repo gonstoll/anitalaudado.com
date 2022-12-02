@@ -7,7 +7,7 @@ export default function App({Component, pageProps}: AppProps) {
     <>
       <Script id="theme-setter">{`
         if (
-          localStorage.theme === 'dark' ||
+          localStorage.getItem('theme') === 'dark' ||
           (!('theme' in localStorage) &&
             window.matchMedia('(prefers-color-scheme: dark)').matches)
         ) {
