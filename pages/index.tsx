@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Header from './components/Header';
+import Layout from './components/Layout';
 
 export default function Home() {
   return (
@@ -7,7 +8,9 @@ export default function Home() {
       <Head>
         <title>Ana Laudado</title>
       </Head>
-      <Header />
+      <Layout>
+        <Header />
+      </Layout>
     </>
   );
 }
