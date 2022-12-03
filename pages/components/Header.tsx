@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import * as React from 'react';
 
 type Theme = 'light' | 'dark';
@@ -36,17 +37,32 @@ export default function Header() {
   const [theme, toggleTheme] = useTheme();
 
   return (
-    <header className="flex align-middle justify-between py-4 px-16 border-b-2 border-black"> {/* TODO: px should be 15 (3.75rem) and border-b should be 1 (1px)*/}
-      <p className="text-4xl text-black dark:text-white">✦</p>
-      <label className="flex items-center relative">
-        <input
-          type="checkbox"
-          className="sr-only peer"
-          onClick={toggleTheme}
-          defaultChecked={theme === 'dark'}
-        />
-        <div className="cursor-pointer w-10 h-6 relative border rounded-2xl border-solid border-black dark:border-white after:absolute after:top-1/2 after:left-1 after:-translate-y-1/2 after:w-4 after:h-4 after:rounded-full after:bg-black dark:after:bg-white peer-checked:after:translate-x-5 peer-checked:after:left-auto after:transition-transform after:duration-500" />
-      </label>
+    <header className="flex items-center justify-between py-4 px-15 border-b-1 border-black">
+      <Link href="/" className="text-3.5xl text-black dark:text-white">
+        ✦
+      </Link>
+      <div className="flex items-center">
+        <div className="flex items-center">
+          <Link href="/work" className="text-base text-black dark:text-white">
+            Work
+          </Link>
+          <Link
+            href="/about"
+            className="text-base text-black dark:text-white ml-8"
+          >
+            About
+          </Link>
+        </div>
+        <label className="flex items-center ml-20">
+          <input
+            type="checkbox"
+            className="sr-only peer"
+            onClick={toggleTheme}
+            defaultChecked={theme === 'dark'}
+          />
+          <div className="cursor-pointer w-10 h-6 relative border rounded-2xl border-solid border-black dark:border-white after:absolute after:top-1/2 after:left-1 after:-translate-y-1/2 after:w-4 after:h-4 after:rounded-full after:bg-black dark:after:bg-white peer-checked:after:translate-x-5 peer-checked:after:left-auto after:transition-transform after:duration-500" />
+        </label>
+      </div>
     </header>
   );
 }
