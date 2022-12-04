@@ -4,14 +4,31 @@ import Header from './Header';
 import LinkButton from './LinkButton';
 import Tile from './Tile';
 
-export default function Layout({children}: React.PropsWithChildren<object>) {
+interface Props {
+  title?: string;
+  banner?: string;
+}
+
+export default function Layout({
+  title,
+  banner,
+  children,
+}: React.PropsWithChildren<Props>) {
   return (
     <>
       <Header />
 
-      <main className="mb-auto">{children}</main>
+      <main className="mb-auto">
+        {banner ? <div className="h-98">{banner}</div> : null}
+        <div className={`${banner ? 'mt-5 md:mt-10' : 'mt-20 md:mt-40'} px-20`}>
+          <h1 className="text-4.5xl md:text-6.5xl text-black dark:text-white font-bold md:whitespace-pre-line">
+            {title}
+          </h1>
+          {children}
+        </div>
+      </main>
 
-      <footer className="border-t-1 border-black dark:border-white">
+      <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-white">
         <div className="p-10">
           <div className="md:flex items-center justify-between mb-8">
             <Link

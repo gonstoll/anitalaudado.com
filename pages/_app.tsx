@@ -5,12 +5,12 @@ import localFont from '@next/font/local';
 const SctoGroteskFont = localFont({
   src: [
     {
-      path: './fonts/Scto_Grotesk_A.otf',
+      path: '../public/fonts/Scto_Grotesk_A.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './fonts/Scto_Grotesk_A_Bold.otf',
+      path: '../public/fonts/Scto_Grotesk_A_Bold.otf',
       weight: '700',
       style: 'normal',
     },
@@ -21,8 +21,7 @@ const SctoGroteskFont = localFont({
 export default function App({Component, pageProps}: AppProps) {
   return (
     <div
-      className={`flex flex-col h-max min-h-full bg-white dark:bg-black transition-colors duration-500
-      ${SctoGroteskFont.className}`}
+      className={`flex flex-col h-max min-h-full bg-white dark:bg-black transition-colors duration-500 ${SctoGroteskFont.className}`}
     >
       <Component {...pageProps} />
     </div>
