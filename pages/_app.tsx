@@ -12,7 +12,7 @@ const SctoGroteskFont = localFont({
     {
       path: './fonts/Scto_Grotesk_A_Bold.otf',
       weight: '700',
-      style: 'bold',
+      style: 'normal',
     },
   ],
   variable: '--scto-grotesk-a',
@@ -21,7 +21,7 @@ const SctoGroteskFont = localFont({
 export default function App({Component, pageProps}: AppProps) {
   return (
     <div
-      className={`flex flex-col h-full bg-white dark:bg-black transition-colors duration-500
+      className={`flex flex-col h-max min-h-full bg-white dark:bg-black transition-colors duration-500
       ${SctoGroteskFont.className}`}
     >
       <Component {...pageProps} />
