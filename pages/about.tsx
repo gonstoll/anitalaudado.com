@@ -38,6 +38,9 @@ export default function About() {
               to catch some live music.
             </p>
           </div>
+          <div className="h-94 md:h-full p-4 rounded-lg border-1 border-black dark:border-white">
+            <div className="w-full h-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10" />
+          </div>
         </div>
       </Layout>
     </>
