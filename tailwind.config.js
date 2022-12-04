@@ -11,12 +11,13 @@ module.exports = {
     extend: {
       fontSize: {
         '3.5xl': ['2rem', {lineHeight: '2.5rem'}],
+        '4.5xl': ['2.5rem', {lineHeight: '3rem'}],
       },
       spacing: {
-        '15': '3.75rem',
+        15: '3.75rem',
       },
       borderWidth: {
-        '1': '1px',
+        1: '1px',
       },
       colors: {
         white: '#F9F7F4',
@@ -27,7 +28,10 @@ module.exports = {
       },
       borderRadius: {
         '4xl': '2rem',
-      }
+      },
+      textUnderlineOffset: {
+        6: '6px',
+      },
     },
   },
   plugins: [],

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import * as React from 'react';
 import Header from './Header';
+import LinkButton from './LinkButton';
 import Tile from './Tile';
 
 export default function Layout({children}: React.PropsWithChildren<object>) {
@@ -32,7 +33,22 @@ export default function Layout({children}: React.PropsWithChildren<object>) {
             <Tile size="small" title="About" link="/about" />
           </div>
           <div className="flex flex-wrap gap-4">
-            <Link
+            <LinkButton
+              href="https://www.linkedin.com/in/ana-laudado/"
+              type="primary"
+              size="small"
+              title="linkedin"
+            />
+            <LinkButton
+              href="/docs/Ana_Laudado_2023.pdf"
+              type="primary"
+              size="small"
+              title="resume ↓"
+              target="_blank"
+              rel="noreferrer"
+            />
+            <LinkButton href="#" type="primary" size="small" title="top ↑" />
+            {/* <Link
               className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white text-black dark:text-white"
               href="https://www.linkedin.com/in/ana-laudado/"
             >
@@ -51,7 +67,7 @@ export default function Layout({children}: React.PropsWithChildren<object>) {
               href="#"
             >
               top ↑
-            </Link>
+            </Link> */}
           </div>
         </div>
       </footer>

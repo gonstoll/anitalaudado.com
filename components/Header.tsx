@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import * as React from 'react';
+import LinkButton from './LinkButton';
 
 type Theme = 'light' | 'dark';
 
@@ -42,16 +43,9 @@ export default function Header() {
         ✦
       </Link>
       <div className="flex items-center">
-        <div className="flex items-center">
-          <Link href="/work" className="text-base text-black dark:text-white">
-            Work
-          </Link>
-          <Link
-            href="/about"
-            className="text-base text-black dark:text-white ml-8"
-          >
-            About
-          </Link>
+        <div className="flex items-center gap-8">
+          <LinkButton href="/work" title="Work" type="secondary" />
+          <LinkButton href="/about" title="About" type="secondary" />
         </div>
         <label className="flex items-center ml-20">
           <input
