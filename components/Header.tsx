@@ -44,7 +44,7 @@ export default function Header() {
       </Link>
       <div className="flex items-center">
         <div className="flex items-center gap-8">
-          <LinkButton href="/work" title="Work" type="secondary" />
+          <LinkButton href="/" title="Work" type="secondary" />
           <LinkButton href="/about" title="About" type="secondary" />
         </div>
         <label className="flex items-center ml-20">
