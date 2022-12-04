@@ -63,7 +63,7 @@ export default function Header() {
     <header
       className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white bg-white dark:bg-black sticky transition-all duration-200 ${visibleClass}`}
     >
-      <Link href="/" className="text-3.5xl text-black dark:text-white">
+      <Link href="/" className="text-3-1/2xl text-black dark:text-white">
         ✦
       </Link>
       <div className="flex items-center">

@@ -21,7 +21,7 @@ export default function Layout({
       <main className="mb-auto">
         {banner ? <div className="h-98">{banner}</div> : null}
         <div className={`${banner ? 'mt-5 md:mt-10' : 'mt-20 md:mt-40'} px-6 md:px-20`}>
-          <h1 className="text-4.5xl md:text-6.5xl text-black dark:text-white font-bold md:whitespace-pre-line">
+          <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
             {title}
           </h1>
           {children}
@@ -33,13 +33,13 @@ export default function Layout({
           <div className="md:flex items-center justify-between mb-8">
             <Link
               href="/"
-              className="block text-3.5xl text-black dark:text-white"
+              className="block text-3-1/2xl text-black dark:text-white"
             >
               ✦
             </Link>
             <Link
               href="mailto:anitalaudado@gmail.com"
-              className="block text-2xl md:text-3.5xl font-bold text-black dark:text-white"
+              className="block text-2xl md:text-3-1/2xl font-bold text-black dark:text-white"
             >
               anitalaudado@gmail.com
             </Link>

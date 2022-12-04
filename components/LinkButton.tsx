@@ -51,7 +51,7 @@ export default function LinkButton({title, ...props}: LinkButtonProps) {
   return (
     <div className="group h-16 w-16 flex items-center text-center rounded-full border-1 border-black dark:border-white hover:bg-black hover:dark:bg-white text-black dark:text-white hover:text-white hover:dark:text-black">
       <Link
-        className="text-4.5xl w-full group-hover:-rotate-45 duration-200 transition-transform ease-linear"
+        className="text-4-1/2xl w-full group-hover:-rotate-45 duration-200 transition-transform ease-linear"
         {...props}
       >
         {title}

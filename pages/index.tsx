@@ -18,7 +18,7 @@ export default function Home() {
           goal is to build digital products that impact people in a positive
           way.
         </h2>
-        <h3 className="mt-20 md:mt-40 mb-10 text-4.5xl text-black dark:text-white">
+        <h3 className="mt-20 md:mt-40 mb-10 text-4-1/2xl text-black dark:text-white">
           Selected <b>work</b>
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

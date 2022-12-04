@@ -10,16 +10,16 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        '3.5xl': ['2rem', {lineHeight: '2.5rem'}],
-        '4.5xl': ['2.5rem', {lineHeight: '3rem'}], // 40px
-        '6.5xl': ['4rem', {lineHeight: '1'}],
+        '3-1/2xl': ['2rem', {lineHeight: '2.5rem'}], // 32px
+        '4-1/2xl': ['2.5rem', {lineHeight: '3rem'}], // 40px
+        '6-1/2xl': ['4rem', {lineHeight: '1'}], // 64px
       },
       spacing: {
-        15: '3.75rem',
-        30: '7.5rem',
+        15: '3.75rem', // 60px
+        30: '7.5rem', // 120px
         68: '17rem', // 272px
         94: '23rem', // 368px
-        98: '25rem',
+        98: '25rem', // 400px
       },
       minWidth: {
         16: '4rem',

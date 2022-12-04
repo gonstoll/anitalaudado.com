@@ -13,11 +13,11 @@ export default function Tile({title, link, size}: TileProps) {
       tile: 'w-80 h-10',
     },
     medium: {
-      content: 'text-3.5xl',
+      content: 'text-3-1/2xl',
       tile: 'w-96 h-20',
     },
     large: {
-      content: 'text-3.5xl',
+      content: 'text-3-1/2xl',
       tile: 'w-112 h-40',
     },
   };
