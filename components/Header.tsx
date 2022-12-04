@@ -37,7 +37,7 @@ export default function Header() {
   const [theme, toggleTheme] = useTheme();
 
   return (
-    <header className="flex items-center justify-between py-4 px-15 border-b-1 border-black">
+    <header className="flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white">
       <Link href="/" className="text-3.5xl text-black dark:text-white">
         ✦
       </Link>

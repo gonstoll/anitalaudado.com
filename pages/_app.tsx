@@ -20,8 +20,11 @@ const SctoGroteskFont = localFont({
 
 export default function App({Component, pageProps}: AppProps) {
   return (
-    <main className={SctoGroteskFont.className}>
+    <div
+      className={`flex flex-col h-full bg-white dark:bg-black transition-colors duration-500
+      ${SctoGroteskFont.className}`}
+    >
       <Component {...pageProps} />
-    </main>
+    </div>
   );
 }
