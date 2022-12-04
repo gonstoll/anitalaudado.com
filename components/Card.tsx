@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import LinkButton from './LinkButton';
 
 interface Props {
   image?: string;

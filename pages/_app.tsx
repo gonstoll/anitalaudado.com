@@ -1,6 +1,6 @@
+import localFont from '@next/font/local';
 import type {AppProps} from 'next/app';
 import '../styles/globals.css';
-import localFont from '@next/font/local';
 
 const SctoGroteskFont = localFont({
   src: [
