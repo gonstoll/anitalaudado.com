@@ -33,22 +33,21 @@ export default function Layout({children}: React.PropsWithChildren<object>) {
           </div>
           <div className="flex flex-wrap gap-4">
             <Link
-              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white"
+              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white text-black dark:text-white"
               href="https://www.linkedin.com/in/ana-laudado/"
             >
               linkedin
             </Link>
             <Link
-              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white"
+              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white text-black dark:text-white"
               href="/docs/Ana_Laudado_2023.pdf"
-              download
               target="_blank"
               rel="noreferrer"
             >
               resume ↓
             </Link>
             <Link
-              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white"
+              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white text-black dark:text-white"
               href="#"
             >
               top ↑
