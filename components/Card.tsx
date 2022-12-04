@@ -26,7 +26,7 @@ export default function Card({image, title, description, tags, link}: Props) {
           {tags.map((tag, i) => (
             <div
               key={`tag-${i}`}
-              className="flex items-center justify-center whitespace-nowrap px-4 h-8 rounded-2xl bg-gray-200"
+              className="flex items-center justify-center whitespace-nowrap px-4 h-8 rounded-2xl bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10 text-black dark:text-white"
             >
               {tag}
             </div>

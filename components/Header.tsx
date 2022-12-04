@@ -31,22 +31,46 @@ function useTheme() {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
-  return [theme, toggleTheme] as const;
+  return {theme, toggleTheme};
+}
+
+function useStickyHeader() {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const position = React.useRef(0);
+
+  React.useEffect(() => {
+    function handleScroll() {
+      const current = window.scrollY;
+      const delta = current - position.current;
+      position.current = current;
+      setIsVisible(delta < 0);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return {isVisible};
 }
 
 export default function Header() {
-  const [theme, toggleTheme] = useTheme();
+  const {theme, toggleTheme} = useTheme();
+  const {isVisible} = useStickyHeader();
+
+  const visibleClass = isVisible ? 'top-0' : '-top-20';
 
   return (
-    <header className="flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white">
+    <header
+      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white bg-white dark:bg-black sticky transition-all duration-200 ${visibleClass}`}
+    >
       <Link href="/" className="text-3.5xl text-black dark:text-white">
         ✦
       </Link>
       <div className="flex items-center">
-        <div className="flex items-center gap-8">
+        <nav className="flex items-center gap-8">
           <LinkButton href="/" title="Work" type="secondary" />
           <LinkButton href="/about" title="About" type="secondary" />
-        </div>
+        </nav>
         <label className="flex items-center ml-20">
           <input
             type="checkbox"
