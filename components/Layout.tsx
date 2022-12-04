@@ -20,7 +20,7 @@ export default function Layout({
 
       <main className="mb-auto">
         {banner ? <div className="h-98">{banner}</div> : null}
-        <div className={`${banner ? 'mt-5 md:mt-10' : 'mt-20 md:mt-40'} px-20`}>
+        <div className={`${banner ? 'mt-5 md:mt-10' : 'mt-20 md:mt-40'} px-6 md:px-20`}>
           <h1 className="text-4.5xl md:text-6.5xl text-black dark:text-white font-bold md:whitespace-pre-line">
             {title}
           </h1>

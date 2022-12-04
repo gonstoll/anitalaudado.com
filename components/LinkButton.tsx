@@ -29,7 +29,7 @@ export default function LinkButton({title, ...props}: LinkButtonProps) {
 
     return (
       <Link
-        className={`flex items-center rounded-4xl border-1 border-black dark:border-white text-black dark:text-white hover:bg-black hover:dark:bg-white hover:text-white hover:dark:text-black ${sizeClass}`}
+        className={`flex items-center content-center rounded-4xl border-1 border-black dark:border-white text-black dark:text-white hover:bg-black hover:dark:bg-white hover:text-white hover:dark:text-black ${sizeClass}`}
         {...props}
       >
         {title}
@@ -49,11 +49,13 @@ export default function LinkButton({title, ...props}: LinkButtonProps) {
   }
 
   return (
-    <Link
-      className="h-16 w-16 text-4.5xl flex items-center rounded-full border-1 border-black dark:border-white text-black dark:text-white hover:bg-black hover:dark:bg-white hover:text-white hover:dark:text-black"
-      {...props}
-    >
-      {title}
-    </Link>
+    <div className="group h-16 w-16 flex items-center text-center rounded-full border-1 border-black dark:border-white hover:bg-black hover:dark:bg-white text-black dark:text-white hover:text-white hover:dark:text-black">
+      <Link
+        className="text-4.5xl w-full group-hover:-rotate-45 duration-200 transition-transform ease-linear"
+        {...props}
+      >
+        {title}
+      </Link>
+    </div>
   );
 }
