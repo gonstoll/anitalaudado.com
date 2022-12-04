@@ -58,7 +58,7 @@ export default function Layout({children}: React.PropsWithChildren<object>) {
             Ana Laudado - {new Date().getFullYear()}
           </p>
           <p className="text-base uppercase text-white dark:text-black">
-            Made with love ✦ <br className="md:hidden" />
+            Made with ♥ <br className="md:hidden" />
             From the end of the world
           </p>
         </div>

@@ -25,12 +25,14 @@ export default function Tile({title, link, size}: TileProps) {
   return link ? (
     <Link
       href={link}
-      className={`${sizeClasses[size].tile} flex items-center justify-between border-b-1 border-black dark:border-white`}
+      className={`${sizeClasses[size].tile} flex items-center justify-between border-b-1 border-black dark:border-white group`}
     >
       <p className={`${sizeClasses[size].content} text-black dark:text-white`}>
         {title}
       </p>
-      <p className={`${sizeClasses[size].content} text-black dark:text-white`}>
+      <p
+        className={`${sizeClasses[size].content} text-black dark:text-white group-hover:-rotate-45 duration-200 transition-transform ease-linear`}
+      >
         →
       </p>
     </Link>
