@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import * as React from 'react';
-import Button from './Button';
 import Header from './Header';
 import Tile from './Tile';
 
