@@ -25,6 +25,9 @@ module.exports = {
       fontFamily: {
         sans: ['var(--scto-grotesk-a)', ...fontFamily.sans],
       },
+      borderRadius: {
+        '4xl': '2rem',
+      }
     },
   },
   plugins: [],

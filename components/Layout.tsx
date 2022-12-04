@@ -27,19 +27,33 @@ export default function Layout({children}: React.PropsWithChildren<object>) {
           </Link>
         </div>
         <div className="md:flex items-end justify-between">
-          <div>
+          <div className="mb-8 md:mb-0">
             <Tile size="small" title="Work" link="/work" />
             <Tile size="small" title="Personal Projects" />
             <Tile size="small" title="About" link="/about" />
           </div>
-          <div className="flex flex-wrap">
-            <Link href="https://www.linkedin.com/in/ana-laudado/">
+          <div className="flex flex-wrap gap-4">
+            <Link
+              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white"
+              href="https://www.linkedin.com/in/ana-laudado/"
+            >
               linkedin
             </Link>
-            <Link href="/docs/Ana_Laudado_2023.pdf" download target="_blank" rel="noreferrer">
+            <Link
+              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white"
+              href="/docs/Ana_Laudado_2023.pdf"
+              download
+              target="_blank"
+              rel="noreferrer"
+            >
               resume ↓
             </Link>
-            <Link href="#">top ↑</Link>
+            <Link
+              className="h-8 px-4 flex items-center rounded-4xl border-1 border-black dark:border-white"
+              href="#"
+            >
+              top ↑
+            </Link>
           </div>
         </div>
       </footer>
