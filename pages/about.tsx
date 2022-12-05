@@ -1,6 +1,15 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
 
+const SKILLS = [
+  'Product Design',
+  'Design Systems',
+  'High Fidelity Prototyping',
+  'Visual Design',
+  'Iconography & Illustration',
+  'User Researh & Usability Testing',
+];
+
 export default function About() {
   return (
     <>
@@ -11,7 +20,7 @@ export default function About() {
         title={`Thanks for
         stopping by :)`}
       >
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-6 items-center">
+        <div className="mt-20 mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-6 items-center">
           <div>
             <h2 className="mb-10 text-3-1/2xl text-black dark:text-white">
               I'm Ana, a Product and Visual designer specialised in UI and
@@ -41,6 +50,23 @@ export default function About() {
           <div className="h-94 md:h-full p-4 rounded-lg border-1 border-black dark:border-white">
             <div className="w-full h-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10" />
           </div>
+        </div>
+
+        <h2 className="text-4-1/2xl mb-15 text-black dark:text-white">
+          What I <b>do</b>
+        </h2>
+        <div>
+          {SKILLS.map(skill => (
+            <div
+              key={skill}
+              className="w-full flex items-center gap-6 py-5 border-b-1 border-black dark:border-white"
+            >
+              <p className="text-3-1/2xl text-black dark:text-white">{skill}</p>
+              <p className="text-3-1/2xl text-black dark:text-white ml-auto">
+                ✦
+              </p>
+            </div>
+          ))}
         </div>
       </Layout>
     </>
