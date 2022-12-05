@@ -5,17 +5,18 @@ import '../styles/globals.css';
 const SctoGroteskFont = localFont({
   src: [
     {
-      path: '../public/fonts/Scto_Grotesk_A.otf',
+      path: '../public/fonts/Scto_Grotesk_A.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/Scto_Grotesk_A_Bold.otf',
+      path: '../public/fonts/Scto_Grotesk_A_Bold.woff2',
       weight: '700',
       style: 'normal',
     },
   ],
   variable: '--scto-grotesk-a',
+  display: 'fallback',
 });
 
 export default function App({Component, pageProps}: AppProps) {
