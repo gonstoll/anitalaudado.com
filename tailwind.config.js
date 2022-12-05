@@ -15,6 +15,7 @@ module.exports = {
         '6-1/2xl': ['4rem', {lineHeight: '1'}], // 64px
       },
       spacing: {
+        '3/16': '0.1875rem', // 3px
         15: '3.75rem', // 60px
         30: '7.5rem', // 120px
         68: '17rem', // 272px
@@ -42,7 +43,11 @@ module.exports = {
       },
       transitionProperty: {
         top: `top, ${transitionProperty.colors}`,
+        toggle: `${transitionProperty.transform}, ${transitionProperty.colors}`,
       },
+      rotate: {
+        360: '360deg',
+      }
     },
   },
   plugins: [],
