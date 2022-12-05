@@ -58,8 +58,11 @@ export default function Layout({
                 </h2>
                 <div>
                   {Object.entries(props.details).map(([key, value]) => (
-                    <div key={key} className="mb-6 last:mb-0">
-                      <p className="font-bold text-base">
+                    <div
+                      key={key}
+                      className="mb-6 last:mb-0 text-base text-black dark:text-white"
+                    >
+                      <p className="font-bold">
                         {key.charAt(0).toUpperCase() + key.slice(1)}
                       </p>
                       <p>{value}</p>
