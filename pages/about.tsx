@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Layout from '../components/Layout';
+import Layout from "~/components/Layout";
 
 const SKILLS = [
   'Product Design',
@@ -17,6 +17,7 @@ export default function About() {
         <title>Ana Laudado | About</title>
       </Head>
       <Layout
+        type="page"
         title={`Thanks for
         stopping by :)`}
       >

@@ -78,6 +78,7 @@ export default function Header() {
           ✦
         </Link>
       </div>
+
       <div className="flex items-center z-10">
         <nav className="hidden md:flex items-center gap-8">
           {links.map(({href, title}) => (

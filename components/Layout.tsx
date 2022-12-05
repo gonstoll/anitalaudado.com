@@ -4,28 +4,52 @@ import Header from './Header';
 import LinkButton from './LinkButton';
 import Tile from './Tile';
 
-interface Props {
-  title?: string;
-  banner?: string;
-}
+type Page = {
+  type: 'page';
+};
+
+type Project = {
+  type: 'project';
+  banner: string;
+  tags: Array<string>;
+  summary: string;
+  details: {
+    challenge: string;
+    role: string;
+    year: string;
+  };
+};
+
+type Props = {title: string} & (Page | Project);
 
 export default function Layout({
   title,
-  banner,
   children,
+  ...props
 }: React.PropsWithChildren<Props>) {
   return (
     <>
       <Header />
 
       <main className="mb-auto">
-        {banner ? <div className="h-98">{banner}</div> : null}
-        <div className={`${banner ? 'mt-5 md:mt-10' : 'mt-20 md:mt-40'} px-6 md:px-20`}>
-          <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
-            {title}
-          </h1>
-          {children}
-        </div>
+        {props.type === 'page' ? (
+          <div className="mt-20 md:mt-40 px-6 md:px-20">
+            <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
+              {title}
+            </h1>
+            {children}
+          </div>
+        ) : (
+          <>
+            <div className="h-98">{props.banner}</div>
+            <div className="mt-5 md:mt-10 px-6 md:px-20">
+              <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
+                {title}
+              </h1>
+              {children}
+            </div>
+          </>
+        )}
       </main>
 
       <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-white">

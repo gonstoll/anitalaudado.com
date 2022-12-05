@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Card from '../components/Card';
-import Layout from '../components/Layout';
+import Card from "~/components/Card";
+import Layout from "~/components/Layout";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
         <title>Ana Laudado</title>
       </Head>
       <Layout
+        type="page"
         title={`Hola! I'm Ana,
         a Product Designer
         based in Copenhagen.`}
@@ -26,11 +27,13 @@ export default function Home() {
             title="Airtame Cloud  Split Navigation"
             description="A complete redesign of Airtame’s management desktop platform for devices."
             tags={['Product Design', 'Design systems']}
+            link="/projects/airtame-cloud-split-navigation"
           />
           <Card
             title="Airtame UI - Design System"
             description="Airtame UI is Airtame’s official design system. Project leader, shipping multiple components, building documentation and improving collaboration between designer and developers."
             tags={['Design systems', 'Project Management']}
+            link="/projects/airtame-ui-design-system"
           />
         </div>
       </Layout>
