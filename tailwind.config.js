@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const {fontFamily} = require('tailwindcss/defaultTheme');
+const {fontFamily, transitionProperty} = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: [
@@ -39,6 +39,9 @@ module.exports = {
       },
       textUnderlineOffset: {
         6: '6px',
+      },
+      transitionProperty: {
+        top: `top, ${transitionProperty.colors}`,
       },
     },
   },

@@ -57,11 +57,11 @@ export default function Header() {
   const {theme, toggleTheme} = useTheme();
   const {isVisible} = useStickyHeader();
 
-  const visibleClass = isVisible ? 'top-0' : '-top-20';
+  const visibleClass = isVisible ? 'top-0' : 'top-0 -top-20';
 
   return (
     <header
-      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white bg-white dark:bg-black sticky transition-all duration-200 ${visibleClass}`}
+      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white bg-white dark:bg-black sticky transition-top duration-500 ${visibleClass}`}
     >
       <Link href="/" className="text-3-1/2xl text-black dark:text-white">
         ✦
