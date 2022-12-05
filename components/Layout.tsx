@@ -2,6 +2,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import Header from './Header';
 import LinkButton from './LinkButton';
+import Tag from './Tag';
 import Tile from './Tile';
 
 type Page = {
@@ -46,6 +47,26 @@ export default function Layout({
               <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
                 {title}
               </h1>
+              <div className="my-10 flex items-center flex-wrap gap-4">
+                {props.tags.map(tag => (
+                  <Tag key={tag} title={tag} />
+                ))}
+              </div>
+              <div className="grid gap-10 grid-cols-1 md:grid-cols-2 mb-20">
+                <h2 className="text-3-1/2xl text-black dark:text-white">
+                  {props.summary}
+                </h2>
+                <div>
+                  {Object.entries(props.details).map(([key, value]) => (
+                    <div key={key} className="mb-6 last:mb-0">
+                      <p className="font-bold text-base">
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                      </p>
+                      <p>{value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
               {children}
             </div>
           </>
