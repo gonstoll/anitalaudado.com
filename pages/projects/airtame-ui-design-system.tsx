@@ -2,16 +2,21 @@ import Head from 'next/head';
 import Layout from '~/components/Layout';
 import TextBlock from '~/components/TextBlock';
 
+const PROJECT_DETAILS = {
+  slug: 'airtame-ui-design-system',
+  title: 'Airtame UI Design System',
+};
+
 export default function AirtameUIDesignSystem() {
   return (
     <>
       <Head>
-        <title>Ana Laudado | Airtame UI Design System</title>
+        <title>Ana Laudado | {PROJECT_DETAILS.title}</title>
       </Head>
       <Layout
         type="project"
-        title="Airtame UI Design System"
-        banner=""
+        title={PROJECT_DETAILS.title}
+        banner={{src: '', alt: PROJECT_DETAILS.title}}
         tags={['Design systems', 'Project Management']}
         summary="Project leader, shipping multiple components, building documentation and improving collaboration between designers and developers."
         details={{

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import Header from './Header';
@@ -11,7 +12,10 @@ type Page = {
 
 type Project = {
   type: 'project';
-  banner: string;
+  banner: {
+    src: string;
+    alt: string;
+  };
   tags: Array<string>;
   summary: string;
   details: {
@@ -42,7 +46,14 @@ export default function Layout({
           </div>
         ) : (
           <>
-            <div className="h-98">{props.banner}</div>
+            <div className="h-98 relative">
+              <Image
+                fill
+                src={props.banner.src}
+                alt={props.banner.alt}
+                className="w-full h-auto max-w-full max-h-full object-cover"
+              />
+            </div>
             <div className="mt-5 md:mt-10 px-6 md:px-20">
               <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
                 {title}

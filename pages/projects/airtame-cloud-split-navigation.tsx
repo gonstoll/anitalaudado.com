@@ -1,17 +1,26 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import Layout from '~/components/Layout';
 import TextBlock from '~/components/TextBlock';
+
+const PROJECT_DETAILS = {
+  slug: 'airtame-cloud-split-navigation',
+  title: 'Airtame Cloud Split Navigation',
+};
 
 export default function AirtameCloudSplitNavigation() {
   return (
     <>
       <Head>
-        <title>Ana Laudado | Airtame Cloud Split Navigation</title>
+        <title>Ana Laudado | {PROJECT_DETAILS.title}</title>
       </Head>
       <Layout
         type="project"
-        title="Airtame Cloud Split Navigation"
-        banner=""
+        title={PROJECT_DETAILS.title}
+        banner={{
+          src: `/images/projects/${PROJECT_DETAILS.slug}/banner.png`,
+          alt: PROJECT_DETAILS.title,
+        }}
         tags={['Product Design', 'Design systems']}
         summary="A complete redesign of Airtame's management desktop platform for devices."
         details={{
@@ -21,13 +30,25 @@ export default function AirtameCloudSplitNavigation() {
           year: '2020 - 2021',
         }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-20">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mb-20">
           <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
+            <Image
+              width="1200"
+              height="600"
+              src={`/images/projects/${PROJECT_DETAILS.slug}/before.png`}
+              alt="Before"
+              className="w-full rounded"
+            />
             <p className="mt-4 text-base text-black dark:text-white">Before</p>
           </div>
           <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
+            <Image
+              width="1200"
+              height="600"
+              src={`/images/projects/${PROJECT_DETAILS.slug}/after.png`}
+              alt="After"
+              className="w-full rounded"
+            />
             <p className="mt-4 text-base text-black dark:text-white">After</p>
           </div>
         </div>
