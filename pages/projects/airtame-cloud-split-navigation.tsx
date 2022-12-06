@@ -104,7 +104,6 @@ export default function AirtameCloudSplitNavigation() {
 
         <TextBlock
           title="Final thoughts"
-          blocks={[]}
           list={[
             'How users are going to benefit from this?',
             'What did we learn? What challenges made me grow?',
