@@ -1,38 +1,7 @@
 import Link from 'next/link';
 import * as React from 'react';
+import {useThemeContext} from '~/context/theme';
 import LinkButton from './LinkButton';
-
-type Theme = 'light' | 'dark';
-
-const THEME =
-  typeof window !== 'undefined'
-    ? (localStorage.getItem('theme') as Theme | null) || 'light'
-    : 'light';
-
-function useTheme() {
-  const [theme, setTheme] = React.useState(THEME);
-
-  function toggleTheme() {
-    setTheme(theme => (theme === 'light' ? 'dark' : 'light'));
-  }
-
-  React.useEffect(() => {
-    function handleThemeChange(e: MediaQueryListEvent) {
-      const theme = e.matches ? 'dark' : 'light';
-      setTheme(theme);
-    }
-
-    const isDarkTheme = matchMedia('(prefers-color-scheme: dark)');
-    isDarkTheme.addEventListener('change', handleThemeChange);
-  }, []);
-
-  React.useEffect(() => {
-    window.localStorage.setItem('theme', theme);
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
-
-  return {theme, toggleTheme};
-}
 
 function useStickyHeader() {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -60,7 +29,7 @@ const links = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const {theme, toggleTheme} = useTheme();
+  const {theme, toggleTheme} = useThemeContext();
   const {isVisible} = useStickyHeader();
 
   const visibleClass = isVisible ? 'top-0' : 'top-0 -top-20';

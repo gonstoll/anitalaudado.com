@@ -1,5 +1,6 @@
 import localFont from '@next/font/local';
 import type {AppProps} from 'next/app';
+import ThemeProvider from "~/context/theme";
 import '../styles/globals.css';
 
 const SctoGroteskFont = localFont({
@@ -24,7 +25,9 @@ export default function App({Component, pageProps}: AppProps) {
     <div
       className={`flex flex-col h-max min-h-full bg-white dark:bg-black transition-colors duration-500 ${SctoGroteskFont.className}`}
     >
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </div>
   );
 }
