@@ -57,7 +57,7 @@ export default function About() {
           What I <b>do</b>
         </h2>
         <div>
-          {SKILLS.map(skill => (
+          {SKILLS.map(skill => ( // TODO: Move this to the Tile component
             <div
               key={skill}
               className="w-full flex items-center gap-6 py-5 border-b-1 border-black dark:border-white"

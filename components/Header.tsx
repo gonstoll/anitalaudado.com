@@ -42,33 +42,38 @@ export default function Header() {
     <header
       className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-dark-white bg-white dark:bg-black sticky transition-top duration-500 ${visibleClass}`}
     >
-      <div className="flex items-center">
+      <div className="flex items-center justify-between w-full max-w-3xl mx-auto">
         <Link href="/" className="text-3-1/2xl text-black dark:text-white z-10">
           ✦
         </Link>
-      </div>
 
-      <div className="flex items-center z-10">
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map(({href, title}) => (
-            <LinkButton key={href} href={href} title={title} type="secondary" />
-          ))}
-        </nav>
-        <label className="flex items-center md:ml-20">
-          <input
-            type="checkbox"
-            className="sr-only peer"
-            onClick={toggleTheme}
-            defaultChecked={theme === 'dark'}
-            aria-label={theme === 'dark' ? 'Dark mode' : 'Light mode'}
+        <div className="flex items-center z-10">
+          <nav className="hidden md:flex items-center gap-8">
+            {links.map(({href, title}) => (
+              <LinkButton
+                key={href}
+                href={href}
+                title={title}
+                type="secondary"
+              />
+            ))}
+          </nav>
+          <label className="flex items-center md:ml-20">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              onClick={toggleTheme}
+              defaultChecked={theme === 'dark'}
+              aria-label={theme === 'dark' ? 'Dark mode' : 'Light mode'}
+            />
+            <div className="cursor-pointer w-10 h-6 relative border rounded-2xl border-solid border-black dark:border-white after:absolute after:top-1/2 after:left-1 after:-translate-y-1/2 after:w-4 after:h-4 after:rounded-full after:bg-black dark:after:bg-white peer-checked:after:translate-x-5 peer-checked:after:left-auto after:transition-transform after:duration-500" />
+          </label>
+
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`md:hidden ml-6 h-6 w-6 flex items-center before:bg-black after:bg-black before:rounded-sm after:rounded-sm dark:before:bg-white dark:after:bg-white before:w-6 after:w-6 before:h-3/16 after:h-3/16 before:absolute after:absolute  before:transition-toggle after:transition-toggle before:duration-500 after:duration-500 ${menuBtnClass}`}
           />
-          <div className="cursor-pointer w-10 h-6 relative border rounded-2xl border-solid border-black dark:border-white after:absolute after:top-1/2 after:left-1 after:-translate-y-1/2 after:w-4 after:h-4 after:rounded-full after:bg-black dark:after:bg-white peer-checked:after:translate-x-5 peer-checked:after:left-auto after:transition-transform after:duration-500" />
-        </label>
-
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className={`md:hidden ml-6 h-6 w-6 flex items-center before:bg-black after:bg-black before:rounded-sm after:rounded-sm dark:before:bg-white dark:after:bg-white before:w-6 after:w-6 before:h-3/16 after:h-3/16 before:absolute after:absolute  before:transition-toggle after:transition-toggle before:duration-500 after:duration-500 ${menuBtnClass}`}
-        />
+        </div>
       </div>
 
       <nav

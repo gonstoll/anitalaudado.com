@@ -22,6 +22,9 @@ module.exports = {
         94: '23rem', // 368px
         98: '25rem', // 400px
       },
+      maxWidth: {
+        '3xl': '2600px',
+      },
       borderColor: {
         'dark-white': '#f9f7f41a',
       },

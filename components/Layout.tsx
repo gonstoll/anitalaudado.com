@@ -36,7 +36,18 @@ export default function Layout({
     <>
       <Header />
 
-      <main className="mb-auto">
+      {props.type === 'project' ? (
+        <div className="h-98 relative">
+          <Image
+            fill
+            src={props.banner.src}
+            alt={props.banner.alt}
+            className="w-full h-auto max-w-full max-h-full object-cover"
+          />
+        </div>
+      ) : null}
+
+      <main className="mb-auto max-w-screen-2xl mx-auto">
         {props.type === 'page' ? (
           <div className="mt-20 md:mt-40 px-6 md:px-20">
             <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
@@ -46,14 +57,6 @@ export default function Layout({
           </div>
         ) : (
           <>
-            <div className="h-98 relative">
-              <Image
-                fill
-                src={props.banner.src}
-                alt={props.banner.alt}
-                className="w-full h-auto max-w-full max-h-full object-cover"
-              />
-            </div>
             <div className="mt-5 md:mt-10 px-6 md:px-20">
               <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
                 {title}
@@ -88,7 +91,7 @@ export default function Layout({
       </main>
 
       <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-dark-white">
-        <div className="p-10">
+        <div className="p-10 max-w-3xl mx-auto">
           <div className="md:flex items-center justify-between mb-8">
             <Link
               href="/"
@@ -129,14 +132,16 @@ export default function Layout({
           </div>
         </div>
 
-        <div className="copyright-bar px-10 py-6 md:flex items-center justify-between text-white bg-black dark:bg-white dark:bg-opacity-10">
-          <p className="text-base mb-6 md:mb-0">
-            Ana Laudado - {new Date().getFullYear()}
-          </p>
-          <p className="text-base uppercase">
-            Made with ♥ <br className="md:hidden" />
-            From the end of the world
-          </p>
+        <div className="copyright-bar text-white bg-black dark:bg-white dark:bg-opacity-10">
+          <div className="md:flex items-center justify-between px-10 py-6 max-w-3xl mx-auto">
+            <p className="text-base mb-6 md:mb-0">
+              Ana Laudado - {new Date().getFullYear()}
+            </p>
+            <p className="text-base uppercase">
+              Made with ♥ <br className="md:hidden" />
+              From the end of the world
+            </p>
+          </div>
         </div>
       </footer>
     </>

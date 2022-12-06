@@ -10,7 +10,7 @@ export default function Tile({title, link, size}: TileProps) {
   const sizeClasses = {
     small: {
       content: 'text-base',
-      tile: 'w-80 h-10',
+      tile: 'md:w-80 h-10',
     },
     medium: {
       content: 'text-3-1/2xl',
