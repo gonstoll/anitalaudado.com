@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-interface TileProps {
+interface Props {
   title: string;
   link?: string;
   size: 'small' | 'medium' | 'large';
 }
 
-export default function Tile({title, link, size}: TileProps) {
+export default function Tile({title, link, size}: Props) {
   const sizeClasses = {
     small: {
       content: 'text-base',

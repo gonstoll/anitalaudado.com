@@ -19,10 +19,10 @@ type AnchorProps = Omit<
 > &
   LinkProps;
 
-type LinkButtonProps = {title: string} & AnchorProps &
+type Props = {title: string} & AnchorProps &
   (Primary | Secondary | Rounded);
 
-export default function LinkButton({title, ...props}: LinkButtonProps) {
+export default function LinkButton({title, ...props}: Props) {
   if (props.type === 'primary') {
     const sizeClass =
       props.size === 'small' ? 'h-8 px-4 text-base' : 'h-10 px-8 text-xl';
