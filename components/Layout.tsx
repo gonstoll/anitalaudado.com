@@ -76,7 +76,7 @@ export default function Layout({
         )}
       </main>
 
-      <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-white">
+      <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-dark-white">
         <div className="p-10">
           <div className="md:flex items-center justify-between mb-8">
             <Link
@@ -118,11 +118,11 @@ export default function Layout({
           </div>
         </div>
 
-        <div className="copyright-bar px-10 py-6 md:flex items-center justify-between bg-black dark:bg-white">
-          <p className="text-base mb-6 md:mb-0 text-white dark:text-black">
+        <div className="copyright-bar px-10 py-6 md:flex items-center justify-between text-white bg-black dark:bg-white dark:bg-opacity-10">
+          <p className="text-base mb-6 md:mb-0">
             Ana Laudado - {new Date().getFullYear()}
           </p>
-          <p className="text-base uppercase text-white dark:text-black">
+          <p className="text-base uppercase">
             Made with ♥ <br className="md:hidden" />
             From the end of the world
           </p>

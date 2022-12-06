@@ -15,7 +15,7 @@ export default function Card({image, title, description, tags, link}: Props) {
   return (
     <Link
       href={link ?? ''}
-      className="flex flex-col group p-4 rounded-lg border-1 border-black dark:border-white"
+      className="flex flex-col group p-4 rounded-lg border-1 border-black dark:border-dark-white"
     >
       <div className="w-full h-68 md:h-23 rounded-lg bg-gray-200"></div>
       <h2 className="mt-6 mb-4 text-2xl md:text-3-1/2xl font-bold text-black dark:text-white">
@@ -28,7 +28,7 @@ export default function Card({image, title, description, tags, link}: Props) {
             <Tag key={`tag-${i}`} title={tag} />
           ))}
         </div>
-        <div className="h-16 w-16 min-w-16 flex items-center text-center rounded-full border-1 border-black dark:border-white group-hover:bg-black group-hover:dark:bg-white text-black dark:text-white group-hover:text-white group-hover:dark:text-black">
+        <div className="h-16 w-16 min-w-16 flex items-center text-center rounded-full border-1 border-black dark:border-dark-white group-hover:bg-black dark:group-hover:bg-white text-black dark:text-white group-hover:text-white dark:group-hover:text-black">
           <p className="text-4-1/2xl w-full group-hover:-rotate-45 duration-200 transition-transform ease-linear">
             →
           </p>

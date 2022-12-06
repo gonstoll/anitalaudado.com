@@ -40,7 +40,7 @@ export default function Header() {
 
   return (
     <header
-      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white bg-white dark:bg-black sticky transition-top duration-500 ${visibleClass}`}
+      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-dark-white bg-white dark:bg-black sticky transition-top duration-500 ${visibleClass}`}
     >
       <div className="flex items-center">
         <Link href="/" className="text-3-1/2xl text-black dark:text-white z-10">
