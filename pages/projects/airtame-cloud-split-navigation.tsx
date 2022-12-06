@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import ImageBlock from '~/components/ImageBlock';
 import Layout from '~/components/Layout';
 import TextBlock from '~/components/TextBlock';
 
@@ -30,28 +31,25 @@ export default function AirtameCloudSplitNavigation() {
           year: '2020 - 2021',
         }}
       >
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mb-20">
-          <div className="col-span-1">
-            <Image
-              width="1200"
-              height="600"
-              src={`/images/projects/${PROJECT_DETAILS.slug}/before.png`}
-              alt="Before"
-              className="w-full rounded"
-            />
-            <p className="mt-4 text-base text-black dark:text-white">Before</p>
-          </div>
-          <div className="col-span-1">
-            <Image
-              width="1200"
-              height="600"
-              src={`/images/projects/${PROJECT_DETAILS.slug}/after.png`}
-              alt="After"
-              className="w-full rounded"
-            />
-            <p className="mt-4 text-base text-black dark:text-white">After</p>
-          </div>
-        </div>
+        <ImageBlock
+          cols={{mobile: 1, desktop: 2}}
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/before.png`,
+              alt: 'Before',
+              caption: 'Before',
+              width: 1200,
+              height: 600,
+            },
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/after.png`,
+              alt: 'After',
+              caption: 'After',
+              width: 1200,
+              height: 600,
+            },
+          ]}
+        />
 
         <TextBlock
           title="Context"
