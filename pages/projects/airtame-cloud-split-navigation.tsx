@@ -56,7 +56,26 @@ export default function AirtameCloudSplitNavigation() {
           blocks={[
             'We unearthed useful insights through user feedback, usage data, inventory analysis, and user research. We had a workshops where with the PM, the Cloud Team Lead, the Product Design Lead and myself (Digital Product Designer) discussed the assumptions we had, and we ended up with many issues identified. Some of the them stood out as clear problems for users and the business:',
           ]}
+          list={[
+            'Finding a device is not easy or efficient, and Search is not user friendly.',
+            'Information is most of the time hidden, and these details are crucial to make the user confident that they are editing the right device/s.',
+            "It's hard to manage when there is a large amount of devices.",
+            'The Cloud UI is not really intuitive.',
+            'From a technical standpoint we were experiencing performance issues.',
+          ]}
         />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-20">
+          <div className="col-span-1">
+            <div className="w-full h-98 rounded bg-gray-200"></div>
+          </div>
+          <div className="col-span-1">
+            <div className="w-full h-98 rounded bg-gray-200"></div>
+          </div>
+          <div className="col-span-1">
+            <div className="w-full h-98 rounded bg-gray-200"></div>
+          </div>
+        </div>
 
         <TextBlock
           title="Ideation"
@@ -83,7 +102,24 @@ export default function AirtameCloudSplitNavigation() {
           ]}
         />
 
-        <TextBlock title="Final thoughts" blocks={[]} />
+        <TextBlock
+          title="Final thoughts"
+          blocks={[]}
+          list={[
+            'How users are going to benefit from this?',
+            'What did we learn? What challenges made me grow?',
+            'What went well? What can be improved?',
+          ]}
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-20">
+          <div className="col-span-1">
+            <div className="w-full h-98 rounded bg-gray-200"></div>
+          </div>
+          <div className="col-span-1">
+            <div className="w-full h-98 rounded bg-gray-200"></div>
+          </div>
+        </div>
       </Layout>
     </>
   );
