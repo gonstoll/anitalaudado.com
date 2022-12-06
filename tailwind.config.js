@@ -33,7 +33,7 @@ module.exports = {
       },
       colors: {
         white: '#F9F7F4',
-        black: '#373737',
+        black: '#272522',
       },
       fontFamily: {
         sans: ['var(--scto-grotesk-a)', ...fontFamily.sans],
