@@ -58,7 +58,11 @@ export default function Header() {
               />
             ))}
           </nav>
-          <label className="flex items-center md:ml-20">
+          <label
+            className={`flex items-center md:ml-20 ${
+              theme ? 'visible' : 'invisible'
+            }`}
+          >
             <input
               type="checkbox"
               className="sr-only peer"

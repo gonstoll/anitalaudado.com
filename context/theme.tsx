@@ -25,28 +25,29 @@ export default function ThemeProvider({
   const [theme, setTheme] = React.useState<Theme | undefined>(undefined);
 
   function toggleTheme() {
-    setTheme(theme => (theme === 'light' ? 'dark' : 'light'));
+    const updatedTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(updatedTheme);
+    localStorage.setItem('theme', updatedTheme);
+    document.documentElement.classList.toggle('dark', updatedTheme === 'dark');
   }
 
   /** Set theme on client to avoid hydration mismatch */
   React.useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    const persistedTheme = localStorage.getItem('theme') as Theme | null;
+    const isDarkTheme = matchMedia('(prefers-color-scheme: dark)');
+    if (persistedTheme) {
+      setTheme(persistedTheme);
+    }
+    if (!persistedTheme && isDarkTheme.matches) {
+      setTheme('dark');
+    }
+    if (!persistedTheme && !isDarkTheme.matches) {
+      setTheme('light');
+    }
 
     function handleThemeChange(e: MediaQueryListEvent) {
       const theme = e.matches ? 'dark' : 'light';
       setTheme(theme);
-    }
-
-    const isDarkTheme = matchMedia('(prefers-color-scheme: dark)');
-
-    if (!savedTheme && isDarkTheme.matches) {
-      setTheme('dark');
-    }
-    if (!savedTheme && !isDarkTheme.matches) {
-      setTheme('light');
-    }
-    if (savedTheme) {
-      setTheme(savedTheme);
     }
 
     isDarkTheme.addEventListener('change', handleThemeChange);
@@ -55,12 +56,6 @@ export default function ThemeProvider({
       isDarkTheme.removeEventListener('change', handleThemeChange);
     };
   }, []);
-
-  React.useEffect(() => {
-    if (!theme) return;
-    localStorage.setItem('theme', theme);
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
 
   return (
     <themeContext.Provider value={{theme, toggleTheme}}>
