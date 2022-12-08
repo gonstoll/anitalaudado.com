@@ -81,7 +81,7 @@ export default function Carousel() {
               {...i}
               fill
               sizes="(min-width: 768px) 400px, 320px"
-              className="w-full h-auto max-w-full max-h-full object-cover rounded"
+              className="w-full h-auto max-w-full max-h-full object-cover rounded grayscale hover:grayscale-0 transition-all duration-500"
             />
           </div>
         ))}
