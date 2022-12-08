@@ -1,19 +1,15 @@
-import Image from 'next/image';
+import Image, {ImageProps} from 'next/image';
 
 interface Props {
   type: 'two-cols' | 'three-cols';
-  images: Array<{
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    fill?: boolean;
-    caption?: string;
-  }>;
+  images: Array<ImageProps & {caption?: string}>;
 }
 
 export default function ImageBlock({type, images}: Props) {
   const isRelative = images.some(img => img.fill);
+  const imageClass = isRelative
+    ? 'h-auto max-w-full max-h-full object-cover'
+    : '';
 
   return (
     <div
@@ -22,23 +18,8 @@ export default function ImageBlock({type, images}: Props) {
       } ${isRelative ? 'relative' : ''}`}
     >
       {images.map(img => (
-        <div key={img.src} className="col-span-1">
-          {img.fill ? (
-            <Image
-              fill
-              src={img.src}
-              alt={img.alt}
-              className="w-full h-auto max-w-full max-h-full object-cover rounded"
-            />
-          ) : (
-            <Image
-              width={img.width}
-              height={img.height}
-              src={img.src}
-              alt={img.alt}
-              className="w-full rounded"
-            />
-          )}
+        <div key={`image-${img.alt}`} className="col-span-1">
+          <Image {...img} className={`w-full rounded ${imageClass}`} />
 
           {img.caption ? (
             <p className="mt-4 text-base text-black dark:text-white">

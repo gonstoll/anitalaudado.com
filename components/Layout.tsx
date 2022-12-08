@@ -42,6 +42,7 @@ export default function Layout({
             fill
             src={props.banner.src}
             alt={props.banner.alt}
+            sizes="100vw"
             className="w-full h-auto max-w-full max-h-full object-cover"
           />
         </div>

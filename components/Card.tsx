@@ -1,15 +1,9 @@
-import Image from 'next/image';
+import Image, {ImageProps} from 'next/image';
 import Link from 'next/link';
 import Tag from './Tag';
 
 interface Props {
-  image: {
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    fill?: boolean;
-  }; // TODO: Add image support
+  image: ImageProps;
   title: string;
   description?: string;
   tags: Array<string>;
@@ -21,6 +15,9 @@ interface Props {
 export default function Card({image, title, description, tags, link}: Props) {
   const isComingSoon = Boolean(!link);
   const Container = isComingSoon ? 'div' : Link;
+  const imageClass = image.fill
+    ? 'h-auto max-w-full max-h-full object-cover'
+    : '';
 
   return (
     <Container
@@ -32,22 +29,7 @@ export default function Card({image, title, description, tags, link}: Props) {
           image.fill ? 'relative' : ''
         }`}
       >
-        {image.fill ? (
-          <Image
-            fill
-            src={image.src}
-            alt={image.alt}
-            className="w-full h-auto max-w-full max-h-full object-cover rounded"
-          />
-        ) : (
-          <Image
-            width={image.width}
-            height={image.height}
-            src={image.src}
-            alt={image.alt}
-            className="w-full rounded"
-          />
-        )}
+        <Image {...image} className={`w-full rounded ${imageClass}`} />
       </div>
       <h2 className="mt-6 mb-4 text-2xl md:text-3-1/2xl font-bold text-black dark:text-white">
         {title}

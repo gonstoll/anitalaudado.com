@@ -31,22 +31,22 @@ export default function Home() {
             image={{
               src: '/images/projects/airtame-cloud-split-navigation/banner.png',
               alt: 'Airtame Cloud Split Navigation',
-              width: 642,
-              height: 484,
+              priority: true,
               fill: true,
+              sizes: '(min-width: 1024px) 33vw, 100vw',
             }}
           />
           <Card
             title="Airtame UI - Design System"
-            description="Airtame UI is Airtame’s official design system. Project leader, shipping multiple components, building documentation and improving collaboration between designer and developers."
+            description="Airtame UI is Airtame's official design system. Project leader, shipping multiple components, building documentation and improving collaboration between designer and developers."
             tags={['Design systems', 'Project Management']}
             link="/projects/airtame-ui-design-system"
             image={{
               src: '/images/projects/airtame-cloud-split-navigation/banner.png',
               alt: 'Airtame Cloud Split Navigation',
-              width: 642,
-              height: 484,
+              priority: true,
               fill: true,
+              sizes: '(min-width: 1024px) 33vw, 100vw',
             }}
           />
           <Card
@@ -55,9 +55,9 @@ export default function Home() {
             image={{
               src: '/images/projects/airtame-cloud-split-navigation/banner.png',
               alt: 'Airtame Cloud Split Navigation',
-              width: 642,
-              height: 484,
+              priority: true,
               fill: true,
+              sizes: '(min-width: 1024px) 33vw, 100vw',
             }}
           />
           <Card
@@ -66,9 +66,9 @@ export default function Home() {
             image={{
               src: '/images/projects/airtame-cloud-split-navigation/banner.png',
               alt: 'Airtame Cloud Split Navigation',
-              width: 642,
-              height: 484,
+              priority: true,
               fill: true,
+              sizes: '(min-width: 1024px) 33vw, 100vw',
             }}
           />
         </div>
