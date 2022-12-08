@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import ImageBlock from '~/components/ImageBlock';
 import Layout from '~/components/Layout';
 import TextBlock from '~/components/TextBlock';
@@ -9,11 +8,13 @@ const PROJECT_DETAILS = {
   title: 'Airtame Cloud Split Navigation',
 };
 
+const title = `Ana Laudado | ${PROJECT_DETAILS.title}`;
+
 export default function AirtameCloudSplitNavigation() {
   return (
     <>
       <Head>
-        <title>Ana Laudado | {PROJECT_DETAILS.title}</title>
+        <title>{title}</title>
       </Head>
       <Layout
         type="project"
@@ -32,7 +33,7 @@ export default function AirtameCloudSplitNavigation() {
         }}
       >
         <ImageBlock
-          cols={{mobile: 1, desktop: 2}}
+          type="two-cols"
           images={[
             {
               src: `/images/projects/${PROJECT_DETAILS.slug}/before.png`,

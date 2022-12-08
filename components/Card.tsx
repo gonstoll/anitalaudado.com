@@ -17,7 +17,7 @@ export default function Card({image, title, description, tags, link}: Props) {
       href={link ?? ''}
       className="flex flex-col group p-4 rounded-lg border-1 border-black dark:border-dark-white"
     >
-      <div className="w-full h-68 md:h-23 rounded-lg bg-gray-200"></div>
+      <div className="w-full h-80 md:h-96 rounded-lg bg-gray-200"></div>
       <h2 className="mt-6 mb-4 text-2xl md:text-3-1/2xl font-bold text-black dark:text-white">
         {title}
       </h2>

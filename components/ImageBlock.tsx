@@ -1,11 +1,7 @@
 import Image from 'next/image';
 
 interface Props {
-  cols: {
-    mobile?: number;
-    tablet?: number;
-    desktop?: number;
-  };
+  type: 'two-cols' | 'three-cols';
   images: Array<{
     src: string;
     alt: string;
@@ -16,27 +12,15 @@ interface Props {
   }>;
 }
 
-export default function ImageBlock({cols, images}: Props) {
-  const containerClass = ['grid', 'gap-4', 'my-20'];
-
-  if (cols.mobile) {
-    containerClass.push(`grid-cols-${cols.mobile}`);
-  }
-
-  if (cols.tablet) {
-    containerClass.push(`md:grid-cols-${cols.tablet}`);
-  }
-
-  if (cols.desktop) {
-    containerClass.push(`xl:grid-cols-${cols.desktop}`);
-  }
-
-  if (images.some(img => (img.fill ? 'relative' : ''))) {
-    containerClass.push('relative');
-  }
+export default function ImageBlock({type, images}: Props) {
+  const isRelative = images.some(img => img.fill);
 
   return (
-    <div className={containerClass.join(' ')}>
+    <div
+      className={`grid gap-4 my-20 grid-cols-1 ${
+        type === 'two-cols' ? 'xl:grid-cols-2' : 'xl:grid-cols-3'
+      } ${isRelative ? 'relative' : ''}`}
+    >
       {images.map(img => (
         <div key={img.src} className="col-span-1">
           {img.fill ? (

@@ -6,12 +6,13 @@ const PROJECT_DETAILS = {
   slug: 'airtame-ui-design-system',
   title: 'Airtame UI Design System',
 };
+const title = `Ana Laudado | ${PROJECT_DETAILS.title}`;
 
 export default function AirtameUIDesignSystem() {
   return (
     <>
       <Head>
-        <title>Ana Laudado | {PROJECT_DETAILS.title}</title>
+        <title>{title}</title>
       </Head>
       <Layout
         type="project"

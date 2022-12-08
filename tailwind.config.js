@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-const {fontFamily, transitionProperty} = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+const {fontFamily, transitionProperty} = defaultTheme;
 
 module.exports = {
   content: [
