@@ -1,8 +1,15 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Tag from './Tag';
 
 interface Props {
-  image?: string; // TODO: Add image support
+  image: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+    fill?: boolean;
+  }; // TODO: Add image support
   title: string;
   description: string;
   tags: Array<string>;
@@ -17,7 +24,30 @@ export default function Card({image, title, description, tags, link}: Props) {
       href={link ?? ''}
       className="flex flex-col group p-4 rounded-lg border-1 border-black dark:border-dark-white"
     >
-      <div className="w-full h-80 md:h-96 rounded-lg bg-gray-200"></div>
+      <div
+        className={`w-full h-80 md:h-96 rounded-lg ${
+          image.fill ? 'relative' : ''
+        }`}
+      >
+        {image.fill ? (
+          <Image
+            fill
+            priority
+            src={image.src}
+            alt={image.alt}
+            sizes="(min-width: 640px) 100vw, 640px"
+            className="w-full h-auto max-w-full max-h-full object-cover rounded"
+          />
+        ) : (
+          <Image
+            width={image.width}
+            height={image.height}
+            src={image.src}
+            alt={image.alt}
+            className="w-full rounded"
+          />
+        )}
+      </div>
       <h2 className="mt-6 mb-4 text-2xl md:text-3-1/2xl font-bold text-black dark:text-white">
         {title}
       </h2>

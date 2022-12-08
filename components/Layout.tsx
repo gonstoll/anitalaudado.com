@@ -40,6 +40,7 @@ export default function Layout({
         <div className="h-98 relative">
           <Image
             fill
+            priority
             src={props.banner.src}
             alt={props.banner.alt}
             className="w-full h-auto max-w-full max-h-full object-cover"

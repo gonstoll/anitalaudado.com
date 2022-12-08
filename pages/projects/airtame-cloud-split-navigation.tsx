@@ -32,30 +32,30 @@ export default function AirtameCloudSplitNavigation() {
           year: '2020 - 2021',
         }}
       >
+        <TextBlock
+          title="Context"
+          blocks={[
+            'Airtame offers a wireless presentation solution for business and educational institutions: hybrid conferencing, screen sharing, & digital signage, all in a single platform. Airtame Cloud is a web based application that allows users to manage, monitor and control their devices and screens from anywhere.',
+          ]}
+        />
+
         <ImageBlock
           type="two-cols"
           images={[
             {
-              src: `/images/projects/${PROJECT_DETAILS.slug}/before.png`,
-              alt: 'Before',
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_A_01.png`,
+              alt: 'Image showing the before and after of the device list',
               caption: 'Before',
               width: 1200,
               height: 600,
             },
             {
-              src: `/images/projects/${PROJECT_DETAILS.slug}/after.png`,
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_A_02.png`,
               alt: 'After',
               caption: 'After',
               width: 1200,
               height: 600,
             },
-          ]}
-        />
-
-        <TextBlock
-          title="Context"
-          blocks={[
-            'Airtame offers a wireless presentation solution for business and educational institutions: hybrid conferencing, screen sharing, & digital signage, all in a single platform. Airtame Cloud is a web based application that allows users to manage, monitor and control their devices and screens from anywhere.',
           ]}
         />
 
@@ -85,17 +85,29 @@ export default function AirtameCloudSplitNavigation() {
           ]}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-20">
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-        </div>
+        <ImageBlock
+          type="three-cols"
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_A_03.png`,
+              alt: 'Image showing assumptions workshop',
+              width: 450,
+              height: 400,
+            },
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_A_04.png`,
+              alt: 'Image showing the hipotheses from the workshop',
+              width: 450,
+              height: 400,
+            },
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_A_05.png`,
+              alt: 'Image showing low fidelity wireframes',
+              width: 450,
+              height: 400,
+            },
+          ]}
+        />
 
         <TextBlock
           title="Ideation"
@@ -130,15 +142,6 @@ export default function AirtameCloudSplitNavigation() {
             'What went well? What can be improved?',
           ]}
         />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-20">
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-        </div>
       </Layout>
     </>
   );

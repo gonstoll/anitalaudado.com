@@ -8,7 +8,7 @@ interface Props {
 
 export default function TextBlock({title, blocks, list}: Props) {
   return (
-    <div className="text-black dark:text-white mb-20">
+    <div className="text-black dark:text-white mb-20 lg:px-40">
       <h3 className="text-2xl mb-6">{title}</h3>
       {blocks?.map((paragraph, index) => (
         <React.Fragment key={index}>

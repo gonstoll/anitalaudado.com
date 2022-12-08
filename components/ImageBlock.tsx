@@ -28,7 +28,7 @@ export default function ImageBlock({type, images}: Props) {
               fill
               src={img.src}
               alt={img.alt}
-              className="w-full rounded"
+              className="w-full h-auto max-w-full max-h-full object-cover rounded"
             />
           ) : (
             <Image
