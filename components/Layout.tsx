@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
+import Carousel from './Carousel';
 import Header from './Header';
 import LinkButton from './LinkButton';
 import Tag from './Tag';
@@ -25,10 +26,11 @@ type Project = {
   };
 };
 
-type Props = {title: string} & (Page | Project);
+type Props = {title: string; includeCarousel?: boolean} & (Page | Project);
 
 export default function Layout({
   title,
+  includeCarousel,
   children,
   ...props
 }: React.PropsWithChildren<Props>) {
@@ -48,9 +50,9 @@ export default function Layout({
         </div>
       ) : null}
 
-      <main className="mb-auto max-w-screen-2xl mx-auto">
+      <main className="mb-auto">
         {props.type === 'page' ? (
-          <div className="mt-20 md:mt-40 px-6 md:px-20">
+          <div className="mt-20 md:mt-40 px-6 md:px-20 max-w-screen-2xl mx-auto">
             <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
               {title}
             </h1>
@@ -58,7 +60,7 @@ export default function Layout({
           </div>
         ) : (
           <>
-            <div className="mt-5 md:mt-10 px-6 md:px-20">
+            <div className="mt-5 md:mt-10 px-6 md:px-20 max-w-screen-2xl mx-auto">
               <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
                 {title}
               </h1>
@@ -89,6 +91,8 @@ export default function Layout({
             </div>
           </>
         )}
+
+        {includeCarousel ? <Carousel /> : null}
       </main>
 
       <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-dark-white">

@@ -9,6 +9,7 @@ export default function Home() {
         <title>Ana Laudado</title>
       </Head>
       <Layout
+        includeCarousel
         type="page"
         title={`Hola! I'm Ana,
         a Product Designer
