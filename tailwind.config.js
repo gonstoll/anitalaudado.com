@@ -9,6 +9,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class',
+  plugins: [
+    function ({addVariant}) {
+      addVariant('peer-group-valid', '.peer:checked ~ .peer-group &');
+    },
+  ],
   theme: {
     extend: {
       fontSize: {
@@ -55,6 +60,9 @@ module.exports = {
       },
       rotate: {
         360: '360deg',
+      },
+      translate: {
+        'toggle-checked': 'calc(100% - 2px)',
       },
     },
   },

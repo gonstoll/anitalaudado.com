@@ -71,14 +71,16 @@ export default function Header() {
               theme ? 'visible' : 'invisible'
             }`}
           >
-            <input
-              type="checkbox"
-              className="sr-only peer"
-              onClick={toggleTheme}
-              defaultChecked={theme === 'dark'}
-              aria-label={theme === 'dark' ? 'Dark mode' : 'Light mode'}
-            />
-            <div className="cursor-pointer w-10 h-6 relative border rounded-2xl border-solid border-black dark:border-white after:absolute after:top-1/2 after:left-1 after:-translate-y-1/2 after:w-4 after:h-4 after:rounded-full after:bg-black dark:after:bg-white peer-checked:after:translate-x-5 peer-checked:after:left-auto after:transition-transform after:duration-500" />
+            <div className="w-10 h-6 p-1 border rounded-2xl border-solid border-black dark:border-white peer-group">
+              <input
+                type="checkbox"
+                className="sr-only peer"
+                onClick={toggleTheme}
+                defaultChecked={theme === 'dark'}
+                aria-label={theme === 'dark' ? 'Dark mode' : 'Light mode'}
+              />
+              <div className="cursor-pointer w-full h-full relative  before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-4 before:h-4 before:rounded-full before:bg-black dark:before:bg-white peer-checked:before:translate-x-toggle-checked  before:transition-transform before:duration-500" />
+            </div>
           </label>
 
           <button
