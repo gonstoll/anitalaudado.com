@@ -25,7 +25,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card
             title="Airtame Cloud  Split Navigation"
-            description="A complete redesign of Airtame’s management desktop platform for devices."
+            description="A complete redesign of Airtame's management desktop platform for devices."
             tags={['Product Design', 'Design systems']}
             link="/projects/airtame-cloud-split-navigation"
             image={{
@@ -41,6 +41,28 @@ export default function Home() {
             description="Airtame UI is Airtame’s official design system. Project leader, shipping multiple components, building documentation and improving collaboration between designer and developers."
             tags={['Design systems', 'Project Management']}
             link="/projects/airtame-ui-design-system"
+            image={{
+              src: '/images/projects/airtame-cloud-split-navigation/banner.png',
+              alt: 'Airtame Cloud Split Navigation',
+              width: 642,
+              height: 484,
+              fill: true,
+            }}
+          />
+          <Card
+            title="Airtame Cloud Settings - Redesign for scale"
+            tags={['Coming soon']}
+            image={{
+              src: '/images/projects/airtame-cloud-split-navigation/banner.png',
+              alt: 'Airtame Cloud Split Navigation',
+              width: 642,
+              height: 484,
+              fill: true,
+            }}
+          />
+          <Card
+            title="Introducing Playlists for Digital Signage"
+            tags={['Coming soon']}
             image={{
               src: '/images/projects/airtame-cloud-split-navigation/banner.png',
               alt: 'Airtame Cloud Split Navigation',

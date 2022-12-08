@@ -38,9 +38,17 @@ export default function Header() {
     : 'before:-translate-y-1 after:translate-y-1';
   const mobileMenuClass = isMenuOpen ? 'top-0' : '-top-full';
 
+  React.useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
+
   return (
     <header
-      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-dark-white bg-white dark:bg-black sticky transition-top duration-500 ${visibleClass}`}
+      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-dark-white bg-white dark:bg-black sticky transition-top duration-500 z-10 ${visibleClass}`}
     >
       <div className="flex items-center justify-between w-full max-w-3xl mx-auto">
         <Link href="/" className="text-3-1/2xl text-black dark:text-white z-10">
