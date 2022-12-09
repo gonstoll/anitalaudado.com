@@ -57,7 +57,7 @@ export default function About() {
               alt="A profile picture of me"
               /* width={3852}
               height={4815} */
-              className="rounded object-cover object-left-top"
+              className="rounded object-cover object-top"
             />
           </div>
         </div>
