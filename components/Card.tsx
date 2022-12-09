@@ -22,7 +22,9 @@ export default function Card({image, title, description, tags, link}: Props) {
   return (
     <Container
       href={link ?? ''}
-      className="flex flex-col group p-4 rounded-lg border-1 border-black dark:border-dark-white"
+      className={`flex flex-col group p-4 rounded-lg border-1 border-black dark:border-dark-white ${
+        isComingSoon ? '' : 'duration-200 dark:hover:border-white'
+      }`}
     >
       <div
         className={`w-full h-80 md:h-96 rounded-lg ${

@@ -28,6 +28,7 @@ module.exports = {
         68: '17rem', // 272px
         94: '23rem', // 368px
         98: '25rem', // 400px
+        200: '37.5rem', // 600px
       },
       maxWidth: {
         '3xl': '2600px',

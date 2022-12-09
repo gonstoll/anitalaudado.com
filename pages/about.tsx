@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import Layout from "~/components/Layout";
+import Image from 'next/image';
+import Layout from '~/components/Layout';
 
 const SKILLS = [
   'Product Design',
@@ -21,7 +22,7 @@ export default function About() {
         title={`Thanks for
         stopping by :)`}
       >
-        <div className="mt-20 mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-6 items-center">
+        <div className="mt-20 mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-6 items-center">
           <div>
             <h2 className="mb-10 text-3-1/2xl text-black dark:text-white">
               I'm Ana, a Product and Visual designer specialised in UI and
@@ -48,8 +49,16 @@ export default function About() {
               to catch some live music.
             </p>
           </div>
-          <div className="h-94 md:h-full p-4 rounded-lg border-1 border-black dark:border-white">
-            <div className="w-full h-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10" />
+          <div className="h-200 rounded relative">
+            <Image
+              fill
+              priority
+              src="/images/AnitaLaudado.jpeg"
+              alt="A profile picture of me"
+              /* width={3852}
+              height={4815} */
+              className="rounded object-cover object-left-top"
+            />
           </div>
         </div>
 
@@ -57,7 +66,8 @@ export default function About() {
           What I <b>do</b>
         </h2>
         <div>
-          {SKILLS.map(skill => ( // TODO: Move this to the Tile component
+          {/* TODO: Move this to the Tile component */}
+          {SKILLS.map(skill => (
             <div
               key={skill}
               className="w-full flex items-center gap-6 py-5 border-b-1 border-black dark:border-white"
