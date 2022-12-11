@@ -51,7 +51,11 @@ export default function Header() {
       className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-dark-white bg-white dark:bg-black sticky transition-top duration-500 z-10 ${visibleClass}`}
     >
       <div className="flex items-center justify-between w-full max-w-3xl mx-auto">
-        <Link href="/" className="text-3-1/2xl text-black dark:text-white z-10">
+        <Link
+          href="/"
+          aria-label="Logo"
+          className="text-3-1/2xl text-black dark:text-white z-10"
+        >
           ✦
         </Link>
 
@@ -70,9 +74,12 @@ export default function Header() {
             className={`flex items-center md:ml-20 ${
               theme ? 'visible' : 'invisible'
             }`}
+            htmlFor="theme-toggle"
           >
             <div className="w-10 h-6 p-1 border rounded-2xl border-solid border-black dark:border-white peer-group">
               <input
+                id="theme-toggle"
+                role="switch"
                 type="checkbox"
                 className="sr-only peer"
                 onClick={toggleTheme}
@@ -85,6 +92,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Open menu"
             className={`md:hidden ml-6 h-6 w-6 flex items-center before:bg-black after:bg-black before:rounded-sm after:rounded-sm dark:before:bg-white dark:after:bg-white before:w-6 after:w-6 before:h-3/16 after:h-3/16 before:absolute after:absolute  before:transition-toggle after:transition-toggle before:duration-500 after:duration-500 ${menuBtnClass}`}
           />
         </div>

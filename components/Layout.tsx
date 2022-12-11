@@ -100,6 +100,7 @@ export default function Layout({
           <div className="md:flex items-center justify-between mb-8">
             <Link
               href="/"
+              aria-label="Logo"
               className="block text-3-1/2xl text-black dark:text-white"
             >
               ✦
@@ -131,8 +132,15 @@ export default function Layout({
                 title="resume ↓"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Resume"
               />
-              <LinkButton href="#" type="primary" size="small" title="top ↑" />
+              <LinkButton
+                href="#"
+                type="primary"
+                size="small"
+                title="top ↑"
+                aria-label="Go to top"
+              />
             </div>
           </div>
         </div>

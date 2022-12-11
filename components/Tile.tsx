@@ -26,6 +26,7 @@ export default function Tile({title, link, size}: Props) {
     <Link
       href={link}
       className={`${sizeClasses[size].tile} flex items-center justify-between border-b-1 border-black dark:border-white group`}
+      aria-label={title}
     >
       <p className={`${sizeClasses[size].content} text-black dark:text-white`}>
         {title}

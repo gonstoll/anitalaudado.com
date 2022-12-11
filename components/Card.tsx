@@ -10,8 +10,6 @@ interface Props {
   link?: string;
 }
 
-// TODO: Accessibility here is not great. I need to add aria-labels to the
-// buttons and links.
 export default function Card({image, title, description, tags, link}: Props) {
   const isComingSoon = Boolean(!link);
   const Container = isComingSoon ? 'div' : Link;
@@ -25,6 +23,7 @@ export default function Card({image, title, description, tags, link}: Props) {
       className={`flex flex-col group p-4 rounded-lg border-1 border-black dark:border-dark-white ${
         isComingSoon ? '' : 'duration-200 dark:hover:border-white'
       }`}
+      aria-label={title}
     >
       <div
         className={`w-full h-80 md:h-96 rounded-lg ${
