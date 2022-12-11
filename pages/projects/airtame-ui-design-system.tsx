@@ -1,14 +1,18 @@
 import Head from 'next/head';
+import {useRouter} from 'next/router';
 import Layout from '~/components/Layout';
 import TextBlock from '~/components/TextBlock';
 
-const PROJECT_DETAILS = {
-  slug: 'airtame-ui-design-system',
-  title: 'Airtame UI Design System',
-};
-const title = `Ana Laudado | ${PROJECT_DETAILS.title}`;
-
 export default function AirtameUIDesignSystem() {
+  const {asPath} = useRouter();
+
+  const PROJECT_DETAILS = {
+    slug: asPath.split('/').at(-1),
+    title: 'Airtame UI Design System',
+  };
+
+  const title = `Ana Laudado | ${PROJECT_DETAILS.title}`;
+
   return (
     <>
       <Head>

@@ -1,16 +1,19 @@
 import Head from 'next/head';
+import {useRouter} from 'next/router';
 import ImageBlock from '~/components/ImageBlock';
 import Layout from '~/components/Layout';
 import TextBlock from '~/components/TextBlock';
 
-const PROJECT_DETAILS = {
-  slug: 'airtame-cloud-split-navigation',
-  title: 'Airtame Cloud Split Navigation',
-};
-
-const title = `Ana Laudado | ${PROJECT_DETAILS.title}`;
-
 export default function AirtameCloudSplitNavigation() {
+  const {asPath} = useRouter();
+
+  const PROJECT_DETAILS = {
+    slug: asPath.split('/').at(-1),
+    title: 'Airtame Cloud Split Navigation',
+  };
+
+  const title = `Ana Laudado | ${PROJECT_DETAILS.title}`;
+
   return (
     <>
       <Head>
