@@ -7,18 +7,18 @@ const carouselItems: Array<ImageProps> = [
     id: '1',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_02.png',
+    alt: 'Carousel item 2',
     id: '2',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_03.png',
+    alt: 'Carousel item 3',
     id: '3',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_04.png',
+    alt: 'Carousel item 4',
     id: '4',
   },
   {
@@ -27,18 +27,18 @@ const carouselItems: Array<ImageProps> = [
     id: '5',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_02.png',
+    alt: 'Carousel item 2',
     id: '6',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_03.png',
+    alt: 'Carousel item 3',
     id: '7',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_04.png',
+    alt: 'Carousel item 4',
     id: '8',
   },
   {
@@ -47,18 +47,18 @@ const carouselItems: Array<ImageProps> = [
     id: '9',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_02.png',
+    alt: 'Carousel item 2',
     id: '10',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_03.png',
+    alt: 'Carousel item 3',
     id: '11',
   },
   {
-    src: '/images/carousel/carousel_01.png',
-    alt: 'Carousel item 1',
+    src: '/images/carousel/carousel_04.png',
+    alt: 'Carousel item 4',
     id: '12',
   },
 ];
