@@ -22,7 +22,7 @@ export default function TextBlock({title, blocks, list}: Props) {
       ))}
       {list ? (
         <ul
-          aria-aria-labelledby={textBlockId}
+          aria-labelledby={textBlockId}
           className="peer mt-5 list-disc list-inside"
         >
           {list.map((item, index) => (
