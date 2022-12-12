@@ -21,7 +21,10 @@ export default function AirtameUIDesignSystem() {
       <Layout
         type="project"
         title={PROJECT_DETAILS.title}
-        banner={{src: '', alt: PROJECT_DETAILS.title}}
+        banner={{
+          src: `/images/projects/${PROJECT_DETAILS.slug}/banner.png`,
+          alt: PROJECT_DETAILS.title,
+        }}
         tags={['Design systems', 'Project Management']}
         summary="Project leader, shipping multiple components, building documentation and improving collaboration between designers and developers."
         details={{

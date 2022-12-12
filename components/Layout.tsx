@@ -77,7 +77,7 @@ export default function Layout({
                   {Object.entries(props.details).map(([key, value]) => (
                     <div
                       key={key}
-                      className="mb-6 last:mb-0 text-base text-black dark:text-white"
+                      className="mb-6 last:mb-0 text-xl text-black dark:text-white"
                     >
                       <p className="font-bold">
                         {key.charAt(0).toUpperCase() + key.slice(1)}

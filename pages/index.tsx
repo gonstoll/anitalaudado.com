@@ -43,7 +43,7 @@ export default function Home() {
             tags={['Design systems', 'Project Management']}
             link="/projects/airtame-ui-design-system"
             image={{
-              src: '/images/projects/airtame-cloud-split-navigation/banner.png',
+              src: '/images/projects/airtame-ui-design-system/banner.png',
               alt: 'Airtame Cloud Split Navigation',
               priority: true,
               fill: true,
@@ -65,7 +65,7 @@ export default function Home() {
             title="Introducing Playlists for Digital Signage"
             tags={['Coming soon']}
             image={{
-              src: '/images/projects/airtame-cloud-split-navigation/banner.png',
+              src: '/images/projects/airtame-ui-design-system/banner.png',
               alt: 'Airtame Cloud Split Navigation',
               priority: true,
               fill: true,

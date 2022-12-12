@@ -22,13 +22,13 @@ export default function About() {
         title={`Thanks for
         stopping by :)`}
       >
-        <div className="mt-20 mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-6 items-center">
-          <div>
+        <div className="mt-20 mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="self-start">
             <h2 className="mb-10 text-3-1/2xl text-black dark:text-white">
               I'm Ana, a Product and Visual designer specialised in UI and
               Design Systems.
             </h2>
-            <p className="text-base text-black dark:text-white">
+            <p className="text-xl text-black dark:text-white">
               Originally from Ushuaia, Argentina, also known as the southernmost
               city in the world. At a young age I moved to the other side of the
               country to follow my passion for art, illustration and design,
