@@ -136,13 +136,12 @@ export default function Layout({
                 rel="noreferrer"
                 aria-label="Resume"
               />
-              <LinkButton
-                href="#"
-                type="primary"
-                size="small"
-                title="top ↑"
-                aria-label="Go to top"
-              />
+              <button
+                className="flex items-center content-center rounded-4xl border-1 border-black dark:border-white text-black dark:text-white hover:bg-black hover:dark:bg-white hover:text-white hover:dark:text-black h-8 px-4 text-base"
+                onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+              >
+                top ↑
+              </button>
             </div>
           </div>
         </div>
