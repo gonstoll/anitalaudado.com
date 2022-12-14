@@ -26,14 +26,15 @@ export default function About() {
           <div className="self-start">
             <h2 className="mb-10 text-3-1/2xl text-black dark:text-white">
               I'm Ana, a Product and Visual designer specialised in detailed
-              interfaces and passionate about components, who always finds an excuse to draw
-              something.
+              interfaces and passionate about components, who always finds an
+              excuse to draw something.
             </h2>
             <p className="text-xl text-black dark:text-white">
               Originally from Ushuaia, Argentina, also known as the southernmost
               city in the world. At a young age I moved to the other side of the
-              country to follow my passion for art, illustration and design. I've worked in some of the most recognizable
-              design and digital agencies for over 8 years.
+              country to follow my passion for art, illustration and design.
+              I've worked in some of the most recognizable design and digital
+              agencies for over 8 years.
               <br />
               <br />
               Following that direction, a few years ago I sold everything and
@@ -54,6 +55,7 @@ export default function About() {
               priority
               src="/images/AnitaLaudado.jpeg"
               alt="A profile picture of me"
+              sizes="(min-width: 768px) 700px, 800px"
               /* width={3852}
               height={4815} */
               className="rounded object-cover object-top"
