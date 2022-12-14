@@ -2,6 +2,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import {useThemeContext} from '~/context/theme';
 import LinkButton from './LinkButton';
+import Logo from './Logo';
 
 function useStickyHeader() {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -56,7 +57,7 @@ export default function Header() {
           aria-label="Logo"
           className="text-3-1/2xl text-black dark:text-white z-10"
         >
-          ✦
+          <Logo />
         </Link>
 
         <div className="flex items-center z-10">
