@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import {useRouter} from 'next/router';
+import ImageBlock from '~/components/ImageBlock';
 import Layout from '~/components/Layout';
 import TextBlock from '~/components/TextBlock';
 
@@ -30,7 +31,7 @@ export default function AirtameUIDesignSystem() {
         details={{
           challenge:
             'How might we create a satisfying experience that makes finding, selecting and managing a device(s) feel quick, intuitive and efficient?',
-          role: 'Role Design Systems, Project Management, Documentation, Workshop facilitation',
+          role: 'Design Systems, Project Management, Documentation, Workshop facilitation',
           year: '2020 - 2022',
         }}
       >
@@ -46,17 +47,89 @@ export default function AirtameUIDesignSystem() {
           ]}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-20">
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-          <div className="col-span-1">
-            <div className="w-full h-98 rounded bg-gray-200"></div>
-          </div>
-        </div>
+        <ImageBlock
+          type="two-cols"
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_01.png`,
+              alt: 'Typography',
+              width: 1560,
+              height: 2112,
+            },
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_02.png`,
+              alt: 'Colours',
+              width: 1560,
+              height: 2112,
+            },
+          ]}
+        />
+
+        <ImageBlock
+          type="one-col"
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_03.png`,
+              alt: 'Icons',
+              width: 1560,
+              height: 880,
+            },
+          ]}
+        />
+
+        <ImageBlock
+          type="one-col"
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_04.png`,
+              alt: 'Feedback',
+              width: 4680,
+              height: 9040,
+            },
+          ]}
+        />
+
+        <ImageBlock
+          type="three-cols"
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_05.png`,
+              alt: 'Buttons',
+              width: 1560,
+              height: 3675,
+            },
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_06.png`,
+              alt: 'Inputs',
+              width: 1560,
+              height: 3675,
+            },
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_07.png`,
+              alt: 'Navigation',
+              width: 1560,
+              height: 3675,
+            },
+          ]}
+        />
+
+        <ImageBlock
+          type="two-cols"
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_08.png`,
+              alt: 'Inputs-two',
+              width: 1560,
+              height: 3675,
+            },
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_09.png`,
+              alt: 'Dialogs',
+              width: 1560,
+              height: 3675,
+            },
+          ]}
+        />
 
         <TextBlock
           title="What we did"

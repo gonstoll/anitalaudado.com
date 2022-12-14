@@ -16,9 +16,8 @@ export default function Home() {
         based in Copenhagen.`}
       >
         <h2 className="mt-10 text-2xl text-black dark:text-white">
-          I have a strong UI background, and a passion for Design Systems. My
-          goal is to build digital products that impact people in a positive
-          way.
+          I enjoy defining the right problems just as much as solving them
+          through design, where my strong UI background comes in handy.
         </h2>
         <h3 className="mt-20 md:mt-40 mb-10 text-4-1/2xl text-black dark:text-white">
           Selected <b>work</b>

@@ -124,6 +124,8 @@ export default function Layout({
                 type="primary"
                 size="small"
                 title="linkedin"
+                target="_blank"
+                rel="noreferrer"
               />
               <LinkButton
                 href="/docs/Ana_Laudado_2023.pdf"
