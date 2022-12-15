@@ -9,11 +9,13 @@ interface Props {
 
 export default function TextBlock({title, blocks, list, isFinalBlock}: Props) {
   const textBlockId = `title-${title}`;
-  const boardClass = 'p-6 border-1 border-black dark:border-dark-white';
+  const boardClass = isFinalBlock
+    ? 'p-6 border-1 border-black dark:border-dark-white rounded-lg'
+    : '';
 
   return (
     <div className="text-black dark:text-white mb-20 lg:px-40">
-      <div className={`${isFinalBlock ? boardClass : ''}`}>
+      <div className={boardClass}>
         <h3 id={textBlockId} className="text-3-1/2xl mb-6">
           {title}
         </h3>

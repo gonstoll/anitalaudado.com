@@ -38,7 +38,7 @@ export default function AirtameCloudSplitNavigation() {
         <TextBlock
           title="Context"
           blocks={[
-            'Airtame offers a wireless presentation solution for business and educational institutions: hybrid conferencing, screen sharing, & digital signage, all in a single platform. Airtame Cloud is a web based application that allows users to manage, monitor and control their devices and screens from anywhere.',
+            'Airtame offers a wireless presentation solution for business and educational institutions: hybrid conferencing, screen sharing, & digital signage, all in a single platform. Airtame Cloud is a web based application that allows users to manage, monitor and control their Airtame devices and screens from anywhere.',
           ]}
         />
 
@@ -69,7 +69,7 @@ export default function AirtameCloudSplitNavigation() {
             </>
           }
           blocks={[
-            "Airtame Cloud offers an overview of all the devices in the same organisation, where you can create different groups to better organise them. Some organisations, like big schools in the US, have hundreds (sometimes thousands) of devices and Airtame Cloud was not prepare for these big rollouts. Some users were experiencing delays when loading the device list, and managing groups wasn't really intuitive. Search for a specific device/s to edit was challenging, and on the UI some of the information was being hidden.",
+            "Airtame Cloud offers an overview of all the devices in the same organisation, where you can create different groups to better organise them. This is the main screen of Cloud, and we call it Device List. Some organisations, like big schools in the US, have hundreds (sometimes thousands) of devices and Airtame Cloud was not prepare for these big rollouts. Some users were experiencing delays when loading the device list, and managing groups wasn't really intuitive. Search for a specific device/s to edit was challenging, and on the UI some of the information was being hidden.",
             'Technically speaking we were having a performance issue, as the frontend rendering of the devices list contained two layers of rendering: the first displaying the full list of groups, and the second with the respective devices per group.',
           ]}
         />
@@ -77,14 +77,16 @@ export default function AirtameCloudSplitNavigation() {
         <TextBlock
           title="Discovery"
           blocks={[
-            'We unearthed useful insights through user feedback, usage data, inventory analysis, and user research. We had a workshops where with the PM, the Cloud Team Lead, the Product Design Lead and myself (Digital Product Designer) discussed the assumptions we had, and we ended up with many issues identified. Some of the them stood out as clear problems for users and the business:',
+            'We unearthed useful insights through user feedback, usage data, inventory analysis, and user research:',
+            'We had a workshop where with the PM, the Cloud Team Lead, the Product Design Lead and myself (Digital Product Designer), we discussed the assumptions we had, and we ended up with many issues identified. Some of the them stood out as clear problems for users and the business:',
           ]}
           list={[
-            'Finding a device is not easy or efficient, and Search is not user friendly.',
+            'Finding a device is not easy or efficient, and Searching is not user friendly.',
             'Information is most of the time hidden, and these details are crucial to make the user confident that they are editing the right device/s.',
             "It's hard to manage when there is a large amount of devices.",
             'The Cloud UI is not really intuitive.',
             'From a technical standpoint we were experiencing performance issues.',
+            'Speaking from the UX side of things, we wanted to use patterns that felt familiar and intuitive to the user.',
           ]}
         />
 
@@ -122,27 +124,20 @@ export default function AirtameCloudSplitNavigation() {
         <TextBlock
           title="Validation"
           blocks={[
-            "We worked closely together with the User Research Lead, and we reached out to some of our users and invited them to participate on an interview where we let them interact with the prototype. We asked if they see any difference, and for our surprise most of them didn't: they just started using and interacting with the prototype without hesitating. Users didn't notice the change, they used it exactly as we intended to.",
+            "We worked closely together with the User Research Lead, and we reached out to some of our users and invited them to participate on qualitative interviews, where we let them interact with the prototype while we observed. We asked them to think out loud, and if they see any difference, and for our surprise most of them didn't. They just started using and interacting with the prototype without hesitating. Users didn't notice the change, they used it exactly as we intended to. We asked them to do simple but everyday tasks, like find a device, a group, and select one and multiple devices.",
           ]}
         />
 
         <TextBlock
+          isFinalBlock
           title={
             <>
-              We didn't stop <b>there</b>
+              Final <b>thoughts</b>
             </>
           }
           blocks={[
-            "We worked closely together with the User Research Lead, and we reached out to some of our users and invited them to participate on an interview where we let them interact with the prototype. We asked if they see any difference, and for our surprise most of them didn't: they just started using and interacting with the prototype without hesitating. Users didn't notice the change, they used it exactly as we intended to.",
-          ]}
-        />
-
-        <TextBlock
-          title="Final thoughts"
-          list={[
-            'How users are going to benefit from this?',
-            'What did we learn? What challenges made me grow?',
-            'What went well? What can be improved?',
+            'This was the biggest change since Airtame Cloud made its first appearance. The project was a huge team effort, where we joined developer and design forces.',
+            'Saying this, it was a big challenge and the pressure to make it right was present. The users never noticed a change, and just started experiencing the Cloud as we intended. Thanks to that we learned the power of making things intuitive and familiar for the users.',
           ]}
         />
       </Layout>

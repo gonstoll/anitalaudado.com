@@ -43,9 +43,14 @@ export default function AirtameUIDesignSystem() {
         />
 
         <TextBlock
-          title="Problem"
+          title={
+            <>
+              Defining the <b>problem</b>
+            </>
+          }
           blocks={[
             'When I joined the company back in 2020, we had design tokens in place and a few basic components, like buttons, selectors and some icons. So far the Airtame UI library was something to do on the side when we run out of tasks.',
+            'The idea was there, and in the Product Design team we all wanted to have our own design system. We just needed to convince the correct stakeholders in order to treat this a proper project on its own and get resources to work on it.',
             'The base was pretty good, but we encountered a couple of issues:',
           ]}
           list={[
@@ -133,48 +138,6 @@ export default function AirtameUIDesignSystem() {
           ]}
         />
 
-        <ImageBlock
-          type="three-cols"
-          images={[
-            {
-              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_05.png`,
-              alt: 'Buttons',
-              width: 1560,
-              height: 3675,
-            },
-            {
-              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_06.png`,
-              alt: 'Inputs',
-              width: 1560,
-              height: 3675,
-            },
-            {
-              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_07.png`,
-              alt: 'Navigation',
-              width: 1560,
-              height: 3675,
-            },
-          ]}
-        />
-
-        <ImageBlock
-          type="two-cols"
-          images={[
-            {
-              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_08.png`,
-              alt: 'Inputs-two',
-              width: 1560,
-              height: 3675,
-            },
-            {
-              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_09.png`,
-              alt: 'Dialogs',
-              width: 1560,
-              height: 3675,
-            },
-          ]}
-        />
-
         <TextBlock
           isFinalBlock
           title={
@@ -185,6 +148,18 @@ export default function AirtameUIDesignSystem() {
           blocks={[
             'This was (and still is) a huge success story. We have many ambassadors and fans of Airtame UI in the company, and people are excited to know more about it and get to use it. Even the hardware team is using our icons!',
             "I also learned that a Design System is never done, is not something you can check as completed. It's a living thing, that you need to take care and that's always evolving and changing. And that's ok.",
+          ]}
+        />
+
+        <ImageBlock
+          type="one-col"
+          images={[
+            {
+              src: `/images/projects/${PROJECT_DETAILS.slug}/CS_B_05.png`,
+              alt: 'Feedback',
+              width: 4680,
+              height: 9040,
+            },
           ]}
         />
       </Layout>
