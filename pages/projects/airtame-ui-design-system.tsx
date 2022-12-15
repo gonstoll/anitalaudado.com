@@ -30,20 +30,32 @@ export default function AirtameUIDesignSystem() {
         summary="Project leader, shipping multiple components, building documentation and improving collaboration between designers and developers."
         details={{
           challenge:
-            'How might we create a satisfying experience that makes finding, selecting and managing a device(s) feel quick, intuitive and efficient?',
-          role: 'Design Systems, Project Management, Documentation, Workshop facilitation',
-          year: '2020 - 2022',
+            'How might we improve the collaboration between developers and designers, making sure we deliver faster while maintaining consistency?',
+          role: 'Product Design, Design System, Project manager',
+          year: '2022',
         }}
       >
         <TextBlock
-          title={
-            <>
-              Defining the <b>problem</b>
-            </>
-          }
+          title="Context"
           blocks={[
-            "Airtame Cloud offers an overview of all the devices in the same organisation, where you can create different groups to better organise them. Some organisations, like big schools in the US, have hundreds (sometimes thousands) of devices and Airtame Cloud was not prepare for these big rollouts. Some users were experiencing delays when loading the device list, and managing groups wasn't really intuitive. Search for a specific device/s to edit was challenging, and on the UI some of the information was being hidden.",
-            'Technically speaking we were having a performance issue, as the frontend rendering of the devices list contained two layers of rendering: the first displaying the full list of groups, and the second with the respective devices per group.',
+            "Airtame offers hybrid conferencing, screen sharing, & digital signage. This means that there's plenty of opportunities for inconsistency between the product offerings. The desktop application for screen sharing and conferencing, and the Airtame Cloud web app for managing devices, were existing with individual teams creating their own UI elements, developing components and following different patterns.",
+          ]}
+        />
+
+        <TextBlock
+          title="Problem"
+          blocks={[
+            'When I joined the company back in 2020, we had design tokens in place and a few basic components, like buttons, selectors and some icons. So far the Airtame UI library was something to do on the side when we run out of tasks.',
+            'The base was pretty good, but we encountered a couple of issues:',
+          ]}
+          list={[
+            'Visual inconsistencies across the app and the Cloud',
+            'Duplication of components',
+            'Fragmented workflows and processes',
+            'No streamlined communication',
+            'Inconsistent brand experiences and patterns across the products',
+            'Too much time and resources spent in redoing and building custom components each time we needed to add something new',
+            'A lot of legacy code and components',
           ]}
         />
 
@@ -65,6 +77,22 @@ export default function AirtameUIDesignSystem() {
           ]}
         />
 
+        <TextBlock
+          title="What we did"
+          blocks={[
+            'We built an Airtame UI force: our amazing Product Design team lead helping with the strategy, myself leading and managing the project, our two talented designers and two other really skilled developers.',
+            'We started by gathering and reviewing everything that we already had in place, we documented, organised and ended up with a clear idea of the state of things and how much needed to be done.',
+            "We established processes and workflows that we were missing, we streamlined the communication in one channel, and we also started sharing what we're doing to the company. I created a Jira workflow and board for the project, we had workshops and many iterations until we found out what worked for us. We gave the project identity, we involved people and by making all this process more visible, we managed to engage even more people in it and get them excited about it.",
+            'We also defined goals and metrics in order to measure our progress:',
+          ]}
+          list={[
+            'We wanted to have at least 80% of what we had on Figma, also on Storybook by the end of the year. We estimated from 6to 8 months to complete this, we did it in only 3!',
+            'For every component, we wanted to have all the needed and basic variants: size, state, type and theme.',
+            'Have a description for every component, and a well organised overview of the variants in it (thanks to great Figma plugins!)',
+            'Reduce the amount of text variants, to the only ones we really use',
+          ]}
+        />
+
         <ImageBlock
           type="one-col"
           images={[
@@ -74,6 +102,22 @@ export default function AirtameUIDesignSystem() {
               width: 1560,
               height: 880,
             },
+          ]}
+        />
+
+        <TextBlock
+          title="What we ended up with"
+          list={[
+            'A design system with the components we use and need, and that’s constantly evolving',
+            'Components that are flexible enough to give designer the freedom to do what they do best, whilst keeping consistency',
+            'Less and less legacy code',
+            'Airtame UI being praised and celebrated in retrospectives',
+            'Less time on Figma, more time thinking, researching and solving',
+            'Less time coding, more reusing',
+            "Documentation on Notion that's up to date and well maintained, where you can find our design principles, descriptions, guidelines, best practices, patterns we use and how we work on our design system.",
+            'An icon library that represents the brand and feels “Airtamey”, even in the smallest of sizes',
+            'A place for all communication related to the project, where we not only ask for variants, but where we celebrate every update release',
+            'Happy devs, happy designers, and happy PMs :)',
           ]}
         />
 
@@ -132,32 +176,15 @@ export default function AirtameUIDesignSystem() {
         />
 
         <TextBlock
-          title="What we did"
-          list={[
-            'Show before and after. Figma plain, and then with everything and organised. More pages.',
-            'Documentation, how the icon library grew.',
-            'Dashboard on Figma.',
-            'Created a channel to bring all the communications in one place.',
-            'Less and less legacy.',
-            'Process for Jira, we weren’t trating it as a proper project. We gave them identity, we shared it, we gain backup from stakeholders and pms.',
-            'In several retrospectives developers were praising it!',
-          ]}
-        />
-
-        <TextBlock
-          title="What we did"
-          list={[
-            '80% of what we had on Figma translated to Storybook by the end of the year. It took us only 3 months!',
-            'We involved the company',
-          ]}
-        />
-
-        <TextBlock
-          title="Final thoughts"
-          list={[
-            'The dashboard is hard to keep up to date.',
-            'What did we learn? What challenges made me grow?',
-            'What went well? What can be improved?',
+          isFinalBlock
+          title={
+            <>
+              Final <b>thoughts</b>
+            </>
+          }
+          blocks={[
+            'This was (and still is) a huge success story. We have many ambassadors and fans of Airtame UI in the company, and people are excited to know more about it and get to use it. Even the hardware team is using our icons!',
+            "I also learned that a Design System is never done, is not something you can check as completed. It's a living thing, that you need to take care and that's always evolving and changing. And that's ok.",
           ]}
         />
       </Layout>
