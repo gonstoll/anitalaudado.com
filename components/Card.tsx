@@ -21,7 +21,9 @@ export default function Card({image, title, description, tags, link}: Props) {
     <Container
       href={link ?? ''}
       className={`flex flex-col group p-4 rounded-lg border-1 border-black dark:border-dark-white ${
-        isComingSoon ? '' : 'duration-200 dark:hover:border-white'
+        isComingSoon
+          ? ''
+          : 'duration-200 [@media(hover:hover)]:dark:hover:border-white'
       }`}
       aria-label={title}
     >
@@ -45,7 +47,7 @@ export default function Card({image, title, description, tags, link}: Props) {
           ))}
         </div>
         {!isComingSoon ? (
-          <div className="h-16 w-16 min-w-16 flex items-center text-center rounded-full border-1 border-black dark:border-dark-white group-hover:bg-black dark:group-hover:bg-white text-black dark:text-white group-hover:text-white dark:group-hover:text-black">
+          <div className="h-16 w-16 min-w-16 flex items-center text-center rounded-full border-1 border-black dark:border-dark-white [@media(hover:hover)]:group-hover:bg-black [@media(hover:hover)]:dark:group-hover:bg-white text-black dark:text-white [@media(hover:hover)]:group-hover:text-white [@media(hover:hover)]:dark:group-hover:text-black">
             <p className="text-4-1/2xl w-full group-hover:-rotate-45 duration-200 transition-transform ease-linear">
               →
             </p>

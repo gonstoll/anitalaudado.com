@@ -8,7 +8,7 @@ export default function Logo() {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="hover:rotate-360 duration-1000 transition-transform"
+      className="[@media(hover:hover)]:hover:rotate-360 [@media(pointer:fine)]:hover:rotate-360 duration-1000 transition-transform"
     >
       <path
         className="fill-black dark:fill-white"
