@@ -41,6 +41,8 @@ export default function Project({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const title = `Ana Laudado | ${post.title}`;
 
+  console.log('post', post);
+
   return (
     <>
       <Head>{title}</Head>
