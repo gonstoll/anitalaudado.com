@@ -28,7 +28,7 @@ export default function AirtameUIDesignSystem() {
         }}
         tags={['Design systems', 'Project Management']}
         summary="Project leader, shipping multiple components, building documentation and improving collaboration between designers and developers."
-        details={{
+        intro={{
           challenge:
             'How might we improve the collaboration between developers and designers, making sure we deliver faster while maintaining consistency?',
           role: 'Product Design, Design System, Project manager',

@@ -28,7 +28,7 @@ export default function AirtameCloudSplitNavigation() {
         }}
         tags={['Product Design', 'Design systems']}
         summary="A complete redesign of Airtame's management desktop platform for devices."
-        details={{
+        intro={{
           challenge:
             'How might we create a satisfying experience that makes finding, selecting and managing a device(s) feel quick, intuitive and efficient?',
           role: 'Product Design, Design System, Prototyping, Usability Testing',

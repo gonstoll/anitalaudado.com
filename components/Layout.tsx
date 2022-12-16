@@ -19,7 +19,7 @@ type Project = {
   };
   tags: Array<string>;
   summary: string;
-  details: {
+  intro: {
     challenge: string;
     role: string;
     year: string;
@@ -74,7 +74,7 @@ export default function Layout({
                   {props.summary}
                 </h2>
                 <div>
-                  {Object.entries(props.details).map(([key, value]) => (
+                  {Object.entries(props.intro).map(([key, value]) => (
                     <div
                       key={key}
                       className="mb-6 last:mb-0 text-xl text-black dark:text-white"
