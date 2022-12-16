@@ -102,7 +102,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 
   return {
     props: {
-      post: post || null,
+      post: post,
       mainImageUrl,
     },
   };
