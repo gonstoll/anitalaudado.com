@@ -51,7 +51,7 @@ export default function Project({
           src: mainImage.url,
           alt: mainImage.alt,
         }}
-        tags={post.tags.map(t => t.title)}
+        tags={post.tags.map(t => t?.title)}
         summary={post.subtitle}
         intro={{
           challenge: post.challenge,
