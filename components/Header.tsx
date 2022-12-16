@@ -26,6 +26,7 @@ function useStickyHeader() {
 const links = [
   {href: '/', title: 'Work'},
   {href: '/about', title: 'About'},
+  {href: '/contact', title: 'Contact'},
 ];
 
 export default function Header() {
