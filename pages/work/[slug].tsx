@@ -37,28 +37,28 @@ interface Post extends Intro, Metadata {
 
 export default function Project({
   post,
-  mainImage,
+  mainImageUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const title = `Ana Laudado | ${post.title}`;
+  if (!post) return null;
 
-  console.log('post', post);
+  const title = `Ana Laudado | ${post?.title}`;
 
   return (
     <>
       <Head>{title}</Head>
       <Layout
         type="project"
-        title={post.title}
+        title={post?.title}
         banner={{
-          src: mainImage.url,
-          alt: mainImage.alt,
+          src: mainImageUrl,
+          alt: post.mainImage.alt,
         }}
-        tags={post.tags.map(t => t?.title)}
-        summary={post.subtitle}
+        tags={post?.tags.map(t => t?.title)}
+        summary={post?.subtitle}
         intro={{
-          challenge: post.challenge,
-          role: post.role,
-          year: post.year,
+          challenge: post?.challenge,
+          role: post?.role,
+          year: post?.year,
         }}
       >
         Content!
@@ -95,18 +95,15 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
-  const post = await sanityClient.fetch<Post>(query, {slug});
-  const mainImage = imageUrlBuilder(sanityClient).image(
-    post.mainImage.asset._ref
-  );
+  const post = await sanityClient.fetch<Post | undefined>(query, {slug});
+  const mainImageUrl = post
+    ? imageUrlBuilder(sanityClient).image(post.mainImage.asset._ref).url()
+    : '';
 
   return {
     props: {
-      post,
-      mainImage: {
-        url: mainImage.url(),
-        alt: post.mainImage.alt,
-      },
+      post: post || null,
+      mainImageUrl,
     },
   };
 }
