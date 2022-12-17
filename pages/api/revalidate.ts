@@ -7,14 +7,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log('req', req);
   if (req.method !== 'POST') {
     console.error('Must be a POST request');
     return res.status(401).json({message: 'Must be a POST request'});
   }
 
   if (!isValidRequest(req, secret)) {
-    res.status(401).json({message: 'Invalid signature'});
-    return;
+    return res.status(401).json({message: 'Invalid signature'});
   }
 
   try {
