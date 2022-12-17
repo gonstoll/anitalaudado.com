@@ -39,26 +39,26 @@ export default function Project({
   post,
   mainImageUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (!post) return null;
-
-  const title = `Ana Laudado | ${post?.title}`;
+  const pageTitle = `Ana Laudado | ${post.title}`;
 
   return (
     <>
-      <Head>{title}</Head>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
       <Layout
         type="project"
-        title={post?.title}
+        title={post.title}
         banner={{
           src: mainImageUrl,
           alt: post.mainImage.alt,
         }}
         tags={post?.tags.map(t => t?.title)}
-        summary={post?.subtitle}
+        summary={post.subtitle}
         intro={{
-          challenge: post?.challenge,
-          role: post?.role,
-          year: post?.year,
+          challenge: post.challenge,
+          role: post.role,
+          year: post.year,
         }}
       >
         Content!
@@ -67,7 +67,7 @@ export default function Project({
   );
 }
 
-const query = groq`*[_type == "post" && slug.current == $slug][0]{
+const query = groq`*[_type == "post"]{
   _createdAt,
   _id,
   mainImage,
@@ -89,20 +89,23 @@ export async function getStaticPaths() {
 
   return {
     paths: paths.map(slug => ({params: {slug}})),
-    fallback: true,
+    fallback: false,
   };
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
-  const post = await sanityClient.fetch<Post | undefined>(query, {slug});
+  const posts = await sanityClient.fetch<Array<Post>>(query, {
+    slug,
+  });
+  const post = posts[0];
   const mainImageUrl = post
-    ? imageUrlBuilder(sanityClient).image(post.mainImage.asset._ref).url()
+    ? imageUrlBuilder(sanityClient).image(post.mainImage?.asset._ref).url()
     : '';
 
   return {
     props: {
-      post: post,
+      post,
       mainImageUrl,
     },
   };
