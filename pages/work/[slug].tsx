@@ -71,6 +71,7 @@ const query = groq`*[_type == "post"]{
   _createdAt,
   _id,
   mainImage,
+  thumbnailImage,
   title,
   subtitle,
   "tags": tags[]->{title, _id},
