@@ -1,39 +1,8 @@
-import imageUrlBuilder from '@sanity/image-url';
-import groq from 'groq';
 import type {GetStaticPropsContext, InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Layout from '~/components/Layout';
-import sanityClient from '~/lib/sanity';
-
-interface Intro {
-  challenge: string;
-  role: string;
-  year: string;
-}
-
-interface Metadata {
-  title: string;
-  subtitle: string;
-  tags: Array<{
-    _id: string;
-    title: string;
-  }>;
-  slug: {
-    current: string;
-  };
-}
-
-interface Post extends Intro, Metadata {
-  _createdAt: string;
-  _id: string;
-  mainImage: {
-    alt: string;
-    caption?: string;
-    asset: {
-      _ref: string;
-    };
-  };
-}
+import {parseEsotericImage} from '~/models/image';
+import {getAllSlugs, getPostBySlug} from '~/models/post';
 
 export default function Project({
   post,
@@ -67,42 +36,21 @@ export default function Project({
   );
 }
 
-const query = groq`*[_type == "post"]{
-  _createdAt,
-  _id,
-  mainImage,
-  thumbnailImage,
-  title,
-  subtitle,
-  "tags": tags[]->{title, _id},
-  slug,
-  challenge,
-  role,
-  year,
-  pageBuilder,
-  finalThoughts
-} | order(_createdAt desc)`;
-
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch<Array<string>>(
-    `*[_type == "post" && defined(slug.current)][].slug.current`
-  );
+  const slugs = await getAllSlugs();
 
   return {
-    paths: paths.map(slug => ({params: {slug}})),
+    paths: slugs.map(slug => ({
+      params: {slug},
+    })),
     fallback: false,
   };
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
-  const posts = await sanityClient.fetch<Array<Post>>(query, {
-    slug,
-  });
-  const post = posts[0];
-  const mainImageUrl = post
-    ? imageUrlBuilder(sanityClient).image(post.mainImage?.asset._ref).url()
-    : '';
+  const post = await getPostBySlug(slug as string);
+  const mainImageUrl = parseEsotericImage(post.mainImage).url();
 
   return {
     props: {
