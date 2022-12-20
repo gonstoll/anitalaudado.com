@@ -4,6 +4,8 @@ import sanityClient from '~/lib/sanity';
 export interface Image {
   alt: string;
   caption?: string;
+  width?: number;
+  height?: number;
   asset: {
     _ref: string;
   };

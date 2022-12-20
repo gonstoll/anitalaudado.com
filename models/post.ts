@@ -21,62 +21,44 @@ interface Metadata {
   };
 }
 
-type Editor = {
+interface Editor {
   _key: string;
   _type: 'editor';
-  editorField: PortableTextProps;
-};
-type OneImageLayout = {
+  editorField: PortableTextProps['value'];
+}
+interface ImagesLayout {
   _key: string;
-  _type: 'oneImageLayout';
-  image1: Image;
-};
-type TwoImageLayout = {
-  _key: string;
-  _type: 'twoImageLayout';
-  image1: Image;
-  image2: Image;
-};
-type ThreeImageLayout = {
-  _key: string;
-  _type: 'threeImageLayout';
-  image1: Image;
-  image2: Image;
-  image3: Image;
-};
-type FourImageLayout = {
-  _key: string;
-  _type: 'fourImageLayout';
-  image1: Image;
-  image2: Image;
-  image3: Image;
-  image4: Image;
-};
+  _type: 'imagesLayout';
+  images: Array<Image>;
+}
 
 export interface Post extends Intro, Metadata {
   _createdAt: string;
   _id: string;
   mainImage: Image;
   thumbnailImage: Image;
-  pageBuilder: Array<
-    | Editor
-    | OneImageLayout
-    | TwoImageLayout
-    | ThreeImageLayout
-    | FourImageLayout
-  >;
+  pageBuilder: Array<Editor | ImagesLayout>;
+  finalThoughts?: {
+    _type: 'editor';
+    editorField: PortableTextProps['value'];
+  };
 }
 
 interface UserPost
   extends Omit<
     Post,
     'challenge' | 'role' | 'year' | 'pageBuilder' | 'finalThoughts'
-  > {}
+  > {
+  isPublished: boolean;
+  isComingSoon: boolean;
+}
 
 export async function getAllPosts() {
   const query = groq`*[_type == "post"]{
     _createdAt,
     _id,
+    isPublished,
+    isComingSoon,
     mainImage,
     thumbnailImage,
     title,
