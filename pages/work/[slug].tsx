@@ -69,8 +69,8 @@ export default function Project({
             );
           }
           if (block._type === 'imagesLayout') {
-            const imagesLength = block.images.length;
             const images = block.images.map(img => ({
+              ...img,
               src: parseEsotericImage(img).url(),
               width: img.width || 2000,
               height: img.height || 1000,
@@ -82,9 +82,9 @@ export default function Project({
               <ImageBlock
                 key={block._key}
                 type={
-                  imagesLength === 1 // TODO: Can I add radio buttons on the field to select the layout?
+                  block.layout === 'one-column'
                     ? 'one-col'
-                    : imagesLength === 2
+                    : block.layout === 'two-columns'
                     ? 'two-cols'
                     : 'three-cols'
                 }

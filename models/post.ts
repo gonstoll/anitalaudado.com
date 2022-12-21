@@ -29,6 +29,7 @@ interface Editor {
 interface ImagesLayout {
   _key: string;
   _type: 'imagesLayout';
+  layout: 'one-column' | 'two-columns' | 'three-columns';
   images: Array<Image>;
 }
 
@@ -36,7 +37,7 @@ export interface Post extends Intro, Metadata {
   _createdAt: string;
   _id: string;
   mainImage: Image;
-  thumbnailImage: Image;
+  thumbnailImage?: Image;
   pageBuilder: Array<Editor | ImagesLayout>;
   finalThoughts?: {
     _type: 'editor';

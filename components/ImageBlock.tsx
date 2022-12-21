@@ -2,7 +2,7 @@ import Image, {ImageProps} from 'next/image';
 
 interface Props {
   type: 'one-col' | 'two-cols' | 'three-cols';
-  images: Array<ImageProps & {caption?: string}>;
+  images: Array<ImageProps & {caption?: string; _key: string}>;
 }
 
 export default function ImageBlock({type, images}: Props) {
@@ -24,7 +24,7 @@ export default function ImageBlock({type, images}: Props) {
       }`}
     >
       {images.map(img => (
-        <div key={`image-${img.alt}`} className="col-span-1">
+        <div key={img._key} className="col-span-1">
           <Image {...img} className={`rounded ${imageClass}`} />
 
           {img.caption ? (
