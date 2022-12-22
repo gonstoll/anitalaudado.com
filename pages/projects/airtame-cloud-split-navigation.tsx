@@ -42,7 +42,7 @@ export default function AirtameCloudSplitNavigation() {
           ]}
         />
 
-        <ImageBlock
+        {/* <ImageBlock
           type="two-cols"
           images={[
             {
@@ -60,7 +60,7 @@ export default function AirtameCloudSplitNavigation() {
               height: 600,
             },
           ]}
-        />
+        /> */}
 
         <TextBlock
           title={
@@ -90,7 +90,7 @@ export default function AirtameCloudSplitNavigation() {
           ]}
         />
 
-        <ImageBlock
+        {/* <ImageBlock
           type="three-cols"
           images={[
             {
@@ -112,7 +112,7 @@ export default function AirtameCloudSplitNavigation() {
               height: 400,
             },
           ]}
-        />
+        /> */}
 
         <TextBlock
           title="Ideation"

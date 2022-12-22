@@ -64,7 +64,7 @@ export default function AirtameUIDesignSystem() {
           ]}
         />
 
-        <ImageBlock
+        {/* <ImageBlock
           type="two-cols"
           images={[
             {
@@ -80,7 +80,7 @@ export default function AirtameUIDesignSystem() {
               height: 2112,
             },
           ]}
-        />
+        /> */}
 
         <TextBlock
           title="What we did"
@@ -98,7 +98,7 @@ export default function AirtameUIDesignSystem() {
           ]}
         />
 
-        <ImageBlock
+        {/* <ImageBlock
           type="one-col"
           images={[
             {
@@ -108,7 +108,7 @@ export default function AirtameUIDesignSystem() {
               height: 880,
             },
           ]}
-        />
+        /> */}
 
         <TextBlock
           title="What we ended up with"
@@ -126,7 +126,7 @@ export default function AirtameUIDesignSystem() {
           ]}
         />
 
-        <ImageBlock
+        {/* <ImageBlock
           type="one-col"
           images={[
             {
@@ -136,7 +136,7 @@ export default function AirtameUIDesignSystem() {
               height: 9040,
             },
           ]}
-        />
+        /> */}
 
         <TextBlock
           isFinalBlock
@@ -151,7 +151,7 @@ export default function AirtameUIDesignSystem() {
           ]}
         />
 
-        <ImageBlock
+        {/* <ImageBlock
           type="one-col"
           images={[
             {
@@ -161,7 +161,7 @@ export default function AirtameUIDesignSystem() {
               height: 9040,
             },
           ]}
-        />
+        /> */}
       </Layout>
     </>
   );
