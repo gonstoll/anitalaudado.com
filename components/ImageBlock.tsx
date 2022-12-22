@@ -1,8 +1,9 @@
-import Image, {ImageProps} from 'next/image';
+import NextImage, {ImageProps} from 'next/image';
+import type {Image} from '~/models/image';
 
 interface Props {
   type: 'one-col' | 'two-cols' | 'three-cols';
-  images: Array<ImageProps & {caption?: string; _key: string}>;
+  images: Array<ImageProps & Omit<Image, keyof ImageProps>>;
 }
 
 export default function ImageBlock({type, images}: Props) {
@@ -25,7 +26,7 @@ export default function ImageBlock({type, images}: Props) {
     >
       {images.map(img => (
         <div key={img._key} className="col-span-1">
-          <Image {...img} className={`rounded ${imageClass}`} />
+          <NextImage {...img} className={`rounded ${imageClass}`} />
 
           {img.caption ? (
             <p className="mt-4 text-base text-black dark:text-white">
