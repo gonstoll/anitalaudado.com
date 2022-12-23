@@ -10,19 +10,18 @@ import {getAllSlugs, getPostBySlug} from '~/models/post';
 const components: Partial<PortableTextReactComponents> = {
   block: {
     h3: ({children}) => <h3 className="text-3-1/2xl mb-6">{children}</h3>,
-    normal: ({children}) => <p className="text-xl peer">{children}</p>,
+    normal: ({children}) => <p className="text-xl peer mb-5">{children}</p>,
   },
   list: {
     bullet: ({children}) => (
-      <ul className="text-xl mt-5 list-disc list-inside">{children}</ul>
+      <ul className="text-xl mb-5 list-disc list-inside">{children}</ul>
     ),
   },
   types: {
     fullImage: ({value}) => {
-      console.log('value [fullImage]', value);
       const imageUrl = parseEsotericImage(value).url();
       return (
-        <NextImage src={imageUrl} width={1200} height={1000} alt={value.alt} />
+        <NextImage src={imageUrl} width={2000} height={1000} alt={value.alt} />
       );
     },
   },
@@ -101,7 +100,7 @@ export default function Project({
 
         {post.finalThoughts?.editorField ? (
           <div className="lg:px-40">
-            <div className="p-6 border-1 border-black dark:border-dark-white rounded-lg">
+            <div className="p-6 border-1 text-black dark:text-white border-black dark:border-dark-white rounded-lg">
               <h3 className="text-3-1/2xl mb-6">
                 Final <b>thoughts</b>
               </h3>
