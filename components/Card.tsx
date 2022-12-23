@@ -3,17 +3,17 @@ import Link from 'next/link';
 import Tag from './Tag';
 
 interface Props {
-  image: ImageProps;
+  image?: ImageProps;
   title: string;
-  description?: string;
-  tags: Array<string>;
+  description: string | null;
+  tags?: Array<string>;
   link?: string;
 }
 
 export default function Card({image, title, description, tags, link}: Props) {
   const isComingSoon = Boolean(!link);
   const Container = isComingSoon ? 'div' : Link;
-  const imageClass = image.fill
+  const imageClass = image?.fill
     ? 'h-auto max-w-full max-h-full object-cover'
     : '';
 
@@ -28,21 +28,28 @@ export default function Card({image, title, description, tags, link}: Props) {
       aria-label={title}
     >
       <div
-        className={`w-full h-80 md:h-96 rounded-lg ${
-          image.fill ? 'relative' : ''
+        className={`w-full h-80 md:h-96 rounded-lg overflow-hidden ${
+          image?.fill ? 'relative' : ''
         }`}
       >
-        <Image {...image} className={`w-full rounded ${imageClass}`} />
+        {image ? (
+          <Image {...image} className={`w-full rounded ${imageClass}`} />
+        ) : (
+          <div className="w-full h-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10" />
+        )}
       </div>
+
       <h2 className="mt-6 mb-4 text-2xl md:text-3-1/2xl font-bold text-black dark:text-white">
         {title}
       </h2>
+
       {description ? (
         <p className="text-xl mb-4 text-black dark:text-white">{description}</p>
       ) : null}
+
       <div className="flex items-end justify-between mt-auto gap-4">
         <div className="flex items-center flex-wrap gap-2">
-          {tags.map((tag, i) => (
+          {tags?.map((tag, i) => (
             <Tag key={`tag-${i}-${tag}-${title}`} title={tag} />
           ))}
         </div>
