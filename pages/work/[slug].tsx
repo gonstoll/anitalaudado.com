@@ -41,12 +41,16 @@ export default function Project({
       </Head>
       <Layout
         type="project"
-        title={post.title}
-        banner={{
-          src: mainImageUrl,
-          alt: post.mainImage.alt,
-        }}
-        tags={post?.tags.map(t => t?.title)}
+        title={post.title || 'Untitled'}
+        banner={
+          mainImageUrl
+            ? {
+                src: mainImageUrl,
+                alt: post.mainImage?.alt || 'Project banner',
+              }
+            : undefined
+        }
+        tags={post.tags?.map(t => t?.title)}
         summary={post.subtitle}
         intro={{
           challenge: post.challenge,
@@ -54,7 +58,7 @@ export default function Project({
           year: post.year,
         }}
       >
-        {post.pageBuilder.map(block => {
+        {post.pageBuilder?.map(block => {
           if (block._type === 'editor') {
             return (
               <div
@@ -127,7 +131,9 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
   const post = await getPostBySlug(slug as string);
-  const mainImageUrl = parseEsotericImage(post.mainImage).url();
+  const mainImageUrl = post.mainImage
+    ? parseEsotericImage(post.mainImage).url()
+    : undefined;
 
   return {
     props: {

@@ -4,21 +4,22 @@ import sanityClient from '~/lib/sanity';
 import type {Image} from './image';
 
 interface Intro {
-  challenge: string;
-  role: string;
-  year: string;
+  challenge: string | null;
+  role: string | null;
+  year: string | null;
 }
 
 interface Metadata {
-  title: string;
-  subtitle: string;
+  title: string | null;
+  subtitle: string | null;
   tags: Array<{
     _id: string;
     title: string;
-  }>;
+  }> | null;
   slug: {
     current: string;
   };
+  publishedDate: string | null;
 }
 
 interface Editor {
@@ -36,13 +37,13 @@ interface ImagesLayout {
 export interface Post extends Intro, Metadata {
   _createdAt: string;
   _id: string;
-  mainImage: Image;
-  thumbnailImage?: Image;
-  pageBuilder: Array<Editor | ImagesLayout>;
+  mainImage: Image | null;
+  thumbnailImage: Image | null;
+  pageBuilder: Array<Editor | ImagesLayout> | null;
   finalThoughts?: {
     _type: 'editor';
     editorField: PortableTextProps['value'];
-  };
+  } | null;
 }
 
 interface UserPost
@@ -56,9 +57,9 @@ interface UserPost
 
 export async function getAllPosts() {
   const query = groq`*[_type == "post"]{
-    _createdAt,
     _id,
     isPublished,
+    publishedDate,
     isComingSoon,
     mainImage,
     thumbnailImage,
@@ -66,7 +67,7 @@ export async function getAllPosts() {
     subtitle,
     "tags": tags[]->{title, _id},
     slug,
-  } | order(_createdAt desc)`;
+  } | order(publishedDate desc)`;
 
   const posts = await sanityClient.fetch<Array<UserPost>>(query);
   return posts;
@@ -74,7 +75,6 @@ export async function getAllPosts() {
 
 export async function getPostBySlug(slug: string) {
   const query = groq`*[_type == "post"]{
-    _createdAt,
     _id,
     mainImage,
     thumbnailImage,
@@ -87,7 +87,7 @@ export async function getPostBySlug(slug: string) {
     year,
     pageBuilder,
     finalThoughts
-  } | order(_createdAt desc)[0]`;
+  }[0]`;
 
   const post = await sanityClient.fetch<Post>(query, {slug});
   return post;

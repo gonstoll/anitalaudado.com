@@ -32,25 +32,29 @@ export default function Home({
             post.isPublished ? (
               <Card
                 key={post._id}
-                title={post.title}
+                title={post.title || 'Untitled'}
                 description={post.subtitle}
                 tags={
                   post.isComingSoon
                     ? ['Coming soon']
-                    : post.tags.map(t => t.title)
+                    : post.tags?.map(t => t.title)
                 }
                 link={
                   post.isComingSoon ? undefined : `/work/${post.slug.current}`
                 }
-                image={{
-                  src: parseEsotericImage(
-                    post.thumbnailImage || post.mainImage
-                  ).url(),
-                  alt: post.thumbnailImage?.alt || post.mainImage?.alt,
-                  priority: true,
-                  fill: true,
-                  sizes: '(min-width: 1024px) 33vw, 100vw',
-                }}
+                image={
+                  post.mainImage
+                    ? {
+                        src: parseEsotericImage(
+                          post.thumbnailImage || post.mainImage
+                        ).url(),
+                        alt: post.thumbnailImage?.alt || post.mainImage?.alt,
+                        priority: true,
+                        fill: true,
+                        sizes: '(min-width: 1024px) 33vw, 100vw',
+                      }
+                    : undefined
+                }
               />
             ) : null
           )}

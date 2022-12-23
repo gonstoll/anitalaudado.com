@@ -13,16 +13,16 @@ type Page = {
 
 type Project = {
   type: 'project';
-  banner: {
+  banner?: {
     src: string;
     alt: string;
   };
-  tags: Array<string>;
-  summary: string;
+  tags?: Array<string>;
+  summary: string | null;
   intro: {
-    challenge: string;
-    role: string;
-    year: string;
+    challenge: string | null;
+    role: string | null;
+    year: string | null;
   };
 };
 
@@ -40,13 +40,15 @@ export default function Layout({
 
       {props.type === 'project' ? (
         <div className="h-98 relative">
-          <Image
-            fill
-            src={props.banner.src}
-            alt={props.banner.alt}
-            sizes="100vw"
-            className="w-full h-auto max-w-full max-h-full object-cover"
-          />
+          {props.banner ? (
+            <Image
+              fill
+              src={props.banner.src}
+              alt={props.banner.alt}
+              sizes="100vw"
+              className="w-full h-auto max-w-full max-h-full object-cover"
+            />
+          ) : null}
         </div>
       ) : null}
 
@@ -59,37 +61,35 @@ export default function Layout({
             {children}
           </div>
         ) : (
-          <>
-            <div className="mt-5 md:mt-10 px-6 md:px-20 max-w-screen-2xl mx-auto">
-              <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
-                {title}
-              </h1>
-              <div className="my-10 flex items-center flex-wrap gap-4">
-                {props.tags.map(tag => (
-                  <Tag key={tag} title={tag} />
+          <div className="mt-5 md:mt-10 px-6 md:px-20 max-w-screen-2xl mx-auto">
+            <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
+              {title}
+            </h1>
+            <div className="my-10 flex items-center flex-wrap gap-4">
+              {props.tags?.map(tag => (
+                <Tag key={tag} title={tag} />
+              ))}
+            </div>
+            <div className="grid gap-10 grid-cols-1 md:grid-cols-2 mb-20">
+              <h2 className="text-3-1/2xl text-black dark:text-white">
+                {props.summary}
+              </h2>
+              <div>
+                {Object.entries(props.intro).map(([key, value]) => (
+                  <div
+                    key={key}
+                    className="mb-6 last:mb-0 text-xl text-black dark:text-white"
+                  >
+                    <p className="font-bold">
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </p>
+                    <p>{value}</p>
+                  </div>
                 ))}
               </div>
-              <div className="grid gap-10 grid-cols-1 md:grid-cols-2 mb-20">
-                <h2 className="text-3-1/2xl text-black dark:text-white">
-                  {props.summary}
-                </h2>
-                <div>
-                  {Object.entries(props.intro).map(([key, value]) => (
-                    <div
-                      key={key}
-                      className="mb-6 last:mb-0 text-xl text-black dark:text-white"
-                    >
-                      <p className="font-bold">
-                        {key.charAt(0).toUpperCase() + key.slice(1)}
-                      </p>
-                      <p>{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {children}
             </div>
-          </>
+            {children}
+          </div>
         )}
 
         {includeCarousel ? <Carousel /> : null}
