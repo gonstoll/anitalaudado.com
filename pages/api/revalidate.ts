@@ -20,8 +20,10 @@ export default async function handler(
     const pathToRevalidate = req.body.slug;
     await res.revalidate(`/work/${pathToRevalidate}`);
     await res.revalidate('/');
+    console.log('Revalidated');
     return res.json({revalidated: true});
   } catch (err) {
+    console.log('Error revalidating', err);
     return res.status(500).send({message: 'Error revalidating'});
   }
 }
