@@ -8,7 +8,21 @@ export interface Image {
   width?: number;
   height?: number;
   asset: {
-    _ref: string;
+    _createdAt: string;
+    _id: string;
+    altText: string | null;
+    description: string | null;
+    title: string | null;
+    tags: Array<{_id: string; title: string}> | null;
+    url: string;
+    metadata: {
+      dimensions: {
+        aspectRatio: number;
+        height: number;
+        width: number;
+      };
+      lqip: string;
+    };
   };
 }
 

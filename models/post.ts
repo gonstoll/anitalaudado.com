@@ -65,7 +65,7 @@ export async function getAllPosts() {
     thumbnailImage,
     title,
     subtitle,
-    "tags": tags[]->{title, _id},
+    'tags': tags[]->{title, _id},
     slug,
   } | order(publishedDate desc)`;
 
@@ -74,22 +74,65 @@ export async function getAllPosts() {
 }
 
 export async function getPostBySlug(slug: string) {
+  const IMAGE_ASSET_FIELDS = `
+    _createdAt,
+    _id,
+    url,
+    'tags': opt.media.tags[]->{
+      _id,
+      'title': name.current
+    },
+    title,
+    altText,
+    description,
+    'metadata': metadata{
+      dimensions,
+      lqip,
+    },
+  `;
+
   const query = groq`*[_type == "post"]{
     _id,
-    mainImage,
+    'mainImage': mainImage.asset->{
+      ${IMAGE_ASSET_FIELDS}
+    },
     thumbnailImage,
     title,
     subtitle,
-    "tags": tags[]->{title, _id},
+    'tags': tags[]->{_id, title},
     slug,
     challenge,
     role,
     year,
-    pageBuilder,
-    finalThoughts
+    'pageBuilder': pageBuilder[]{
+      ...,
+      _type == 'imagesLayout' => {
+        images[]{
+          ...,
+          'asset': asset->{
+            _createdAt,
+            _id,
+            url,
+            'tags': opt.media.tags[]->{
+              _id,
+              'title': name.current
+            },
+            title,
+            altText,
+            description,
+            'metadata': metadata{
+              dimensions,
+              lqip,
+            },
+          }
+        }
+      }
+    },
+    finalThoughts,
   }[0]`;
 
   const post = await sanityClient.fetch<Post>(query, {slug});
+  console.log('post', post.mainImage);
   return post;
 }
 
