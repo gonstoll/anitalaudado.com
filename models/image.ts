@@ -52,7 +52,6 @@ export async function getAllCarouselImages() {
       ${IMAGE_ASSET_FIELDS}
     }
   `;
-
   const images = await sanityClient.fetch<Array<Image['asset']>>(query);
   const filteredImages = images.filter(image => {
     return image.tags?.some(tag => tag.title === 'Carousel');
