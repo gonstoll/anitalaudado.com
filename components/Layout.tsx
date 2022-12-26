@@ -23,7 +23,10 @@ type Project = {
   };
 };
 
-type Props = {title: string; includeCarousel?: boolean} & (Page | Project);
+type Props = {
+  title: string;
+  includeCarousel?: boolean;
+} & (Page | Project);
 
 export default function Layout({
   title,
