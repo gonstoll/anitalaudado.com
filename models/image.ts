@@ -48,6 +48,7 @@ export async function getAllCarouselImages() {
   const query = groq`
     *[_type == "carouselImages"][]{
       '_key': _id,
+      publishedDate,
       'asset': image.asset->{
         ${IMAGE_ASSET_FIELDS}
       }

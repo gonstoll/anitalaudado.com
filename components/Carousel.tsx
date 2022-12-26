@@ -16,18 +16,18 @@ export default function Carousel() {
         </h3>
       </div>
       <div className="overflow-y-hidden overflow-x-scroll scrollbar-hide snap-x snap-mandatory snap-always gap-4 flex relative w-screen">
-        {data?.map(i => (
+        {data?.map(img => (
           <div
-            key={i._key}
+            key={img._key}
             className="w-80 md:w-98 h-80 md:h-98 bg-gray-400 rounded shrink-0 snap-center relative"
           >
             <Image
-              src={i.asset.url}
-              alt={i.asset.altText || `Carousel item ${i._key}`}
-              width={i.asset.metadata.dimensions.width}
-              height={i.asset.metadata.dimensions.height}
+              src={img.asset.url}
+              alt={img.asset.altText || `Carousel item ${img._key}`}
+              width={img.asset.metadata.dimensions.width}
+              height={img.asset.metadata.dimensions.height}
               placeholder="blur"
-              blurDataURL={i.asset.metadata.lqip}
+              blurDataURL={img.asset.metadata.lqip}
               sizes="(min-width: 768px) 400px, 320px"
               className="w-full h-auto max-w-full max-h-full object-cover rounded [@media(hover:hover)]:grayscale [@media(pointer:fine)]:grayscale hover:grayscale-0 transition-all duration-500"
             />
