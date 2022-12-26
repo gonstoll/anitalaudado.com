@@ -29,7 +29,6 @@ const components: Partial<PortableTextReactComponents> = {
 
 export default function Project({
   post,
-  mainImageUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const pageTitle = `Ana Laudado | ${post.title}`;
 
@@ -42,10 +41,13 @@ export default function Project({
         type="project"
         title={post.title || 'Untitled'}
         banner={
-          mainImageUrl
+          post.mainImage
             ? {
-                src: mainImageUrl,
-                alt: post.mainImage?.alt || 'Project banner',
+                src: post.mainImage.asset.url,
+                width: post.mainImage.asset.metadata.dimensions.width,
+                height: post.mainImage.asset.metadata.dimensions.height,
+                alt: post.mainImage.asset.altText || 'Project banner',
+                blurDataURL: post.mainImage.asset.metadata.lqip,
               }
             : undefined
         }
@@ -74,11 +76,11 @@ export default function Project({
           if (block._type === 'imagesLayout') {
             const images = block.images.map(img => ({
               ...img,
-              src: parseEsotericImage(img).url(),
-              width: img.width || 2000,
-              height: img.height || 1000,
-              alt: img.alt,
-              caption: img.caption,
+              src: img.asset.url,
+              width: img.asset.metadata.dimensions.width,
+              height: img.asset.metadata.dimensions.height,
+              blurDataURL: img.asset.metadata.lqip,
+              alt: img.asset.altText || 'Project image',
             }));
 
             return (
@@ -130,14 +132,10 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
   const post = await getPostBySlug(slug as string);
-  const mainImageUrl = post.mainImage
-    ? parseEsotericImage(post.mainImage).url()
-    : undefined;
 
   return {
     props: {
       post,
-      mainImageUrl,
     },
   };
 }

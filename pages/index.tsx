@@ -48,10 +48,16 @@ export default function Home({
                         src: parseEsotericImage(
                           post.thumbnailImage || post.mainImage
                         ).url(),
-                        alt: post.thumbnailImage?.alt || post.mainImage?.alt,
+                        alt:
+                          post.thumbnailImage?.asset.altText ||
+                          post.mainImage?.asset.altText ||
+                          `${post.title || 'Untitled'} post thumbnail`,
                         priority: true,
                         fill: true,
                         sizes: '(min-width: 1024px) 33vw, 100vw',
+                        blurDataURL:
+                          post.thumbnailImage?.asset.metadata.lqip ||
+                          post.mainImage.asset.metadata.lqip,
                       }
                     : undefined
                 }
