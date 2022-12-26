@@ -7,11 +7,11 @@ export interface Image {
   asset: {
     _createdAt: string;
     _id: string;
+    url: string;
+    tags: Array<{_id: string; title: string}> | null;
+    title: string | null;
     altText: string | null;
     description: string | null;
-    title: string | null;
-    tags: Array<{_id: string; title: string}> | null;
-    url: string;
     metadata: {
       dimensions: {
         aspectRatio: number;
