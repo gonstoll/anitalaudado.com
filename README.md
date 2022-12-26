@@ -15,5 +15,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Roadmap
 
 * [x] Add placeholder for loading images
-* [ ] Fix contact page buttons responsive behaviour
+* [x] Fix contact page buttons responsive behaviour
 * [ ] Expose carousel images from Studio
