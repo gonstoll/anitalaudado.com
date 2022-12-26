@@ -16,4 +16,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 * [x] Add placeholder for loading images
 * [x] Fix contact page buttons responsive behaviour
-* [ ] Expose carousel images from Studio
+* [x] Expose carousel images from Studio

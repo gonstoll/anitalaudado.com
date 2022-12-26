@@ -7,11 +7,11 @@ export interface Image {
   asset: {
     _createdAt: string;
     _id: string;
+    url: string;
+    tags: Array<{_id: string; title: string}> | null;
+    title: string | null;
     altText: string | null;
     description: string | null;
-    title: string | null;
-    tags: Array<{_id: string; title: string}> | null;
-    url: string;
     metadata: {
       dimensions: {
         aspectRatio: number;
@@ -46,16 +46,15 @@ export function parseEsotericImage(source: Image) {
 
 export async function getAllCarouselImages() {
   const query = groq`
-    *[_type == "sanity.imageAsset"
-    && defined(opt.media.tags)
-    && length(opt.media.tags) > 0][]{
-      ${IMAGE_ASSET_FIELDS}
-    }
+    *[_type == "carouselImages"][]{
+      '_key': _id,
+      publishedDate,
+      'asset': image.asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    } | order(publishedDate desc)
   `;
 
-  const images = await sanityClient.fetch<Array<Image['asset']>>(query);
-  const filteredImages = images.filter(image => {
-    return image.tags?.some(tag => tag.title === 'Carousel');
-  });
-  return filteredImages;
+  const images = await sanityClient.fetch<Array<Image>>(query);
+  return images;
 }

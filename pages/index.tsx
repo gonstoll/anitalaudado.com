@@ -1,3 +1,4 @@
+import {dehydrate, QueryClient} from '@tanstack/react-query';
 import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Card from '~/components/Card';
@@ -21,8 +22,9 @@ export default function Home({
         based in Copenhagen.`}
       >
         <h2 className="mt-10 text-2xl text-black dark:text-white">
-          I enjoy defining the right problems just as much as solving them
-          through design, where my strong UI background comes in handy.
+          I enjoy defining the right problems just as much as designing
+          intuitive experiences, where I can put my strong UI background in good
+          use.
         </h2>
         <h3 className="mt-20 md:mt-40 mb-10 text-4-1/2xl text-black dark:text-white">
           Selected <b>work</b>
@@ -72,11 +74,17 @@ export default function Home({
 
 export async function getStaticProps() {
   const posts = await getAllPosts();
-  const carouselImages = await getAllCarouselImages();
+
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ['carouselImages'],
+    queryFn: getAllCarouselImages,
+  });
 
   return {
     props: {
       posts,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 }
