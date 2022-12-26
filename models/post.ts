@@ -1,7 +1,7 @@
 import type {PortableTextProps} from '@portabletext/react';
 import groq from 'groq';
 import sanityClient from '~/lib/sanity';
-import type {Image} from './image';
+import {Image, IMAGE_ASSET_FIELDS} from './image';
 
 interface Intro {
   challenge: string | null;
@@ -54,23 +54,6 @@ interface UserPost
   isPublished: boolean;
   isComingSoon: boolean;
 }
-
-const IMAGE_ASSET_FIELDS = groq`
-  _createdAt,
-  _id,
-  url,
-  'tags': opt.media.tags[]->{
-    _id,
-    'title': name.current
-  },
-  title,
-  altText,
-  description,
-  'metadata': metadata{
-    dimensions,
-    lqip,
-  },
-`;
 
 const BASE_POST_FIELDS = groq`
   _id,

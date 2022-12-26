@@ -2,7 +2,7 @@ import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import Card from '~/components/Card';
 import Layout from '~/components/Layout';
-import {parseEsotericImage} from '~/models/image';
+import {getAllCarouselImages, parseEsotericImage} from '~/models/image';
 import {getAllPosts} from '~/models/post';
 
 export default function Home({
@@ -72,6 +72,8 @@ export default function Home({
 
 export async function getStaticProps() {
   const posts = await getAllPosts();
+  const carouselImages = await getAllCarouselImages();
+
   return {
     props: {
       posts,
