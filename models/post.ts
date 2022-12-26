@@ -89,7 +89,7 @@ export async function getAllPosts() {
 }
 
 export async function getPostBySlug(slug: string) {
-  const query = groq`*[_type == "post"]{
+  const query = groq`*[_type == "post" && slug.current == $slug]{
     challenge,
     role,
     year,
