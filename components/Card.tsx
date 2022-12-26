@@ -33,7 +33,11 @@ export default function Card({image, title, description, tags, link}: Props) {
         }`}
       >
         {image ? (
-          <Image {...image} className={`w-full rounded ${imageClass}`} />
+          <Image
+            {...image}
+            placeholder="blur"
+            className={`w-full rounded ${imageClass}`}
+          />
         ) : (
           <div className="w-full h-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10" />
         )}

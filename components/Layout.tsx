@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, {ImageProps} from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import Carousel from './Carousel';
@@ -13,10 +13,7 @@ type Page = {
 
 type Project = {
   type: 'project';
-  banner?: {
-    src: string;
-    alt: string;
-  };
+  banner?: ImageProps;
   tags?: Array<string>;
   summary: string | null;
   intro: {
@@ -42,9 +39,8 @@ export default function Layout({
         <div className="h-98 relative">
           {props.banner ? (
             <Image
-              fill
-              src={props.banner.src}
-              alt={props.banner.alt}
+              {...props.banner}
+              placeholder="blur"
               sizes="100vw"
               className="w-full h-auto max-w-full max-h-full object-cover"
             />

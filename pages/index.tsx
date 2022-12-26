@@ -52,6 +52,9 @@ export default function Home({
                         priority: true,
                         fill: true,
                         sizes: '(min-width: 1024px) 33vw, 100vw',
+                        blurDataURL:
+                          post.thumbnailImage?.asset.metadata.lqip ||
+                          post.mainImage.asset.metadata.lqip,
                       }
                     : undefined
                 }

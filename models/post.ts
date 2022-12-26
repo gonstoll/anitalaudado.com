@@ -55,17 +55,44 @@ interface UserPost
   isComingSoon: boolean;
 }
 
+const IMAGE_ASSET_FIELDS = groq`
+  _createdAt,
+  _id,
+  url,
+  'tags': opt.media.tags[]->{
+    _id,
+    'title': name.current
+  },
+  title,
+  altText,
+  description,
+  'metadata': metadata{
+    dimensions,
+    lqip,
+  },
+`;
+
 export async function getAllPosts() {
   const query = groq`*[_type == "post"]{
     _id,
     isPublished,
     publishedDate,
     isComingSoon,
-    mainImage,
-    thumbnailImage,
+    'mainImage': mainImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
+    'thumbnailImage': thumbnailImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
     title,
     subtitle,
-    'tags': tags[]->{title, _id},
+    'tags': tags[]->{_id, title},
     slug,
   } | order(publishedDate desc)`;
 
@@ -74,29 +101,20 @@ export async function getAllPosts() {
 }
 
 export async function getPostBySlug(slug: string) {
-  const IMAGE_ASSET_FIELDS = `
-    _createdAt,
-    _id,
-    url,
-    'tags': opt.media.tags[]->{
-      _id,
-      'title': name.current
-    },
-    title,
-    altText,
-    description,
-    'metadata': metadata{
-      dimensions,
-      lqip,
-    },
-  `;
-
   const query = groq`*[_type == "post"]{
     _id,
-    'mainImage': mainImage.asset->{
-      ${IMAGE_ASSET_FIELDS}
+    'mainImage': mainImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
     },
-    thumbnailImage,
+    'thumbnailImage': thumbnailImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
     title,
     subtitle,
     'tags': tags[]->{_id, title},
@@ -110,20 +128,7 @@ export async function getPostBySlug(slug: string) {
         images[]{
           ...,
           'asset': asset->{
-            _createdAt,
-            _id,
-            url,
-            'tags': opt.media.tags[]->{
-              _id,
-              'title': name.current
-            },
-            title,
-            altText,
-            description,
-            'metadata': metadata{
-              dimensions,
-              lqip,
-            },
+            ${IMAGE_ASSET_FIELDS}
           }
         }
       }
@@ -132,7 +137,6 @@ export async function getPostBySlug(slug: string) {
   }[0]`;
 
   const post = await sanityClient.fetch<Post>(query, {slug});
-  console.log('post', post.mainImage);
   return post;
 }
 

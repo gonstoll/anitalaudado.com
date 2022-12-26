@@ -26,11 +26,15 @@ export default function ImageBlock({type, images}: Props) {
     >
       {images.map(img => (
         <div key={img._key} className="col-span-1">
-          <NextImage {...img} className={`rounded ${imageClass}`} />
+          <NextImage
+            {...img}
+            placeholder="blur"
+            className={`rounded ${imageClass}`}
+          />
 
-          {img.caption ? (
+          {img.asset.description ? (
             <p className="mt-4 text-base text-black dark:text-white">
-              {img.caption}
+              {img.asset.description}
             </p>
           ) : null}
         </div>
