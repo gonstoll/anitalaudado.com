@@ -55,6 +55,5 @@ export async function getAllCarouselImages() {
   `;
 
   const images = await sanityClient.fetch<Array<Image>>(query);
-  console.dir(images, {depth: null});
   return images;
 }
