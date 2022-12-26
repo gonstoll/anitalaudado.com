@@ -72,28 +72,33 @@ const IMAGE_ASSET_FIELDS = groq`
   },
 `;
 
+const BASE_POST_FIELDS = groq`
+  _id,
+  'mainImage': mainImage{
+    ...,
+    'asset': asset->{
+      ${IMAGE_ASSET_FIELDS}
+    }
+  },
+  'thumbnailImage': thumbnailImage{
+    ...,
+    'asset': asset->{
+      ${IMAGE_ASSET_FIELDS}
+    }
+  },
+  title,
+  subtitle,
+  'tags': tags[]->{_id, title},
+  slug,
+`;
+
 export async function getAllPosts() {
   const query = groq`*[_type == "post"]{
     _id,
     isPublished,
     publishedDate,
     isComingSoon,
-    'mainImage': mainImage{
-      ...,
-      'asset': asset->{
-        ${IMAGE_ASSET_FIELDS}
-      }
-    },
-    'thumbnailImage': thumbnailImage{
-      ...,
-      'asset': asset->{
-        ${IMAGE_ASSET_FIELDS}
-      }
-    },
-    title,
-    subtitle,
-    'tags': tags[]->{_id, title},
-    slug,
+    ${BASE_POST_FIELDS}
   } | order(publishedDate desc)`;
 
   const posts = await sanityClient.fetch<Array<UserPost>>(query);
@@ -102,26 +107,10 @@ export async function getAllPosts() {
 
 export async function getPostBySlug(slug: string) {
   const query = groq`*[_type == "post"]{
-    _id,
-    'mainImage': mainImage{
-      ...,
-      'asset': asset->{
-        ${IMAGE_ASSET_FIELDS}
-      }
-    },
-    'thumbnailImage': thumbnailImage{
-      ...,
-      'asset': asset->{
-        ${IMAGE_ASSET_FIELDS}
-      }
-    },
-    title,
-    subtitle,
-    'tags': tags[]->{_id, title},
-    slug,
     challenge,
     role,
     year,
+    finalThoughts,
     'pageBuilder': pageBuilder[]{
       ...,
       _type == 'imagesLayout' => {
@@ -133,7 +122,7 @@ export async function getPostBySlug(slug: string) {
         }
       }
     },
-    finalThoughts,
+    ${BASE_POST_FIELDS}
   }[0]`;
 
   const post = await sanityClient.fetch<Post>(query, {slug});

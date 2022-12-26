@@ -3,7 +3,6 @@ import sanityClient from '~/lib/sanity';
 
 export interface Image {
   _key: string;
-  alt: string;
   asset: {
     _createdAt: string;
     _id: string;

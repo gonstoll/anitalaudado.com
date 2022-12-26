@@ -29,7 +29,6 @@ const components: Partial<PortableTextReactComponents> = {
 
 export default function Project({
   post,
-  mainImageUrl,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const pageTitle = `Ana Laudado | ${post.title}`;
 
@@ -133,14 +132,10 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
   const post = await getPostBySlug(slug as string);
-  const mainImageUrl = post.mainImage
-    ? parseEsotericImage(post.mainImage).url()
-    : undefined;
 
   return {
     props: {
       post,
-      mainImageUrl,
     },
   };
 }
