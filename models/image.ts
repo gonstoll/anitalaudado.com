@@ -46,15 +46,15 @@ export function parseEsotericImage(source: Image) {
 
 export async function getAllCarouselImages() {
   const query = groq`
-    *[_type == "sanity.imageAsset"
-    && defined(opt.media.tags)
-    && length(opt.media.tags) > 0][]{
-      ${IMAGE_ASSET_FIELDS}
-    }
+    *[_type == "carouselImages"][]{
+      '_key': _id,
+      'asset': image.asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    } | order(publishedDate desc)
   `;
-  const images = await sanityClient.fetch<Array<Image['asset']>>(query);
-  const filteredImages = images.filter(image => {
-    return image.tags?.some(tag => tag.title === 'Carousel');
-  });
-  return filteredImages;
+
+  const images = await sanityClient.fetch<Array<Image>>(query);
+  console.dir(images, {depth: null});
+  return images;
 }
