@@ -1,7 +1,7 @@
 import {isValidSignature, SIGNATURE_HEADER_NAME} from '@sanity/webhook';
 import type {NextApiRequest, NextApiResponse} from 'next';
 
-const secret = process.env.SANITY_WEBHOOK_SECRET!;
+const secret = process.env.SANITY_POSTS_WEBHOOK_SECRET!;
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,6 +13,7 @@ export default async function handler(
 
   const signature = req.headers[SIGNATURE_HEADER_NAME]?.toString() || '';
   if (!isValidSignature(JSON.stringify(req.body), signature, secret)) {
+    console.log('Invalid signature [posts]');
     return res.status(401).json({message: 'Invalid signature'});
   }
 
@@ -20,10 +21,10 @@ export default async function handler(
     const pathToRevalidate = req.body.slug;
     await res.revalidate(`/work/${pathToRevalidate}`);
     await res.revalidate('/');
-    console.log('Revalidated');
+    console.log('Revalidated [posts]');
     return res.json({revalidated: true});
   } catch (err) {
-    console.log('Error revalidating', err);
+    console.log('Error revalidating [posts]: ', err);
     return res.status(500).send({message: 'Error revalidating'});
   }
 }
