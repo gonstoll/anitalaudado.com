@@ -13,6 +13,7 @@ export default async function handler(
 
   const signature = req.headers[SIGNATURE_HEADER_NAME]?.toString() || '';
   if (!isValidSignature(JSON.stringify(req.body), signature, secret)) {
+    console.log('Invalid signature [carousel]');
     return res.status(401).json({message: 'Invalid signature'});
   }
 
