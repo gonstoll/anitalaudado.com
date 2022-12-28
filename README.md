@@ -1,6 +1,6 @@
 # Ana Laudado, Product Designer
 
-Live here: [https://anitalaudado.vercel.app](https://anitalaudado.vercel.app)
+Live here: [https://anitalaudado.com](https://anitalaudado.com)
 
 ## Features
 
@@ -22,3 +22,7 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Roadmap
+
+- [ ] Receive CV from Sanity Studio
