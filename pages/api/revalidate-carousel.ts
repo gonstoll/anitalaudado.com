@@ -17,13 +17,11 @@ export default async function handler(
   }
 
   try {
-    const pathToRevalidate = req.body.slug;
-    await res.revalidate(`/work/${pathToRevalidate}`);
     await res.revalidate('/');
-    console.log('Revalidated');
+    console.log('Revalidated [carousel]');
     return res.json({revalidated: true});
   } catch (err) {
-    console.log('Error revalidating', err);
+    console.log('Error revalidating [carousel]: ', err);
     return res.status(500).send({message: 'Error revalidating'});
   }
 }
