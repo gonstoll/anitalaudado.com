@@ -1,7 +1,7 @@
 import {isValidSignature, SIGNATURE_HEADER_NAME} from '@sanity/webhook';
 import type {NextApiRequest, NextApiResponse} from 'next';
 
-const secret = process.env.SANITY_WEBHOOK_SECRET_CAROUSEL!;
+const secret = process.env.SANITY_CAROUSEL_WEBHOOK_SECRET!;
 
 export default async function handler(
   req: NextApiRequest,
