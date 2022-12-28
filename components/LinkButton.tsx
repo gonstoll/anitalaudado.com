@@ -25,7 +25,7 @@ type Props = {title: string} & AnchorProps &
 export default function LinkButton({title, ...props}: Props) {
   if (props.type === 'primary') {
     const sizeClass =
-      props.size === 'small' ? 'h-8 px-4 text-base' : 'h-10 px-8 text-xl';
+      props.size === 'small' ? 'h-8 px-4 text-base' : 'h-10 px-6 text-xl';
 
     return (
       <Link

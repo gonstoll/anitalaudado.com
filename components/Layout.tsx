@@ -47,7 +47,9 @@ export default function Layout({
               sizes="100vw"
               className="w-full h-auto max-w-full max-h-full object-cover"
             />
-          ) : null}
+          ) : (
+            <div className="w-full h-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10" />
+          )}
         </div>
       ) : null}
 

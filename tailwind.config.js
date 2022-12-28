@@ -59,6 +59,9 @@ module.exports = {
         top: `top, ${transitionProperty.colors}`,
         toggle: `${transitionProperty.transform}, ${transitionProperty.colors}`,
       },
+      transitionDuration: {
+        1250: '1250ms',
+      },
       rotate: {
         360: '360deg',
       },
