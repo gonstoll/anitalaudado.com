@@ -2,6 +2,15 @@
 
 Live here: [https://anitalaudado.vercel.app](https://anitalaudado.vercel.app)
 
+## Features
+
+* On-demand ISR (Incremental Static Regeneration)
+* TanStack Query
+* Tailwind
+* Sanity for content management
+* Dark theme
+* Accessibility
+
 ## Getting Started
 
 First, run the development server:
@@ -13,9 +22,3 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Roadmap
-
-* [x] Add placeholder for loading images
-* [x] Fix contact page buttons responsive behaviour
-* [x] Expose carousel images from Studio

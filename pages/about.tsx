@@ -30,11 +30,11 @@ export default function About() {
               something.
             </h2>
             <p className="text-xl text-black dark:text-white">
-              Originally from Ushuaia, Argentina, also known as the southernmost
-              city in the world. At a young age I moved to the other side of the
-              country to follow my passion for art, illustration and design.
-              I've worked in some of the most recognizable design and digital
-              agencies for over 8 years.
+              Originally from Ushuaia (Argentina), also known as the
+              southernmost city in the world. At a young age I moved to the
+              other side of the country to follow my passion for art,
+              illustration and design. I've worked in some of the most
+              recognizable design and digital agencies for over 8 years.
               <br />
               <br />
               Following that direction, a few years ago I sold everything and

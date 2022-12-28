@@ -1,6 +1,7 @@
 import {dehydrate, QueryClient} from '@tanstack/react-query';
 import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
+import type {ImageProps} from 'next/image';
 import Card from '~/components/Card';
 import Layout from '~/components/Layout';
 import {getAllCarouselImages, parseEsotericImage} from '~/models/image';
@@ -30,8 +31,32 @@ export default function Home({
           Selected <b>work</b>
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {posts.map(post =>
-            post.isPublished ? (
+          {posts.map(post => {
+            const thumbnailImage: ImageProps | undefined = post.thumbnailImage
+              ? {
+                  src: parseEsotericImage(post.thumbnailImage).url(),
+                  alt:
+                    post.thumbnailImage.asset.altText ||
+                    `${post.title || 'Untitled'} post thumbnail`,
+                  priority: true,
+                  fill: true,
+                  sizes: '(min-width: 1024px) 33vw, 100vw',
+                  blurDataURL: post.thumbnailImage.asset.metadata.lqip,
+                }
+              : post.mainImage
+              ? {
+                  src: parseEsotericImage(post.mainImage).url(),
+                  alt:
+                    post.mainImage.asset.altText ||
+                    `${post.title || 'Untitled'} post thumbnail`,
+                  priority: true,
+                  fill: true,
+                  sizes: '(min-width: 1024px) 33vw, 100vw',
+                  blurDataURL: post.mainImage.asset.metadata.lqip,
+                }
+              : undefined;
+
+            return post.isPublished ? (
               <Card
                 key={post._id}
                 title={post.title || 'Untitled'}
@@ -44,28 +69,10 @@ export default function Home({
                 link={
                   post.isComingSoon ? undefined : `/work/${post.slug.current}`
                 }
-                image={
-                  post.mainImage
-                    ? {
-                        src: parseEsotericImage(
-                          post.thumbnailImage || post.mainImage
-                        ).url(),
-                        alt:
-                          post.thumbnailImage?.asset.altText ||
-                          post.mainImage?.asset.altText ||
-                          `${post.title || 'Untitled'} post thumbnail`,
-                        priority: true,
-                        fill: true,
-                        sizes: '(min-width: 1024px) 33vw, 100vw',
-                        blurDataURL:
-                          post.thumbnailImage?.asset.metadata.lqip ||
-                          post.mainImage.asset.metadata.lqip,
-                      }
-                    : undefined
-                }
+                image={thumbnailImage}
               />
-            ) : null
-          )}
+            ) : null;
+          })}
         </div>
       </Layout>
     </>
