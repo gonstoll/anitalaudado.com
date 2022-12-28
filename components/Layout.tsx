@@ -45,7 +45,7 @@ export default function Layout({
               {...props.banner}
               placeholder="blur"
               sizes="100vw"
-              className="w-full h-auto max-w-full max-h-full object-cover"
+              className="w-full h-full object-cover"
             />
           ) : (
             <div className="w-full h-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10" />
