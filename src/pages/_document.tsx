@@ -8,7 +8,7 @@ export default function Document() {
         <meta name="author" content="Gonzalo Stoll" />
         <meta
           name="description"
-          content="Ana Laudado's portfolio, her work, hobbies and more information about her."
+          content="Ana Laudado is a Product Designer and illustration artist based in Copenhagen."
         />
         <meta
           name="keywords"
@@ -16,13 +16,13 @@ export default function Document() {
         />
 
         {/* OG (Open Graph protocol, for social media) Meta tags */}
-        <meta property="og:title" content="Ana Laudado website" />
+        <meta property="og:title" content="Ana Laudado ✦ Portfolio" />
         <meta property="og:image" content="/images/AnitaLaudado.jpeg" />
         <meta
           property="og:description"
-          content="Ana Laudado's portfolio, her work, hobbies and more information about her."
+          content="Ana Laudado is a Product Designer and illustration artist based in Copenhagen."
         />
-        <meta property="og:url" content="https://anita-laudado.vercel.app/" />
+        <meta property="og:url" content="https://anitalaudado.com" />
 
         <script
           dangerouslySetInnerHTML={{
