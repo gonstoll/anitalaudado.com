@@ -1,7 +1,7 @@
 import type {PortableTextProps} from '@portabletext/react';
 import groq from 'groq';
 import sanityClient from '~/lib/sanity';
-import {Image, IMAGE_ASSET_FIELDS} from './image';
+import {Image, IMAGE_ASSET_FIELDS} from './asset';
 
 interface Intro {
   challenge: string | null;

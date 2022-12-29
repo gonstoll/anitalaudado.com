@@ -58,3 +58,16 @@ export async function getAllCarouselImages() {
   const images = await sanityClient.fetch<Array<Image>>(query);
   return images;
 }
+
+export async function getResume() {
+  const query = groq`
+    *[_type == "sanity.fileAsset"
+    && $type in opt.media.tags[]->{name}.name.current]{url}
+    | order(_createdAt desc)[0]
+  `;
+
+  const resume = await sanityClient.fetch<{url: string}>(query, {
+    type: 'Resume',
+  });
+  return resume;
+}

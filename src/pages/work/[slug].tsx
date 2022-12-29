@@ -4,7 +4,7 @@ import Head from 'next/head';
 import NextImage from 'next/image';
 import ImageBlock from '~/components/ImageBlock';
 import Layout from '~/components/Layout';
-import {parseEsotericImage} from '~/models/image';
+import {parseEsotericImage} from '~/models/asset';
 import {getAllSlugs, getPostBySlug} from '~/models/post';
 
 const components: Partial<PortableTextReactComponents> = {

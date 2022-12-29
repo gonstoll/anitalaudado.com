@@ -4,7 +4,7 @@ import Head from 'next/head';
 import type {ImageProps} from 'next/image';
 import Card from '~/components/Card';
 import Layout from '~/components/Layout';
-import {getAllCarouselImages, parseEsotericImage} from '~/models/image';
+import {getAllCarouselImages, parseEsotericImage} from '~/models/asset';
 import {getAllPosts} from '~/models/post';
 
 export default function Home({

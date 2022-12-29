@@ -1,15 +1,15 @@
 import {useQuery} from '@tanstack/react-query';
 import Image from 'next/image';
-import {getAllCarouselImages} from '~/models/image';
+import {getAllCarouselImages} from '~/models/asset';
 
 export default function Carousel() {
-  const {data} = useQuery({
+  const {data: carouselImages} = useQuery({
     queryKey: ['carouselImages'],
     queryFn: getAllCarouselImages,
     initialData: [],
   });
 
-  const images = data.map(img => (
+  const images = carouselImages.map(img => (
     <div
       key={img._key}
       className="w-80 md:w-98 h-80 md:h-98 bg-gray-400 rounded shrink-0 snap-center relative"

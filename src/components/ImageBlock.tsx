@@ -1,5 +1,5 @@
 import NextImage, {ImageProps} from 'next/image';
-import type {Image} from '~/models/image';
+import type {Image} from '~/models/asset';
 
 interface Props {
   type: 'one-col' | 'two-cols' | 'three-cols';
