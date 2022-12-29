@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import * as React from 'react';
 import Layout from '~/components/Layout';
 import LinkButton from '~/components/LinkButton';
 

@@ -1,6 +1,8 @@
+import {useQuery} from '@tanstack/react-query';
 import Image, {ImageProps} from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
+import {getResume} from '~/models/asset';
 import Carousel from './Carousel';
 import Header from './Header';
 import LinkButton from './LinkButton';
@@ -34,6 +36,15 @@ export default function Layout({
   children,
   ...props
 }: React.PropsWithChildren<Props>) {
+  // Fetched on the client
+  const {data: resume} = useQuery({
+    queryKey: ['resume'],
+    queryFn: getResume,
+    placeholderData: {
+      url: '/docs/resume.pdf',
+    },
+  });
+
   return (
     <>
       <Header />
@@ -129,7 +140,7 @@ export default function Layout({
                 rel="noreferrer"
               />
               <LinkButton
-                href="/docs/Ana_Laudado_2023.pdf"
+                href={resume?.url || '/docs/resume.pdf'}
                 type="primary"
                 size="small"
                 title="resume ↓"
