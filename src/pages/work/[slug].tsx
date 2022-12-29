@@ -36,6 +36,16 @@ export default function Project({
     <>
       <Head>
         <title>{pageTitle}</title>
+        {post.thumbnailImage ? (
+          <meta property="og:image" content={post.thumbnailImage.asset.url} />
+        ) : post.mainImage ? (
+          <meta property="og:image" content={post.mainImage.asset.url} />
+        ) : (
+          <meta property="og:image" content="/images/AnitaLaudado.jpeg" />
+        )}
+        {post.title ? (
+          <meta property="og:title" content={`${post.title} ✦ Ana Laudado`} />
+        ) : null}
       </Head>
       <Layout
         type="project"
