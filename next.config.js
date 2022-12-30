@@ -5,10 +5,9 @@ const nextConfig = {
   env: {
     SANITY_DATASET: process.env.SANITY_DATASET,
     SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
-    SANITY_WEBHOOK_SECRET: process.env.SANITY_WEBHOOK_SECRET,
+    REVALIDATE_TOKEN: process.env.REVALIDATE_TOKEN,
     SANITY_POSTS_WEBHOOK_SECRET: process.env.SANITY_POSTS_WEBHOOK_SECRET,
     SANITY_CAROUSEL_WEBHOOK_SECRET: process.env.SANITY_CAROUSEL_WEBHOOK_SECRET,
-    REVALIDATE_TOKEN: process.env.REVALIDATE_TOKEN,
   },
   images: {
     domains: ['cdn.sanity.io'],

@@ -1,7 +1,7 @@
 import {PortableText, PortableTextReactComponents} from '@portabletext/react';
 import type {GetStaticPropsContext, InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
-import NextImage from 'next/image';
+import Image from 'next/image';
 import ImageBlock from '~/components/ImageBlock';
 import Layout from '~/components/Layout';
 import {parseEsotericImage} from '~/models/asset';
@@ -18,10 +18,10 @@ const components: Partial<PortableTextReactComponents> = {
     ),
   },
   types: {
-    fullImage: ({value}) => {
+    editorImage: ({value}) => {
       const imageUrl = parseEsotericImage(value).url();
       return (
-        <NextImage src={imageUrl} width={2000} height={1000} alt={value.alt} />
+        <Image src={imageUrl} width={1100} height={1100} alt={value.alt} />
       );
     },
   },

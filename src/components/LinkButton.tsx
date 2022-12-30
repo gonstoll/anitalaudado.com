@@ -19,8 +19,7 @@ type AnchorProps = Omit<
 > &
   LinkProps;
 
-type Props = {title: string} & AnchorProps &
-  (Primary | Secondary | Rounded);
+type Props = {title: string} & AnchorProps & (Primary | Secondary | Rounded);
 
 export default function LinkButton({title, ...props}: Props) {
   if (props.type === 'primary') {
