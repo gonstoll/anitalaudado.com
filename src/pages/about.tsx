@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Layout from '~/components/Layout';
+import Tile from '~/components/Tile';
 
 const SKILLS = [
   'Product Design',
@@ -50,14 +51,13 @@ export default function About() {
           </div>
           <div className="h-200 rounded relative">
             <Image
-              fill
               priority
               src="/images/AnitaLaudado.jpeg"
               alt="A profile picture of me"
               sizes="(min-width: 768px) 700px, 800px"
-              /* width={3852}
-              height={4815} */
-              className="rounded object-cover object-top"
+              width={800}
+              height={600}
+              className="rounded object-cover object-top w-full h-full"
             />
           </div>
         </div>
@@ -66,17 +66,8 @@ export default function About() {
           What I <b>do</b>
         </h2>
         <div>
-          {/* TODO: Move this to the Tile component */}
           {SKILLS.map(skill => (
-            <div
-              key={skill}
-              className="w-full flex items-center gap-6 py-5 border-b-1 border-black dark:border-white"
-            >
-              <p className="text-3-1/2xl text-black dark:text-white">{skill}</p>
-              <p className="text-3-1/2xl text-black dark:text-white ml-auto">
-                ✦
-              </p>
-            </div>
+            <Tile key={skill} size="medium" title={skill} icon="✦" />
           ))}
         </div>
       </Layout>

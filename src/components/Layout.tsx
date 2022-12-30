@@ -125,7 +125,7 @@ export default function Layout({
             </Link>
           </div>
           <div className="md:flex items-end justify-between">
-            <div className="mb-8 md:mb-0">
+            <div className="md:w-80 mb-8 md:mb-0">
               <Tile size="small" title="Work" link="/work" />
               <Tile size="small" title="Personal Projects" />
               <Tile size="small" title="About" link="/about" />

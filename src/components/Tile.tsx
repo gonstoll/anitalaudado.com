@@ -4,21 +4,22 @@ interface Props {
   title: string;
   link?: string;
   size: 'small' | 'medium' | 'large';
+  icon?: string;
 }
 
-export default function Tile({title, link, size}: Props) {
+export default function Tile({title, link, size, icon}: Props) {
   const sizeClasses = {
     small: {
       content: 'text-base',
-      tile: 'md:w-80 h-10',
+      tile: 'h-10 gap-4',
     },
     medium: {
       content: 'text-3-1/2xl',
-      tile: 'w-96 h-20',
+      tile: 'py-5 gap-6',
     },
     large: {
       content: 'text-3-1/2xl',
-      tile: 'w-112 h-40',
+      tile: 'py-9 gap-8',
     },
   };
 
@@ -34,7 +35,7 @@ export default function Tile({title, link, size}: Props) {
       <p
         className={`${sizeClasses[size].content} text-black dark:text-white group-hover:-rotate-45 duration-200 transition-transform ease-linear`}
       >
-        →
+        {icon ?? '→'}
       </p>
     </Link>
   ) : (
@@ -45,7 +46,7 @@ export default function Tile({title, link, size}: Props) {
         {title}
       </p>
       <p className={`${sizeClasses[size].content} text-black dark:text-white`}>
-        wip
+        {icon ?? 'wip'}
       </p>
     </div>
   );
