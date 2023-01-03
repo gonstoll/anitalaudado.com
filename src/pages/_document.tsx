@@ -29,7 +29,7 @@ export default function Document() {
             __html: `
             if (
               localStorage.theme === 'dark' ||
-              (!localStorage.get('theme') &&
+              (!localStorage.getItem('theme') &&
                 window.matchMedia('(prefers-color-scheme: dark)').matches)
             ) {
               document.documentElement.classList.add('dark');
