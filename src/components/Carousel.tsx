@@ -6,10 +6,9 @@ export default function Carousel() {
   const {data: carouselImages} = useQuery({
     queryKey: ['carouselImages'],
     queryFn: getAllCarouselImages,
-    initialData: [],
   });
 
-  const images = carouselImages.map(img => (
+  const images = carouselImages?.map(img => (
     <div
       key={img._key}
       className="w-80 md:w-98 h-80 md:h-98 bg-gray-400 rounded shrink-0 snap-center relative"
@@ -27,7 +26,7 @@ export default function Carousel() {
     </div>
   ));
 
-  if (!images.length) return null;
+  if (!images || !images.length) return null;
 
   return (
     <div className="mt-40">
