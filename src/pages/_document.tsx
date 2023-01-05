@@ -5,6 +5,10 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="google-site-verification"
+          content="piMpZyWPcXzMqrBx9_0BslPAo9D6-eNrJWRmMn45b1M"
+        />
         <meta name="author" content="Gonzalo Stoll" />
         <meta
           name="description"
