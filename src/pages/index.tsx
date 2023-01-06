@@ -1,4 +1,5 @@
 import {dehydrate, QueryClient} from '@tanstack/react-query';
+import {motion} from 'framer-motion';
 import type {InferGetStaticPropsType} from 'next';
 import Head from 'next/head';
 import type {ImageProps} from 'next/image';
@@ -31,7 +32,7 @@ export default function Home({
           Selected <b>work</b>
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {posts.map(post => {
+          {posts.map((post, postIndex) => {
             const thumbnailImage: ImageProps | undefined = post.thumbnailImage
               ? {
                   src: parseEsotericImage(post.thumbnailImage).url(),
@@ -57,20 +58,30 @@ export default function Home({
               : undefined;
 
             return post.isPublished ? (
-              <Card
+              <motion.div
                 key={post._id}
-                title={post.title || 'Untitled'}
-                description={post.subtitle}
-                tags={
-                  post.isComingSoon
-                    ? ['Coming soon']
-                    : post.tags?.map(t => t.title)
-                }
-                link={
-                  post.isComingSoon ? undefined : `/work/${post.slug.current}`
-                }
-                image={thumbnailImage}
-              />
+                initial={{y: 20, opacity: 0}}
+                animate={{y: 0, opacity: 1}}
+                transition={{
+                  duration: 0.5,
+                  delay: Number(`0.${2 * postIndex}`),
+                }}
+                className="flex"
+              >
+                <Card
+                  title={post.title || 'Untitled'}
+                  description={post.subtitle}
+                  tags={
+                    post.isComingSoon
+                      ? ['Coming soon']
+                      : post.tags?.map(t => t.title)
+                  }
+                  link={
+                    post.isComingSoon ? undefined : `/work/${post.slug.current}`
+                  }
+                  image={thumbnailImage}
+                />
+              </motion.div>
             ) : null;
           })}
         </div>

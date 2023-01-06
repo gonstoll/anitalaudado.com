@@ -112,7 +112,7 @@ export default function Project({
 
         {post.finalThoughts?.editorField ? (
           <div className="lg:px-40">
-            <div className="p-6 border-1 text-black dark:text-white border-black dark:border-dark-white rounded-lg">
+            <div className="p-6 border-1 text-black dark:text-white border-black dark:border-white/10 rounded-lg">
               <h3 className="text-3-1/2xl mb-6">
                 Final <b>thoughts</b>
               </h3>

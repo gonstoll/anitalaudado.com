@@ -33,9 +33,6 @@ module.exports = {
       maxWidth: {
         '3xl': '2600px',
       },
-      borderColor: {
-        'dark-white': '#f9f7f41a',
-      },
       minWidth: {
         16: '4rem',
       },
@@ -43,8 +40,8 @@ module.exports = {
         1: '1px',
       },
       colors: {
-        white: '#F9F7F4',
-        black: '#272522',
+        white: 'rgb(var(--color-white) / <alpha-value>)',
+        black: 'rgb(var(--color-black) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['var(--scto-grotesk-a)', ...fontFamily.sans],

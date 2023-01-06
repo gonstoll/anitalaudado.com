@@ -1,4 +1,5 @@
 import {useQuery} from '@tanstack/react-query';
+import {motion} from 'framer-motion';
 import Image, {ImageProps} from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
@@ -64,7 +65,13 @@ export default function Layout({
         </div>
       ) : null}
 
-      <main className="mb-auto">
+      <motion.main
+        initial={{y: 50, opacity: 0}}
+        animate={{y: 0, opacity: 1}}
+        exit={{y: 50, opacity: 0}}
+        transition={{duration: 0.5}}
+        className="mb-auto"
+      >
         {props.type === 'page' ? (
           <div className="mt-20 md:mt-40 px-6 md:px-20 max-w-screen-2xl mx-auto">
             <h1 className="text-4-1/2xl md:text-6-1/2xl text-black dark:text-white font-bold md:whitespace-pre-line">
@@ -105,9 +112,9 @@ export default function Layout({
         )}
 
         {includeCarousel ? <Carousel /> : null}
-      </main>
+      </motion.main>
 
-      <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-dark-white">
+      <footer className="mt-20 md:mt-40 border-t-1 border-black dark:border-white/10">
         <div className="p-10 max-w-3xl mx-auto">
           <div className="md:flex items-center justify-between mb-8">
             <Link

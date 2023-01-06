@@ -1,6 +1,7 @@
 import localFont from '@next/font/local';
 import {Hydrate, QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
+import {AnimatePresence} from 'framer-motion';
 import type {AppProps} from 'next/app';
 import * as React from 'react';
 import ThemeProvider from '~/context/theme';
@@ -36,6 +37,11 @@ export default function App({Component, pageProps}: AppProps) {
       })
   );
 
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.scrollTo({top: 0});
+  }, []);
+
   return (
     <div
       className={`flex flex-col h-max min-h-full bg-white dark:bg-black transition-colors duration-500 ${SctoGroteskFont.className}`}
@@ -43,7 +49,9 @@ export default function App({Component, pageProps}: AppProps) {
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <Component {...pageProps} />
+            <AnimatePresence mode="wait">
+              <Component {...pageProps} />
+            </AnimatePresence>
           </Hydrate>
           <ReactQueryDevtools />
         </QueryClientProvider>
