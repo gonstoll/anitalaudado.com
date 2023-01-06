@@ -9,7 +9,7 @@ const SKILLS = [
   'High Fidelity Prototyping',
   'Visual Design',
   'Iconography & Illustration',
-  'User Researh & Usability Testing',
+  'User Research & Usability Testing',
 ];
 
 export default function About() {
