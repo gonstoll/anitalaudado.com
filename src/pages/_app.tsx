@@ -36,6 +36,13 @@ export default function App({Component, pageProps}: AppProps) {
       })
   );
 
+  // Prevents the page from scrolling when the user lands on a new page
+  // due to <main> animation
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.scrollTo({top: 0});
+  }, []);
+
   return (
     <div
       className={`flex flex-col h-max min-h-full bg-white dark:bg-black transition-colors duration-500 ${SctoGroteskFont.className}`}

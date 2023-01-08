@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-black: 39 37 34;
+    --color-white: 249 247 244;
+  }
+}
+
 html,
 body,
 #__next {

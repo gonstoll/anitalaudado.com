@@ -50,7 +50,7 @@ export default function Header() {
 
   return (
     <header
-      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-dark-white bg-white dark:bg-black sticky transition-top duration-500 z-10 ${visibleClass}`}
+      className={`flex items-center justify-between py-4 px-10 border-b-1 border-black dark:border-white/10 bg-white dark:bg-black sticky transition-top duration-500 z-10 ${visibleClass}`}
     >
       <div className="flex items-center justify-between w-full max-w-3xl mx-auto">
         <Link
