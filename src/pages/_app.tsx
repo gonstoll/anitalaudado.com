@@ -1,7 +1,6 @@
 import localFont from '@next/font/local';
 import {Hydrate, QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
-import {AnimatePresence} from 'framer-motion';
 import type {AppProps} from 'next/app';
 import * as React from 'react';
 import ThemeProvider from '~/context/theme';
@@ -37,6 +36,8 @@ export default function App({Component, pageProps}: AppProps) {
       })
   );
 
+  // Prevents the page from scrolling when the user lands on a new page
+  // due to <main> animation
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
     window.scrollTo({top: 0});
@@ -49,9 +50,7 @@ export default function App({Component, pageProps}: AppProps) {
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <AnimatePresence mode="wait">
-              <Component {...pageProps} />
-            </AnimatePresence>
+            <Component {...pageProps} />
           </Hydrate>
           <ReactQueryDevtools />
         </QueryClientProvider>

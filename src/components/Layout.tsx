@@ -66,9 +66,8 @@ export default function Layout({
       ) : null}
 
       <motion.main
-        initial={{y: 50, opacity: 0}}
+        initial={{y: 20, opacity: 0}}
         animate={{y: 0, opacity: 1}}
-        exit={{y: 50, opacity: 0}}
         transition={{duration: 0.5}}
         className="mb-auto"
       >
