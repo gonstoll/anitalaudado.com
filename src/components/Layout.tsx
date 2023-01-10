@@ -119,7 +119,7 @@ export default function Layout({
             <Link
               href="/"
               aria-label="Logo"
-              className="block text-3-1/2xl text-black dark:text-white"
+              className="block text-3-1/2xl text-black dark:text-white mb-4 md:mb-0"
             >
               ✦
             </Link>

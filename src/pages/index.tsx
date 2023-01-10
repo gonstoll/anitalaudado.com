@@ -6,7 +6,33 @@ import type {ImageProps} from 'next/image';
 import Card from '~/components/Card';
 import Layout from '~/components/Layout';
 import {getAllCarouselImages, parseEsotericImage} from '~/models/asset';
-import {getAllPosts} from '~/models/post';
+import {getAllPosts, UserPost} from '~/models/post';
+
+function getThumbnailImage(post: UserPost): ImageProps | undefined {
+  const baseImageProps = {
+    alt: `${post.title || 'Untitled'} post thumbnail`,
+    fill: true,
+    loading: 'lazy',
+    sizes: '(min-width: 1024px) 33vw, 100vw',
+  } satisfies Partial<ImageProps>;
+
+  if (post.thumbnailImage) {
+    return {
+      ...baseImageProps,
+      src: parseEsotericImage(post.thumbnailImage).url(),
+      alt: post.thumbnailImage.asset.altText || baseImageProps.alt,
+      blurDataURL: post.thumbnailImage.asset.metadata.lqip,
+    };
+  }
+  if (post.mainImage) {
+    return {
+      ...baseImageProps,
+      src: parseEsotericImage(post.mainImage).url(),
+      alt: post.mainImage.asset.altText || baseImageProps.alt,
+      blurDataURL: post.mainImage.asset.metadata.lqip,
+    };
+  }
+}
 
 export default function Home({
   posts,
@@ -33,29 +59,7 @@ export default function Home({
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {posts.map((post, postIndex) => {
-            const thumbnailImage: ImageProps | undefined = post.thumbnailImage
-              ? {
-                  src: parseEsotericImage(post.thumbnailImage).url(),
-                  alt:
-                    post.thumbnailImage.asset.altText ||
-                    `${post.title || 'Untitled'} post thumbnail`,
-                  priority: true,
-                  fill: true,
-                  sizes: '(min-width: 1024px) 33vw, 100vw',
-                  blurDataURL: post.thumbnailImage.asset.metadata.lqip,
-                }
-              : post.mainImage
-              ? {
-                  src: parseEsotericImage(post.mainImage).url(),
-                  alt:
-                    post.mainImage.asset.altText ||
-                    `${post.title || 'Untitled'} post thumbnail`,
-                  priority: true,
-                  fill: true,
-                  sizes: '(min-width: 1024px) 33vw, 100vw',
-                  blurDataURL: post.mainImage.asset.metadata.lqip,
-                }
-              : undefined;
+            const thumbnailImage = getThumbnailImage(post);
 
             return post.isPublished ? (
               <motion.div
