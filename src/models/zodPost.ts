@@ -64,24 +64,7 @@ const imageSchema = z.object({
 const editorSchema = keyedSchema.merge(
   z.object({
     _type: z.literal('editor'),
-    editorField: z.array(
-      keyedSchema.merge(
-        z.object({
-          _type: z.literal('editorBlock'),
-          children: z.array(
-            keyedSchema.merge(
-              z.object({
-                _type: z.literal('span'),
-                marks: z.array(z.string()).nullable(),
-                text: z.string(),
-              })
-            )
-          ),
-          markDefs: z.unknown(),
-          style: z.string().nullable(),
-        })
-      )
-    ),
+    editorField: z.array(keyedSchema.passthrough()),
   })
 );
 
@@ -111,7 +94,7 @@ const singlePostSchema = entitySchema
   .merge(
     z.object({
       pageBuilder: z.array(z.union([editorSchema, imageLayoutSchema])),
-      finalThoughts: editorSchema.omit({_key: true}),
+      finalThoughts: editorSchema.omit({_key: true}).optional(),
     })
   );
 
