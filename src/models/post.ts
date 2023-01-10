@@ -46,7 +46,7 @@ export interface Post extends Intro, Metadata {
   } | null;
 }
 
-interface UserPost
+export interface UserPost
   extends Omit<
     Post,
     'challenge' | 'role' | 'year' | 'pageBuilder' | 'finalThoughts'
