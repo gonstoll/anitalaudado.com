@@ -10,7 +10,7 @@ export interface Image {
     url: string;
     tags: Array<{_id: string; title: string}> | null;
     title: string | null;
-    altText: string | null;
+    altText?: string | null;
     description: string | null;
     metadata: {
       dimensions: {

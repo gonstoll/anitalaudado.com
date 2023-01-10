@@ -2,6 +2,34 @@ import type {PortableTextProps} from '@portabletext/react';
 import groq from 'groq';
 import sanityClient from '~/lib/sanity';
 import {Image, IMAGE_ASSET_FIELDS} from './asset';
+import {z} from 'zod';
+
+const slugSchema = z.object({
+  _type: z.literal('slug'),
+  current: z.string(),
+});
+const slugsSchema = z.array(slugSchema);
+
+const introSchema = z.object({
+  challenge: z.string().nullable(),
+  role: z.string().nullable(),
+  year: z.string().nullable(),
+});
+
+const metaDataSchema = z.object({
+  title: z.string().nullable(),
+  subtitle: z.string().nullable(),
+  tags: z
+    .array(
+      z.object({
+        _id: z.string(),
+        title: z.string(),
+      })
+    )
+    .nullable(),
+  slug: slugSchema,
+  publishedDate: z.string().nullable(),
+});
 
 interface Intro {
   challenge: string | null;
@@ -16,9 +44,7 @@ interface Metadata {
     _id: string;
     title: string;
   }> | null;
-  slug: {
-    current: string;
-  };
+  slug: z.infer<typeof slugSchema>;
   publishedDate: string | null;
 }
 
@@ -115,9 +141,11 @@ export async function getPostBySlug(slug: string) {
 export async function getAllSlugs() {
   const query = groq`
     *[_type == "post"
-    && defined(slug.current)][].slug.current
+    && defined(slug.current)][].slug
   `;
 
-  const slugs = await sanityClient.fetch<Array<string>>(query);
+  const slugs = await sanityClient
+    .fetch(query)
+    .then(res => slugsSchema.parse(res));
   return slugs;
 }
