@@ -64,16 +64,25 @@ const imageSchema = z.object({
 const editorSchema = keyedSchema.merge(
   z.object({
     _type: z.literal('editor'),
-    editorField: z.array(keyedSchema.passthrough()),
+    editorField: z.array(
+      z
+        .object({
+          _type: z.string(),
+          _key: z.string(),
+        })
+        .passthrough()
+    ),
   })
 );
 
 const imageLayoutSchema = keyedSchema.merge(
-  z.object({
-    _type: z.literal('imagesLayout'),
-    layout: z.enum(['one-column', 'two-columns', 'three-columns']),
-    images: z.array(keyedSchema.merge(imageSchema)),
-  })
+  z
+    .object({
+      _type: z.literal('imagesLayout'),
+      layout: z.enum(['one-column', 'two-columns', 'three-columns']),
+      images: z.array(keyedSchema.merge(imageSchema)),
+    })
+    .passthrough()
 );
 
 const singlePostSchema = entitySchema
@@ -85,15 +94,19 @@ const singlePostSchema = entitySchema
       isComingSoon: true,
     })
   )
+  // Images
   .merge(
     z.object({
       mainImage: imageSchema.nullable(),
       thumbnailImage: imageSchema.nullable(),
     })
   )
+  // Blocks
   .merge(
     z.object({
-      pageBuilder: z.array(z.union([editorSchema, imageLayoutSchema])),
+      pageBuilder: z
+        .array(z.union([editorSchema.optional(), imageLayoutSchema.optional()]))
+        .optional(),
       finalThoughts: editorSchema.omit({_key: true}).optional(),
     })
   );

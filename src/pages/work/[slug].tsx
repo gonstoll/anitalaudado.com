@@ -71,6 +71,8 @@ export default function Project({
         }}
       >
         {post.pageBuilder?.map(block => {
+          if (!block) return null;
+
           if (block._type === 'editor') {
             return (
               <div
@@ -108,6 +110,7 @@ export default function Project({
               />
             );
           }
+
           return null;
         })}
 
@@ -142,10 +145,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
-  const post = await getPostBySlug(slug as string);
-  const zodPost = await getPostBySlugNew(slug as string);
-
-  console.dir(zodPost, {depth: null});
+  const post = await getPostBySlugNew(slug as string);
 
   return {
     props: {
