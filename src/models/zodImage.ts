@@ -46,14 +46,14 @@ const carouselImagesSchema = z.array(
   entitySchema.merge(
     z.object({
       _type: z.literal('carouselImages'),
-      image: imageSchema.omit({
-        _type: true,
-      }), // TODO: This should filter out tags, and other properties that are not needed for the carousel
+      image: imageSchema,
     })
   )
 );
 
-type CarouselImage = z.infer<typeof carouselImagesSchema>;
+const fileSchema = z.object({
+  url: z.string().url(),
+});
 
 export function parseEsotericImage(source: z.infer<typeof imageSchema>) {
   return imageUrlBuilder(sanityClient).image(source);
@@ -80,15 +80,15 @@ export async function getAllCarouselImagesNew() {
   return carouselImagesSchema.parse(images);
 }
 
-export async function getResume() {
+export async function getResumeNew() {
   const query = groq`
     *[_type == "sanity.fileAsset"
     && $type in opt.media.tags[]->{name}.name.current]{url}
     | order(_createdAt desc)[0]
   `;
 
-  const resume = await sanityClient.fetch<{url: string}>(query, {
+  const resume = await sanityClient.fetch(query, {
     type: 'Resume',
   });
-  return resume;
+  return fileSchema.parse(resume);
 }

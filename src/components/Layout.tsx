@@ -4,6 +4,7 @@ import Image, {ImageProps} from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import {getResume} from '~/models/asset';
+import {getResumeNew} from '~/models/zodImage';
 import Carousel from './Carousel';
 import Header from './Header';
 import LinkButton from './LinkButton';
@@ -40,7 +41,7 @@ export default function Layout({
   // Fetched on the client
   const {data: resume} = useQuery({
     queryKey: ['resume'],
-    queryFn: getResume,
+    queryFn: getResumeNew,
     placeholderData: {
       url: '/docs/resume.pdf',
     },

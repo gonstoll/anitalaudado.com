@@ -9,8 +9,6 @@ export default function Carousel() {
     queryFn: getAllCarouselImagesNew,
   });
 
-  console.dir(carouselImages, {depth: null});
-
   const images = carouselImages?.map(img => (
     <div
       key={img._id}
