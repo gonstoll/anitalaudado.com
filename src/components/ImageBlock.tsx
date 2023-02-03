@@ -1,9 +1,9 @@
 import NextImage, {ImageProps} from 'next/image';
-import type {Image} from '~/models/asset';
+import type {ImageBlock} from '~/models/asset';
 
 interface Props {
   type: 'one-col' | 'two-cols' | 'three-cols';
-  images: Array<ImageProps & Omit<Image, keyof ImageProps>>;
+  images: Array<ImageProps & Omit<ImageBlock, keyof ImageProps>>;
 }
 
 export default function ImageBlock({type, images}: Props) {

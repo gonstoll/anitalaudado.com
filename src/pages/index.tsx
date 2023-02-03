@@ -6,9 +6,7 @@ import type {ImageProps} from 'next/image';
 import Card from '~/components/Card';
 import Layout from '~/components/Layout';
 import {getAllCarouselImages, parseEsotericImage} from '~/models/asset';
-import {getAllPosts} from '~/models/post';
-import {getAllCarouselImagesNew} from '~/models/zodImage';
-import {getAllPostsNew, SinglePost} from '~/models/zodPost';
+import {getAllPosts, SinglePost} from '~/models/post';
 
 function getThumbnailImage(post: SinglePost): ImageProps | undefined {
   const baseImageProps = {
@@ -98,12 +96,12 @@ export default function Home({
 
 export async function getStaticProps() {
   // const posts = await getAllPosts();
-  const zodPosts = await getAllPostsNew();
+  const zodPosts = await getAllPosts();
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['carouselImages'],
-    queryFn: getAllCarouselImagesNew,
+    queryFn: getAllCarouselImages,
   });
 
   return {

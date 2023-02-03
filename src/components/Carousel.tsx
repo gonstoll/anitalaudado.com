@@ -1,12 +1,11 @@
 import {useQuery} from '@tanstack/react-query';
 import Image from 'next/image';
 import {getAllCarouselImages} from '~/models/asset';
-import {getAllCarouselImagesNew} from '~/models/zodImage';
 
 export default function Carousel() {
   const {data: carouselImages} = useQuery({
     queryKey: ['carouselImages'],
-    queryFn: getAllCarouselImagesNew,
+    queryFn: getAllCarouselImages,
   });
 
   const images = carouselImages?.map(img => (
@@ -43,21 +42,3 @@ export default function Carousel() {
     </div>
   );
 }
-
-const firstImage = {
-  image: {
-    _type: 'image',
-    asset: {
-      _id: 'image-6b710ad54cddefd80058f9df9e37a20d9e3484db-1200x1200-png',
-      _createdAt: '2022-12-26T17:58:45Z',
-      description: null,
-      title: null,
-      tags: [{_id: '974wCYB6EQ3xW9LGNX6onD', title: 'Carousel'}],
-      metadata: {
-        dimensions: {
-          aspectRatio: 1,
-        },
-      },
-    },
-  },
-};

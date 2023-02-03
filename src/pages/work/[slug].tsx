@@ -6,7 +6,6 @@ import ImageBlock from '~/components/ImageBlock';
 import Layout from '~/components/Layout';
 import {parseEsotericImage} from '~/models/asset';
 import {getAllSlugs, getPostBySlug} from '~/models/post';
-import {getPostBySlugNew} from '~/models/zodPost';
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
@@ -145,7 +144,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const {slug = ''} = context.params || {};
-  const post = await getPostBySlugNew(slug as string);
+  const post = await getPostBySlug(slug as string);
 
   return {
     props: {
