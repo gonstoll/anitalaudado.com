@@ -1,7 +1,7 @@
 import groq from 'groq';
 import {z} from 'zod';
 import sanityClient from '~/lib/sanity';
-import {IMAGE_ASSET_FIELDS} from './deprecated_asset';
+import {IMAGE_ASSET_FIELDS} from './asset';
 import {imageLayoutSchema, imageSchema} from './asset';
 
 const entitySchema = z.object({
