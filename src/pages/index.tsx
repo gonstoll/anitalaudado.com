@@ -6,9 +6,11 @@ import type {ImageProps} from 'next/image';
 import Card from '~/components/Card';
 import Layout from '~/components/Layout';
 import {getAllCarouselImages, parseEsotericImage} from '~/models/asset';
-import {getAllPosts, UserPost} from '~/models/post';
+import {getAllPosts} from '~/models/post';
+import {getAllCarouselImagesNew} from '~/models/zodImage';
+import {getAllPostsNew, SinglePost} from '~/models/zodPost';
 
-function getThumbnailImage(post: UserPost): ImageProps | undefined {
+function getThumbnailImage(post: SinglePost): ImageProps | undefined {
   const baseImageProps = {
     alt: `${post.title || 'Untitled'} post thumbnail`,
     fill: true,
@@ -95,17 +97,18 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const posts = await getAllPosts();
+  // const posts = await getAllPosts();
+  const zodPosts = await getAllPostsNew();
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['carouselImages'],
-    queryFn: getAllCarouselImages,
+    queryFn: getAllCarouselImagesNew,
   });
 
   return {
     props: {
-      posts,
+      posts: zodPosts,
       dehydratedState: dehydrate(queryClient),
     },
   };

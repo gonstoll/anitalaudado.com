@@ -1,8 +1,8 @@
-import type {PortableTextProps} from '@portabletext/react';
 import groq from 'groq';
-import sanityClient from '~/lib/sanity';
-import {Image, IMAGE_ASSET_FIELDS} from './asset';
 import {z} from 'zod';
+import sanityClient from '~/lib/sanity';
+import {IMAGE_ASSET_FIELDS} from './asset';
+import {imageLayoutSchema, imageSchema} from './zodImage';
 
 const entitySchema = z.object({
   _id: z.string().uuid(),
@@ -40,27 +40,6 @@ const metaDataSchema = z.object({
   isComingSoon: z.boolean(),
 });
 
-const imageSchema = z.object({
-  _type: z.literal('image'),
-  asset: z.object({
-    _id: z.string(),
-    _createdAt: z.string(),
-    altText: z.string().nullable(),
-    description: z.string().nullable(),
-    title: z.string().nullable(),
-    url: z.string().url(),
-    tags: z.array(entitySchema.merge(z.object({title: z.string()}))).nullable(),
-    metadata: z.object({
-      dimensions: z.object({
-        aspectRatio: z.number(),
-        height: z.number(),
-        width: z.number(),
-      }),
-      lqip: z.string(),
-    }),
-  }),
-});
-
 const editorSchema = keyedSchema.merge(
   z.object({
     _type: z.literal('editor'),
@@ -75,25 +54,9 @@ const editorSchema = keyedSchema.merge(
   })
 );
 
-const imageLayoutSchema = keyedSchema.merge(
-  z
-    .object({
-      _type: z.literal('imagesLayout'),
-      layout: z.enum(['one-column', 'two-columns', 'three-columns']),
-      images: z.array(keyedSchema.merge(imageSchema)),
-    })
-    .passthrough()
-);
-
-const singlePostSchema = entitySchema
+const fullPostSchema = entitySchema
   .merge(introSchema)
-  .merge(
-    metaDataSchema.omit({
-      publishedDate: true,
-      isPublished: true,
-      isComingSoon: true,
-    })
-  )
+  .merge(metaDataSchema)
   // Images
   .merge(
     z.object({
@@ -110,6 +73,26 @@ const singlePostSchema = entitySchema
       finalThoughts: editorSchema.omit({_key: true}).optional(),
     })
   );
+
+const singlePostSchema = fullPostSchema.omit({
+  publishedDate: true,
+  isPublished: true,
+  isComingSoon: true,
+});
+
+const allPostsSchema = z.array(
+  fullPostSchema.omit({
+    challenge: true,
+    role: true,
+    year: true,
+    pageBuilder: true,
+    finalThoughts: true,
+  })
+);
+
+export type FullPost = z.infer<typeof fullPostSchema>;
+export type SinglePost = z.infer<typeof singlePostSchema>;
+export type AllPosts = z.infer<typeof allPostsSchema>;
 
 export async function getPostBySlugNew(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug][0]{
@@ -142,5 +125,26 @@ export async function getPostBySlugNew(slug: string) {
 
   const post = await sanityClient.fetch(query, {slug});
   return singlePostSchema.parse(post);
-  // return post;
+}
+
+export async function getAllPostsNew() {
+  const query = groq`*[_type == "post"]{
+    ...,
+    'mainImage': mainImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
+    'thumbnailImage': thumbnailImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
+    'tags': tags[]->{_id, title},
+  } | order(publishedDate desc)`;
+
+  const posts = await sanityClient.fetch(query);
+  return allPostsSchema.parse(posts);
 }

@@ -5,31 +5,9 @@ import {Image, IMAGE_ASSET_FIELDS} from './asset';
 import {z} from 'zod';
 
 const slugSchema = z.object({
-  _type: z.literal('slug'),
   current: z.string(),
 });
 const slugsSchema = z.array(slugSchema);
-
-const introSchema = z.object({
-  challenge: z.string().nullable(),
-  role: z.string().nullable(),
-  year: z.string().nullable(),
-});
-
-const metaDataSchema = z.object({
-  title: z.string().nullable(),
-  subtitle: z.string().nullable(),
-  tags: z
-    .array(
-      z.object({
-        _id: z.string(),
-        title: z.string(),
-      })
-    )
-    .nullable(),
-  slug: slugSchema,
-  publishedDate: z.string().nullable(),
-});
 
 interface Intro {
   challenge: string | null;
@@ -61,7 +39,7 @@ interface ImagesLayout {
 }
 
 export interface Post extends Intro, Metadata {
-  _createdAt: string;
+  // _createdAt: string;
   _id: string;
   mainImage: Image | null;
   thumbnailImage: Image | null;

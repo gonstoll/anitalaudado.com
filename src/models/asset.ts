@@ -3,7 +3,7 @@ import groq from 'groq';
 import sanityClient from '~/lib/sanity';
 
 export interface Image {
-  _key: string;
+  // _key: string;
   asset: {
     _createdAt: string;
     _id: string;
@@ -55,7 +55,15 @@ export async function getAllCarouselImages() {
     } | order(publishedDate desc)
   `;
 
+  const baseQuery = groq`
+    *[_type == "carouselImages"][]{
+      ...,
+    } | order(publishedDate desc)
+  `;
+
   const images = await sanityClient.fetch<Array<Image>>(query);
+  const baseImages = await sanityClient.fetch<Array<Image>>(baseQuery);
+  console.dir(baseImages, {depth: null});
   return images;
 }
 
