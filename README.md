@@ -6,6 +6,7 @@ Live here: [https://anitalaudado.com](https://anitalaudado.com)
 
 * On-demand ISR (Incremental Static Regeneration)
 * TanStack Query
+* Zod
 * Tailwind
 * Sanity for content management
 * Dark theme
