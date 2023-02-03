@@ -95,8 +95,7 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  // const posts = await getAllPosts();
-  const zodPosts = await getAllPosts();
+  const posts = await getAllPosts();
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
@@ -106,7 +105,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: zodPosts,
+      posts,
       dehydratedState: dehydrate(queryClient),
     },
   };
