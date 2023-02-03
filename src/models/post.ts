@@ -1,99 +1,114 @@
-import type {PortableTextProps} from '@portabletext/react';
 import groq from 'groq';
+import {z} from 'zod';
 import sanityClient from '~/lib/sanity';
-import {Image, IMAGE_ASSET_FIELDS} from './asset';
+import {IMAGE_ASSET_FIELDS} from './asset';
+import {imageLayoutSchema, imageSchema} from './asset';
 
-interface Intro {
-  challenge: string | null;
-  role: string | null;
-  year: string | null;
-}
+const entitySchema = z.object({
+  _id: z.string().uuid(),
+});
 
-interface Metadata {
-  title: string | null;
-  subtitle: string | null;
-  tags: Array<{
-    _id: string;
-    title: string;
-  }> | null;
-  slug: {
-    current: string;
-  };
-  publishedDate: string | null;
-}
+const keyedSchema = z.object({
+  _key: z.string(),
+});
 
-interface Editor {
-  _key: string;
-  _type: 'editor';
-  editorField: PortableTextProps['value'];
-}
-interface ImagesLayout {
-  _key: string;
-  _type: 'imagesLayout';
-  layout: 'one-column' | 'two-columns' | 'three-columns';
-  images: Array<Image>;
-}
+const slugSchema = z.object({
+  current: z.string(),
+});
 
-export interface Post extends Intro, Metadata {
-  _createdAt: string;
-  _id: string;
-  mainImage: Image | null;
-  thumbnailImage: Image | null;
-  pageBuilder: Array<Editor | ImagesLayout> | null;
-  finalThoughts?: {
-    _type: 'editor';
-    editorField: PortableTextProps['value'];
-  } | null;
-}
+const introSchema = z.object({
+  challenge: z.string().optional(),
+  role: z.string().optional(),
+  year: z.string().optional(),
+});
 
-export interface UserPost
-  extends Omit<
-    Post,
-    'challenge' | 'role' | 'year' | 'pageBuilder' | 'finalThoughts'
-  > {
-  isPublished: boolean;
-  isComingSoon: boolean;
-}
+const metaDataSchema = z.object({
+  title: z.string().optional(),
+  subtitle: z.string().optional(),
+  tags: z
+    .array(
+      entitySchema.merge(
+        z.object({
+          title: z.string(),
+        })
+      )
+    )
+    .nullable(),
+  slug: slugSchema,
+  publishedDate: z.string().optional(),
+  isPublished: z.boolean(),
+  isComingSoon: z.boolean(),
+});
 
-const BASE_POST_FIELDS = groq`
-  _id,
-  'mainImage': mainImage{
-    ...,
-    'asset': asset->{
-      ${IMAGE_ASSET_FIELDS}
-    }
-  },
-  'thumbnailImage': thumbnailImage{
-    ...,
-    'asset': asset->{
-      ${IMAGE_ASSET_FIELDS}
-    }
-  },
-  title,
-  subtitle,
-  'tags': tags[]->{_id, title},
-  slug,
-`;
+const editorSchema = keyedSchema.merge(
+  z.object({
+    _type: z.literal('editor'),
+    editorField: z.array(
+      z
+        .object({
+          _type: z.string(),
+          _key: z.string(),
+        })
+        .passthrough()
+    ),
+  })
+);
 
-export async function getAllPosts() {
-  const query = groq`*[_type == "post"]{
-    _id,
-    isPublished,
-    publishedDate,
-    isComingSoon,
-    ${BASE_POST_FIELDS}
-  } | order(publishedDate desc)`;
+const fullPostSchema = entitySchema
+  .merge(introSchema)
+  .merge(metaDataSchema)
+  // Images
+  .merge(
+    z.object({
+      mainImage: imageSchema.nullable(),
+      thumbnailImage: imageSchema.nullable(),
+    })
+  )
+  // Blocks
+  .merge(
+    z.object({
+      pageBuilder: z
+        .array(z.union([editorSchema.optional(), imageLayoutSchema.optional()]))
+        .optional(),
+      finalThoughts: editorSchema.omit({_key: true}).optional(),
+    })
+  );
 
-  const posts = await sanityClient.fetch<Array<UserPost>>(query);
-  return posts;
-}
+const singlePostSchema = fullPostSchema.omit({
+  publishedDate: true,
+  isPublished: true,
+  isComingSoon: true,
+});
+
+const allPostsSchema = z.array(
+  fullPostSchema.omit({
+    challenge: true,
+    role: true,
+    year: true,
+    pageBuilder: true,
+    finalThoughts: true,
+  })
+);
+
+export type FullPost = z.infer<typeof fullPostSchema>;
+export type SinglePost = z.infer<typeof singlePostSchema>;
+export type AllPosts = z.infer<typeof allPostsSchema>;
 
 export async function getPostBySlug(slug: string) {
-  const query = groq`*[_type == "post" && slug.current == $slug]{
-    challenge,
-    role,
-    year,
-    finalThoughts,
+  const query = groq`*[_type == "post" && slug.current == $slug][0]{
+    ...,
+    'mainImage': mainImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
+    'thumbnailImage': thumbnailImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
     'pageBuilder': pageBuilder[]{
       ...,
       _type == 'imagesLayout' => {
@@ -105,19 +120,43 @@ export async function getPostBySlug(slug: string) {
         }
       }
     },
-    ${BASE_POST_FIELDS}
-  }[0]`;
+    'tags': tags[]->{_id, title},
+  }`;
 
-  const post = await sanityClient.fetch<Post>(query, {slug});
-  return post;
+  const post = await sanityClient.fetch(query, {slug});
+  return singlePostSchema.parse(post);
+}
+
+export async function getAllPosts() {
+  const query = groq`*[_type == "post"]{
+    ...,
+    'mainImage': mainImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
+    'thumbnailImage': thumbnailImage{
+      ...,
+      'asset': asset->{
+        ${IMAGE_ASSET_FIELDS}
+      }
+    },
+    'tags': tags[]->{_id, title},
+  } | order(publishedDate desc)`;
+
+  const posts = await sanityClient.fetch(query);
+  return allPostsSchema.parse(posts);
 }
 
 export async function getAllSlugs() {
   const query = groq`
     *[_type == "post"
-    && defined(slug.current)][].slug.current
+    && defined(slug.current)][].slug
   `;
 
-  const slugs = await sanityClient.fetch<Array<string>>(query);
+  const slugs = await sanityClient
+    .fetch(query)
+    .then(res => slugSchema.array().parse(res));
   return slugs;
 }

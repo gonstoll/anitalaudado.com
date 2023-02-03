@@ -18,11 +18,11 @@ type Project = {
   type: 'project';
   banner?: ImageProps;
   tags?: Array<string>;
-  summary: string | null;
+  summary?: string;
   intro: {
-    challenge: string | null;
-    role: string | null;
-    year: string | null;
+    challenge?: string;
+    role?: string;
+    year?: string;
   };
 };
 

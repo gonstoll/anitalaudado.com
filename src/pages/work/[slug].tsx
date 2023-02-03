@@ -70,6 +70,8 @@ export default function Project({
         }}
       >
         {post.pageBuilder?.map(block => {
+          if (!block) return null;
+
           if (block._type === 'editor') {
             return (
               <div
@@ -107,6 +109,7 @@ export default function Project({
               />
             );
           }
+
           return null;
         })}
 
@@ -133,7 +136,7 @@ export async function getStaticPaths() {
 
   return {
     paths: slugs.map(slug => ({
-      params: {slug},
+      params: {slug: slug.current},
     })),
     fallback: 'blocking',
   };

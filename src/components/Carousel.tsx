@@ -10,16 +10,16 @@ export default function Carousel() {
 
   const images = carouselImages?.map(img => (
     <div
-      key={img._key}
+      key={img._id}
       className="w-80 md:w-98 h-80 md:h-98 bg-gray-400 rounded shrink-0 snap-center relative"
     >
       <Image
-        src={img.asset.url}
-        alt={img.asset.altText || `Carousel item ${img._key}`}
-        width={img.asset.metadata.dimensions.width}
-        height={img.asset.metadata.dimensions.height}
+        src={img.image.asset.url}
+        alt={img.image.asset.altText || `Carousel item ${img._id}`}
+        width={img.image.asset.metadata.dimensions.width}
+        height={img.image.asset.metadata.dimensions.height}
         placeholder="blur"
-        blurDataURL={img.asset.metadata.lqip}
+        blurDataURL={img.image.asset.metadata.lqip}
         sizes="(min-width: 768px) 400px, 320px"
         className="w-full h-auto max-w-full max-h-full object-cover rounded [@media(hover:hover)]:grayscale [@media(pointer:fine)]:grayscale hover:grayscale-0 transition-all duration-500"
       />

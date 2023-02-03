@@ -1,27 +1,61 @@
 import imageUrlBuilder from '@sanity/image-url';
 import groq from 'groq';
+import {z} from 'zod';
 import sanityClient from '~/lib/sanity';
 
-export interface Image {
-  _key: string;
-  asset: {
-    _createdAt: string;
-    _id: string;
-    url: string;
-    tags: Array<{_id: string; title: string}> | null;
-    title: string | null;
-    altText: string | null;
-    description: string | null;
-    metadata: {
-      dimensions: {
-        aspectRatio: number;
-        height: number;
-        width: number;
-      };
-      lqip: string;
-    };
-  };
-}
+const entitySchema = z.object({
+  _id: z.string().uuid(),
+});
+
+const keyedSchema = z.object({
+  _key: z.string(),
+});
+
+export const imageSchema = z.object({
+  _type: z.literal('image'),
+  asset: z.object({
+    _id: z.string(),
+    _createdAt: z.string(),
+    altText: z.string().nullable(),
+    description: z.string().nullable(),
+    title: z.string().nullable(),
+    url: z.string().url(),
+    tags: z.array(z.object({_id: z.string(), title: z.string()})).nullable(),
+    metadata: z.object({
+      dimensions: z.object({
+        aspectRatio: z.number(),
+        height: z.number(),
+        width: z.number(),
+      }),
+      lqip: z.string(),
+    }),
+  }),
+});
+
+const imageBlockSchema = keyedSchema.merge(imageSchema);
+
+export const imageLayoutSchema = keyedSchema.merge(
+  z
+    .object({
+      _type: z.literal('imagesLayout'),
+      layout: z.enum(['one-column', 'two-columns', 'three-columns']),
+      images: z.array(imageBlockSchema),
+    })
+    .passthrough()
+);
+
+const carouselImagesSchema = z.array(
+  entitySchema.merge(
+    z.object({
+      _type: z.literal('carouselImages'),
+      image: imageSchema,
+    })
+  )
+);
+
+const fileSchema = z.object({
+  url: z.string().url(),
+});
 
 export const IMAGE_ASSET_FIELDS = groq`
   _createdAt,
@@ -40,23 +74,32 @@ export const IMAGE_ASSET_FIELDS = groq`
   },
 `;
 
-export function parseEsotericImage(source: Image) {
+export type Image = z.infer<typeof imageSchema>;
+export type ImageBlock = z.infer<typeof imageBlockSchema>;
+
+export function parseEsotericImage(source: z.infer<typeof imageSchema>) {
   return imageUrlBuilder(sanityClient).image(source);
 }
 
 export async function getAllCarouselImages() {
   const query = groq`
     *[_type == "carouselImages"][]{
-      '_key': _id,
-      publishedDate,
-      'asset': image.asset->{
-        ${IMAGE_ASSET_FIELDS}
-      }
+      ...,
+      'image': image{
+        ...,
+        'asset': asset->{
+          ...,
+          'tags': opt.media.tags[]->{
+            _id,
+            'title': name.current
+          }
+        }
+      },
     } | order(publishedDate desc)
   `;
 
-  const images = await sanityClient.fetch<Array<Image>>(query);
-  return images;
+  const images = await sanityClient.fetch(query);
+  return carouselImagesSchema.parse(images);
 }
 
 export async function getResume() {
@@ -66,8 +109,8 @@ export async function getResume() {
     | order(_createdAt desc)[0]
   `;
 
-  const resume = await sanityClient.fetch<{url: string}>(query, {
+  const resume = await sanityClient.fetch(query, {
     type: 'Resume',
   });
-  return resume;
+  return fileSchema.parse(resume);
 }

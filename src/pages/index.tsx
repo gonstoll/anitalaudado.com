@@ -6,9 +6,9 @@ import type {ImageProps} from 'next/image';
 import Card from '~/components/Card';
 import Layout from '~/components/Layout';
 import {getAllCarouselImages, parseEsotericImage} from '~/models/asset';
-import {getAllPosts, UserPost} from '~/models/post';
+import {getAllPosts, SinglePost} from '~/models/post';
 
-function getThumbnailImage(post: UserPost): ImageProps | undefined {
+function getThumbnailImage(post: SinglePost): ImageProps | undefined {
   const baseImageProps = {
     alt: `${post.title || 'Untitled'} post thumbnail`,
     fill: true,
