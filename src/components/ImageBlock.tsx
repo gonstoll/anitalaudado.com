@@ -1,9 +1,23 @@
 import NextImage, {ImageProps} from 'next/image';
 import type {ImageBlock} from '~/models/asset';
 
+type NextImageProps = Pick<
+  ImageProps,
+  'src' | 'width' | 'height' | 'blurDataURL' | 'alt' | 'fill'
+>;
+
+type SanityImageProps = Pick<ImageBlock, '_key'> & {
+  description: ImageBlock['asset']['description'];
+};
+
 interface Props {
   type: 'one-col' | 'two-cols' | 'three-cols';
-  images: Array<ImageProps & Omit<ImageBlock, keyof ImageProps>>;
+  /**
+   * Combines Next image props necessary to render the image,
+   * and props coming from the response object
+   */
+  // images: Array<NextImageProps & Omit<ImageBlock, keyof NextImageProps>>;
+  images: Array<NextImageProps & SanityImageProps>;
 }
 
 export default function ImageBlock({type, images}: Props) {
@@ -33,9 +47,9 @@ export default function ImageBlock({type, images}: Props) {
             className={`rounded ${imageClass}`}
           />
 
-          {img.asset.description ? (
+          {img.description ? (
             <p className="mt-4 text-base text-black dark:text-white">
-              {img.asset.description}
+              {img.description}
             </p>
           ) : null}
         </div>

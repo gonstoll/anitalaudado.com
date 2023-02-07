@@ -87,12 +87,14 @@ export default function Project({
           }
           if (block._type === 'imagesLayout') {
             const images = block.images.map(img => ({
-              ...img,
+              // Next image props
+              _key: img._key,
               src: img.asset.url,
               width: img.asset.metadata.dimensions.width,
               height: img.asset.metadata.dimensions.height,
               blurDataURL: img.asset.metadata.lqip,
               alt: img.asset.altText || 'Project image',
+              description: img.asset.description,
             }));
 
             return (

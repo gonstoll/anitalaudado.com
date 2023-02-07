@@ -59,6 +59,9 @@ export default function About() {
               height={600}
               className="rounded object-cover object-top w-full h-full"
             />
+            <p className="mt-4 text-base text-black dark:text-white">
+              Me, in my natural habitat
+            </p>
           </div>
         </div>
 
