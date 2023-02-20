@@ -57,23 +57,6 @@ const fileSchema = z.object({
   url: z.string().url(),
 });
 
-export const IMAGE_ASSET_FIELDS = groq`
-  _createdAt,
-  _id,
-  url,
-  'tags': opt.media.tags[]->{
-    _id,
-    'title': name.current
-  },
-  title,
-  altText,
-  description,
-  'metadata': metadata{
-    dimensions,
-    lqip,
-  },
-`;
-
 export type Image = z.infer<typeof imageSchema>;
 export type ImageBlock = z.infer<typeof imageBlockSchema>;
 

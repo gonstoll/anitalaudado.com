@@ -1,7 +1,6 @@
 import groq from 'groq';
 import {z} from 'zod';
 import sanityClient from '~/lib/sanity';
-import {IMAGE_ASSET_FIELDS} from './asset';
 import {imageLayoutSchema, imageSchema} from './asset';
 
 const entitySchema = z.object({
@@ -94,6 +93,23 @@ export type FullPost = z.infer<typeof fullPostSchema>;
 export type SinglePost = z.infer<typeof singlePostSchema>;
 export type AllPosts = z.infer<typeof allPostsSchema>;
 
+const IMAGE_ASSET_FIELDS = groq`
+  _createdAt,
+  _id,
+  url,
+  'tags': opt.media.tags[]->{
+    _id,
+    'title': name.current
+  },
+  title,
+  altText,
+  description,
+  'metadata': metadata{
+    dimensions,
+    lqip,
+  },
+`;
+
 export async function getPostBySlug(slug: string) {
   const query = groq`*[_type == "post" && slug.current == $slug][0]{
     ...,
@@ -155,8 +171,6 @@ export async function getAllSlugs() {
     && defined(slug.current)][].slug
   `;
 
-  const slugs = await sanityClient
-    .fetch(query)
-    .then(res => slugSchema.array().parse(res));
-  return slugs;
+  const slugs = await sanityClient.fetch(query);
+  return slugSchema.array().parse(slugs);
 }
