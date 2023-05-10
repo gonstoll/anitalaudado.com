@@ -1,35 +1,35 @@
-import {useQuery} from '@tanstack/react-query';
-import {motion} from 'framer-motion';
-import Image, {ImageProps} from 'next/image';
-import Link from 'next/link';
-import * as React from 'react';
-import {getResume} from '~/models/asset';
-import Carousel from './Carousel';
-import Header from './Header';
-import LinkButton from './LinkButton';
-import Tag from './Tag';
-import Tile from './Tile';
+import {useQuery} from '@tanstack/react-query'
+import {motion} from 'framer-motion'
+import Image, {ImageProps} from 'next/image'
+import Link from 'next/link'
+import * as React from 'react'
+import {getResume} from '~/models/asset'
+import Carousel from './Carousel'
+import Header from './Header'
+import LinkButton from './LinkButton'
+import Tag from './Tag'
+import Tile from './Tile'
 
 type Page = {
-  type: 'page';
-};
+  type: 'page'
+}
 
 type Project = {
-  type: 'project';
-  banner?: ImageProps;
-  tags?: Array<string>;
-  summary?: string;
+  type: 'project'
+  banner?: ImageProps
+  tags?: Array<string>
+  summary?: string
   intro: {
-    challenge?: string;
-    role?: string;
-    year?: string;
-  };
-};
+    challenge?: string
+    role?: string
+    year?: string
+  }
+}
 
 type Props = {
-  title: string;
-  includeCarousel?: boolean;
-} & (Page | Project);
+  title: string
+  includeCarousel?: boolean
+} & (Page | Project)
 
 export default function Layout({
   title,
@@ -44,7 +44,7 @@ export default function Layout({
     placeholderData: {
       url: '/docs/resume.pdf',
     },
-  });
+  })
 
   return (
     <>
@@ -177,5 +177,5 @@ export default function Layout({
         </div>
       </footer>
     </>
-  );
+  )
 }

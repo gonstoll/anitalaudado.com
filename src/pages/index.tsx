@@ -1,12 +1,12 @@
-import {dehydrate, QueryClient} from '@tanstack/react-query';
-import {motion} from 'framer-motion';
-import type {InferGetStaticPropsType} from 'next';
-import Head from 'next/head';
-import type {ImageProps} from 'next/image';
-import Card from '~/components/Card';
-import Layout from '~/components/Layout';
-import {getAllCarouselImages, parseEsotericImage} from '~/models/asset';
-import {getAllPosts, SinglePost} from '~/models/post';
+import {dehydrate, QueryClient} from '@tanstack/react-query'
+import {motion} from 'framer-motion'
+import type {InferGetStaticPropsType} from 'next'
+import Head from 'next/head'
+import type {ImageProps} from 'next/image'
+import Card from '~/components/Card'
+import Layout from '~/components/Layout'
+import {getAllCarouselImages, parseEsotericImage} from '~/models/asset'
+import {getAllPosts, SinglePost} from '~/models/post'
 
 function getThumbnailImage(post: SinglePost): ImageProps | undefined {
   const baseImageProps = {
@@ -14,7 +14,7 @@ function getThumbnailImage(post: SinglePost): ImageProps | undefined {
     fill: true,
     loading: 'lazy',
     sizes: '(min-width: 1024px) 33vw, 100vw',
-  } satisfies Partial<ImageProps>;
+  } satisfies Partial<ImageProps>
 
   if (post.thumbnailImage) {
     return {
@@ -22,7 +22,7 @@ function getThumbnailImage(post: SinglePost): ImageProps | undefined {
       src: parseEsotericImage(post.thumbnailImage).url(),
       alt: post.thumbnailImage.asset.altText || baseImageProps.alt,
       blurDataURL: post.thumbnailImage.asset.metadata.lqip,
-    };
+    }
   }
   if (post.mainImage) {
     return {
@@ -30,7 +30,7 @@ function getThumbnailImage(post: SinglePost): ImageProps | undefined {
       src: parseEsotericImage(post.mainImage).url(),
       alt: post.mainImage.asset.altText || baseImageProps.alt,
       blurDataURL: post.mainImage.asset.metadata.lqip,
-    };
+    }
   }
 }
 
@@ -59,7 +59,7 @@ export default function Home({
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {posts.map((post, postIndex) => {
-            const thumbnailImage = getThumbnailImage(post);
+            const thumbnailImage = getThumbnailImage(post)
 
             return post.isPublished ? (
               <motion.div
@@ -86,27 +86,27 @@ export default function Home({
                   image={thumbnailImage}
                 />
               </motion.div>
-            ) : null;
+            ) : null
           })}
         </div>
       </Layout>
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const posts = await getAllPosts();
+  const posts = await getAllPosts()
 
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient()
   await queryClient.prefetchQuery({
     queryKey: ['carouselImages'],
     queryFn: getAllCarouselImages,
-  });
+  })
 
   return {
     props: {
       posts,
       dehydratedState: dehydrate(queryClient),
     },
-  };
+  }
 }

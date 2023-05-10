@@ -1,15 +1,15 @@
-import imageUrlBuilder from '@sanity/image-url';
-import groq from 'groq';
-import {z} from 'zod';
-import sanityClient from '~/lib/sanity';
+import imageUrlBuilder from '@sanity/image-url'
+import groq from 'groq'
+import {z} from 'zod'
+import sanityClient from '~/lib/sanity'
 
 const entitySchema = z.object({
   _id: z.string().uuid(),
-});
+})
 
 const keyedSchema = z.object({
   _key: z.string(),
-});
+})
 
 export const imageSchema = z.object({
   _type: z.literal('image'),
@@ -30,9 +30,9 @@ export const imageSchema = z.object({
       lqip: z.string(),
     }),
   }),
-});
+})
 
-const imageBlockSchema = keyedSchema.merge(imageSchema);
+const imageBlockSchema = keyedSchema.merge(imageSchema)
 
 export const imageLayoutSchema = keyedSchema.merge(
   z
@@ -42,7 +42,7 @@ export const imageLayoutSchema = keyedSchema.merge(
       images: z.array(imageBlockSchema),
     })
     .passthrough()
-);
+)
 
 const carouselImagesSchema = z.array(
   entitySchema.merge(
@@ -51,17 +51,17 @@ const carouselImagesSchema = z.array(
       image: imageSchema,
     })
   )
-);
+)
 
 const fileSchema = z.object({
   url: z.string().url(),
-});
+})
 
-export type Image = z.infer<typeof imageSchema>;
-export type ImageBlock = z.infer<typeof imageBlockSchema>;
+export type Image = z.infer<typeof imageSchema>
+export type ImageBlock = z.infer<typeof imageBlockSchema>
 
 export function parseEsotericImage(source: z.infer<typeof imageSchema>) {
-  return imageUrlBuilder(sanityClient).image(source);
+  return imageUrlBuilder(sanityClient).image(source)
 }
 
 export async function getAllCarouselImages() {
@@ -79,10 +79,10 @@ export async function getAllCarouselImages() {
         }
       },
     } | order(publishedDate desc)
-  `;
+  `
 
-  const images = await sanityClient.fetch(query);
-  return carouselImagesSchema.parse(images);
+  const images = await sanityClient.fetch(query)
+  return carouselImagesSchema.parse(images)
 }
 
 export async function getResume() {
@@ -90,10 +90,10 @@ export async function getResume() {
     *[_type == "sanity.fileAsset"
     && $type in opt.media.tags[]->{name}.name.current]{url}
     | order(_createdAt desc)[0]
-  `;
+  `
 
   const resume = await sanityClient.fetch(query, {
     type: 'Resume',
-  });
-  return fileSchema.parse(resume);
+  })
+  return fileSchema.parse(resume)
 }

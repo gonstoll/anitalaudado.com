@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import Layout from '~/components/Layout';
-import Tile from '~/components/Tile';
+import Head from 'next/head'
+import Image from 'next/image'
+import Layout from '~/components/Layout'
+import Tile from '~/components/Tile'
 
 const SKILLS = [
   'Product Design',
@@ -10,7 +10,7 @@ const SKILLS = [
   'Visual Design',
   'Iconography & Illustration',
   'User Research & Usability Testing',
-];
+]
 
 export default function About() {
   return (
@@ -72,5 +72,5 @@ export default function About() {
         </div>
       </Layout>
     </>
-  );
+  )
 }
