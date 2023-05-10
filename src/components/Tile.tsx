@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 interface Props {
-  title: string;
-  link?: string;
-  size: 'small' | 'medium' | 'large';
-  icon?: string;
+  title: string
+  link?: string
+  size: 'small' | 'medium' | 'large'
+  icon?: string
 }
 
 export default function Tile({title, link, size, icon}: Props) {
@@ -12,7 +12,7 @@ export default function Tile({title, link, size, icon}: Props) {
     small: 'text-base h-10 gap-4',
     medium: 'text-3-1/2xl py-5 gap-6',
     large: 'text-3-1/2xl py-9 gap-8',
-  };
+  }
 
   return link ? (
     <Link
@@ -32,5 +32,5 @@ export default function Tile({title, link, size, icon}: Props) {
       <p>{title}</p>
       <p>{icon ?? 'wip'}</p>
     </div>
-  );
+  )
 }

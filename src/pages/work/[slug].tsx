@@ -1,11 +1,11 @@
-import {PortableText, PortableTextReactComponents} from '@portabletext/react';
-import type {GetStaticPropsContext, InferGetStaticPropsType} from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import ImageBlock from '~/components/ImageBlock';
-import Layout from '~/components/Layout';
-import {parseEsotericImage} from '~/models/asset';
-import {getAllSlugs, getPostBySlug} from '~/models/post';
+import {PortableText, PortableTextReactComponents} from '@portabletext/react'
+import type {GetStaticPropsContext, InferGetStaticPropsType} from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import ImageBlock from '~/components/ImageBlock'
+import Layout from '~/components/Layout'
+import {parseEsotericImage} from '~/models/asset'
+import {getAllSlugs, getPostBySlug} from '~/models/post'
 
 const components: Partial<PortableTextReactComponents> = {
   block: {
@@ -19,18 +19,16 @@ const components: Partial<PortableTextReactComponents> = {
   },
   types: {
     editorImage: ({value}) => {
-      const imageUrl = parseEsotericImage(value).url();
-      return (
-        <Image src={imageUrl} width={1100} height={1100} alt={value.alt} />
-      );
+      const imageUrl = parseEsotericImage(value).url()
+      return <Image src={imageUrl} width={1100} height={1100} alt={value.alt} />
     },
   },
-};
+}
 
 export default function Project({
   post,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const pageTitle = `Ana Laudado | ${post.title}`;
+  const pageTitle = `Ana Laudado | ${post.title}`
 
   return (
     <>
@@ -70,7 +68,7 @@ export default function Project({
         }}
       >
         {post.pageBuilder?.map(block => {
-          if (!block) return null;
+          if (!block) return null
 
           if (block._type === 'editor') {
             return (
@@ -83,7 +81,7 @@ export default function Project({
                   components={components}
                 />
               </div>
-            );
+            )
           }
           if (block._type === 'imagesLayout') {
             const images = block.images.map(img => ({
@@ -93,7 +91,7 @@ export default function Project({
               height: img.asset.metadata.dimensions.height,
               blurDataURL: img.asset.metadata.lqip,
               alt: img.asset.altText || 'Project image',
-            }));
+            }))
 
             return (
               <ImageBlock
@@ -107,10 +105,10 @@ export default function Project({
                 }
                 images={images}
               />
-            );
+            )
           }
 
-          return null;
+          return null
         })}
 
         {post.finalThoughts?.editorField ? (
@@ -128,27 +126,27 @@ export default function Project({
         ) : null}
       </Layout>
     </>
-  );
+  )
 }
 
 export async function getStaticPaths() {
-  const slugs = await getAllSlugs();
+  const slugs = await getAllSlugs()
 
   return {
     paths: slugs.map(slug => ({
       params: {slug: slug.current},
     })),
     fallback: 'blocking',
-  };
+  }
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  const {slug = ''} = context.params || {};
-  const post = await getPostBySlug(slug as string);
+  const {slug = ''} = context.params || {}
+  const post = await getPostBySlug(slug as string)
 
   return {
     props: {
       post,
     },
-  };
+  }
 }

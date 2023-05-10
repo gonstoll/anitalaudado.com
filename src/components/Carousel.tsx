@@ -1,12 +1,12 @@
-import {useQuery} from '@tanstack/react-query';
-import Image from 'next/image';
-import {getAllCarouselImages} from '~/models/asset';
+import {useQuery} from '@tanstack/react-query'
+import Image from 'next/image'
+import {getAllCarouselImages} from '~/models/asset'
 
 export default function Carousel() {
   const {data: carouselImages} = useQuery({
     queryKey: ['carouselImages'],
     queryFn: getAllCarouselImages,
-  });
+  })
 
   const images = carouselImages?.map(img => (
     <div
@@ -24,9 +24,9 @@ export default function Carousel() {
         className="w-full h-auto max-w-full max-h-full object-cover rounded [@media(hover:hover)]:grayscale [@media(pointer:fine)]:grayscale hover:grayscale-0 transition-all duration-500"
       />
     </div>
-  ));
+  ))
 
-  if (!images || !images.length) return null;
+  if (!images || !images.length) return null
 
   return (
     <div className="mt-40">
@@ -40,5 +40,5 @@ export default function Carousel() {
         {images}
       </div>
     </div>
-  );
+  )
 }

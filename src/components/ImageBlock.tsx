@@ -1,22 +1,22 @@
-import NextImage, {ImageProps} from 'next/image';
-import type {ImageBlock} from '~/models/asset';
+import NextImage, {ImageProps} from 'next/image'
+import type {ImageBlock} from '~/models/asset'
 
 interface Props {
-  type: 'one-col' | 'two-cols' | 'three-cols';
-  images: Array<ImageProps & Omit<ImageBlock, keyof ImageProps>>;
+  type: 'one-col' | 'two-cols' | 'three-cols'
+  images: Array<ImageProps & Omit<ImageBlock, keyof ImageProps>>
 }
 
 export default function ImageBlock({type, images}: Props) {
-  const isRelative = images.some(img => img.fill);
+  const isRelative = images.some(img => img.fill)
   const imageClass = isRelative
     ? 'h-auto max-w-full max-h-full object-cover'
-    : '';
+    : ''
   const gridClass =
     type === 'two-cols'
       ? 'xl:grid-cols-2'
       : type === 'three-cols'
       ? 'xl:grid-cols-3'
-      : '';
+      : ''
 
   return (
     <div
@@ -41,5 +41,5 @@ export default function ImageBlock({type, images}: Props) {
         </div>
       ))}
     </div>
-  );
+  )
 }

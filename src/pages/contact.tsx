@@ -1,6 +1,6 @@
-import Head from 'next/head';
-import Layout from '~/components/Layout';
-import LinkButton from '~/components/LinkButton';
+import Head from 'next/head'
+import Layout from '~/components/Layout'
+import LinkButton from '~/components/LinkButton'
 
 export default function Contact() {
   return (
@@ -33,5 +33,5 @@ export default function Contact() {
         </div>
       </Layout>
     </>
-  );
+  )
 }

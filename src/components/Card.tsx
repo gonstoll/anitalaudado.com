@@ -1,21 +1,21 @@
-import Image, {ImageProps} from 'next/image';
-import Link from 'next/link';
-import Tag from './Tag';
+import Image, {ImageProps} from 'next/image'
+import Link from 'next/link'
+import Tag from './Tag'
 
 interface Props {
-  image?: ImageProps;
-  title: string;
-  description?: string;
-  tags?: Array<string>;
-  link?: string;
+  image?: ImageProps
+  title: string
+  description?: string
+  tags?: Array<string>
+  link?: string
 }
 
 export default function Card({image, title, description, tags, link}: Props) {
-  const isComingSoon = Boolean(!link);
-  const Container = isComingSoon ? 'div' : Link;
+  const isComingSoon = Boolean(!link)
+  const Container = isComingSoon ? 'div' : Link
   const imageClass = image?.fill
     ? 'h-auto max-w-full max-h-full object-cover'
-    : '';
+    : ''
 
   return (
     <Container
@@ -66,5 +66,5 @@ export default function Card({image, title, description, tags, link}: Props) {
         ) : null}
       </div>
     </Container>
-  );
+  )
 }
