@@ -3,5 +3,7 @@
     "next/core-web-vitals",
     "plugin:react-namespace-import/recommended"
   ],
-  "react/no-unescaped-entities": ["error", {"forbid": [">", "}"]}]
+  "rules": {
+    "react/no-unescaped-entities": ["error", {"forbid": [">", "}"]}]
+  }
 }
