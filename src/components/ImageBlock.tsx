@@ -9,7 +9,7 @@ interface Props {
 export default function ImageBlock({type, images}: Props) {
   const isRelative = images.some(img => img.fill)
   const imageClass = isRelative
-    ? 'h-auto max-w-full max-h-full object-cover'
+    ? 'h-auto max-h-full max-w-full object-cover'
     : ''
   const gridClass =
     type === 'two-cols'

@@ -29,6 +29,11 @@ export default function Document() {
         <meta property="og:url" content="https://anitalaudado.com" />
 
         <script
+          src="https://assets.usestyle.ai/seonajsplugin"
+          defer
+          id="seona-js-plugin"
+        ></script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
             if (

@@ -23,7 +23,7 @@ export default function About() {
         title={`Thanks for
         stopping by :)`}
       >
-        <div className="mt-20 mb-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="mb-20 mt-20 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
           <div className="self-start">
             <h2 className="mb-10 text-3-1/2xl text-black dark:text-white">
               I'm Ana, a Product Designer specialised in detailed interfaces and
@@ -49,7 +49,7 @@ export default function About() {
               to catch some live music.
             </p>
           </div>
-          <div className="h-200 rounded relative">
+          <div className="relative h-200 rounded">
             <Image
               priority
               src="/images/AnitaLaudado.jpeg"
@@ -57,12 +57,12 @@ export default function About() {
               sizes="(min-width: 768px) 700px, 800px"
               width={800}
               height={600}
-              className="rounded object-cover object-top w-full h-full"
+              className="h-full w-full rounded object-cover object-top"
             />
           </div>
         </div>
 
-        <h2 className="text-4-1/2xl mb-15 text-black dark:text-white">
+        <h2 className="mb-15 text-4-1/2xl text-black dark:text-white">
           What I <b>do</b>
         </h2>
         <div>
