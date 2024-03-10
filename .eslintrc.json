@@ -2,5 +2,8 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:react-namespace-import/recommended"
-  ]
+  ],
+  "rules": {
+    "react/no-unescaped-entities": "off"
+  }
 }
