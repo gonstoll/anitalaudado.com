@@ -44,6 +44,10 @@ export default function Project({
         {post.title ? (
           <meta property="og:title" content={`${post.title} ✦ Ana Laudado`} />
         ) : null}
+        <link
+          rel="canonical"
+          href={`https://anitalaudado.com/${post.slug.current}`}
+        />
       </Head>
       <Layout
         type="project"

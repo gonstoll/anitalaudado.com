@@ -40,7 +40,8 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Ana Laudado</title>
+        <title>Ana Laudado - Product Designer</title>
+        <link rel="canonical" href="https://anitalaudado.com" />
       </Head>
       <Layout
         includeCarousel

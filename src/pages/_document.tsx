@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
+
         <meta
           name="google-site-verification"
           content="piMpZyWPcXzMqrBx9_0BslPAo9D6-eNrJWRmMn45b1M"
@@ -12,7 +13,7 @@ export default function Document() {
         <meta name="author" content="Gonzalo Stoll" />
         <meta
           name="description"
-          content="Ana Laudado is a Product Designer and illustration artist based in Copenhagen."
+          content="Meet Ana Laudado, a talented Product Designer and illustration artist from Copenhagen. Explore her work and innovative design solutions here."
         />
         <meta
           name="keywords"
@@ -27,12 +28,8 @@ export default function Document() {
           content="Ana Laudado is a Product Designer and illustration artist based in Copenhagen."
         />
         <meta property="og:url" content="https://anitalaudado.com" />
+        <meta property="og:type" content="website" />
 
-        <script
-          src="https://assets.usestyle.ai/seonajsplugin"
-          defer
-          id="seona-js-plugin"
-        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `

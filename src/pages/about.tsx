@@ -17,6 +17,7 @@ export default function About() {
     <>
       <Head>
         <title>Ana Laudado | About</title>
+        <link rel="canonical" href="https://anitalaudado.com/about" />
       </Head>
       <Layout
         type="page"

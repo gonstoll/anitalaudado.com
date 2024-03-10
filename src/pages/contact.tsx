@@ -7,6 +7,7 @@ export default function Contact() {
     <>
       <Head>
         <title>Ana Laudado | Contact</title>
+        <link rel="canonical" href="https://anitalaudado.com/contact" />
       </Head>
       <Layout type="page" title="Let's keep in touch!">
         <div className="mt-20 mb-10 grid grid-cols-1 lg:grid-cols-2">
