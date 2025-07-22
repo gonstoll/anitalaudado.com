@@ -4,13 +4,13 @@ Live here: [https://anitalaudado.com](https://anitalaudado.com)
 
 ## Features
 
-* On-demand ISR (Incremental Static Regeneration)
-* TanStack Query
-* Zod
-* Tailwind
-* Sanity for content management
-* Dark theme
-* Accessibility
+- On-demand ISR (Incremental Static Regeneration)
+- TanStack Query
+- Zod
+- Tailwind
+- Sanity for content management
+- Dark theme
+- Accessibility
 
 ## Getting Started
 
@@ -23,3 +23,4 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+heck out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
