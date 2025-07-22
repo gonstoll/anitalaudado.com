@@ -1,113 +1,57 @@
-import {dehydrate, QueryClient} from '@tanstack/react-query'
-import {motion} from 'framer-motion'
-import type {InferGetStaticPropsType} from 'next'
 import Head from 'next/head'
-import type {ImageProps} from 'next/image'
-import Card from '~/components/Card'
-import Layout from '~/components/Layout'
-import {getAllCarouselImages, parseEsotericImage} from '~/models/asset'
-import {getAllPosts, SinglePost} from '~/models/post'
+import Image from 'next/image'
 
-function getThumbnailImage(post: SinglePost): ImageProps | undefined {
-  const baseImageProps = {
-    alt: `${post.title || 'Untitled'} post thumbnail`,
-    fill: true,
-    loading: 'lazy',
-    sizes: '(min-width: 1024px) 33vw, 100vw',
-  } satisfies Partial<ImageProps>
-
-  if (post.thumbnailImage) {
-    return {
-      ...baseImageProps,
-      src: parseEsotericImage(post.thumbnailImage).url(),
-      alt: post.thumbnailImage.asset.altText || baseImageProps.alt,
-      blurDataURL: post.thumbnailImage.asset.metadata.lqip,
-    }
-  }
-  if (post.mainImage) {
-    return {
-      ...baseImageProps,
-      src: parseEsotericImage(post.mainImage).url(),
-      alt: post.mainImage.asset.altText || baseImageProps.alt,
-      blurDataURL: post.mainImage.asset.metadata.lqip,
-    }
-  }
-}
-
-export default function Home({
-  posts,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Index() {
   return (
     <>
       <Head>
         <title>Ana Laudado - Product Designer</title>
         <link rel="canonical" href="https://anitalaudado.com" />
       </Head>
-      <Layout
-        includeCarousel
-        type="page"
-        title={`Hola! I'm Ana,
-        a Product Designer
-        based in Copenhagen.`}
-      >
-        <h2 className="mt-10 text-2xl text-black dark:text-white">
-          I enjoy defining the right problems just as much as designing
-          intuitive experiences, where I can put my strong UI background in good
-          use.
-        </h2>
-        <h3 className="mt-20 md:mt-40 mb-10 text-4-1/2xl text-black dark:text-white">
-          Selected <b>work</b>
-        </h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {posts.map((post, postIndex) => {
-            const thumbnailImage = getThumbnailImage(post)
-
-            return post.isPublished ? (
-              <motion.div
-                key={post._id}
-                initial={{y: 20, opacity: 0}}
-                animate={{y: 0, opacity: 1}}
-                transition={{
-                  duration: 0.5,
-                  delay: Number(`0.${2 * postIndex}`),
-                }}
-                className="flex"
+      <main className="flex flex-1 bg-[#FAFAF7]">
+        <div className="flex m-auto flex-col md:flex-row lg:items-center gap-10 p-10">
+          <Image
+            priority
+            src="/images/a.svg"
+            alt="An a icon, intial from Ana"
+            width={40}
+            height={40}
+          />
+          <div>
+            <p className="mb-4 text-[#373737]">
+              Hi :) I’m Ana, a Product Designer based in Copenhagen,{' '}
+              <br className="hidden md:block" />
+              shaping brands and building products from the ground up.
+            </p>
+            <p className="text-[#979797]">
+              Currently rebuilding my portfolio, but you can find me on{' '}
+              <br className="hidden md:block" />
+              <a
+                className="underline underline-offset-2"
+                href="https://www.linkedin.com/in/ana-laudado/"
               >
-                <Card
-                  title={post.title || 'Untitled'}
-                  description={post.subtitle}
-                  tags={
-                    post.isComingSoon
-                      ? ['Coming soon']
-                      : post.tags?.map(t => t.title)
-                  }
-                  link={
-                    post.isComingSoon ? undefined : `/work/${post.slug.current}`
-                  }
-                  image={thumbnailImage}
-                />
-              </motion.div>
-            ) : null
-          })}
+                Linkedin
+              </a>
+              , see{' '}
+              <a
+                className="underline underline-offset-2"
+                href="/docs/resume.pdf"
+                download
+              >
+                what I’ve been up to
+              </a>{' '}
+              or simply{' '}
+              <a
+                className="underline underline-offset-2"
+                href="mailto:anitalaudado@gmail.com"
+              >
+                say hi
+              </a>
+              !
+            </p>
+          </div>
         </div>
-      </Layout>
+      </main>
     </>
   )
-}
-
-export async function getStaticProps() {
-  const posts = await getAllPosts()
-
-  const queryClient = new QueryClient()
-  await queryClient.prefetchQuery({
-    queryKey: ['carouselImages'],
-    queryFn: getAllCarouselImages,
-  })
-
-  return {
-    props: {
-      posts,
-      dehydratedState: dehydrate(queryClient),
-    },
-  }
 }
