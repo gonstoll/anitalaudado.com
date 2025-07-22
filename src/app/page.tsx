@@ -8,26 +8,26 @@ export const metadata: Metadata = {
 export default function Index() {
   return (
     <main className="flex flex-1 bg-[#FAFAF7]">
-      <div className="flex m-auto flex-col md:flex-row lg:items-center gap-10 p-10">
+      <div className="flex flex-col my-auto gap-8 p-10 w-full max-w-[520px]">
         <Image
           priority
           src="/images/a.svg"
-          alt="An a icon, intial from Ana"
-          width={40}
-          height={40}
+          alt="An a icon, initial from Ana"
+          width={32}
+          height={32}
         />
         <div>
-          <p className="mb-4 text-[#373737]">
-            Hi :) I’m Ana, a Product Designer based in Copenhagen,{' '}
-            <br className="hidden md:block" />
-            shaping brands and building products from the ground up.
+          <p className="mb-2 text-[#373737]">
+            Hi :) I’m Ana, a Product Designer based in Copenhagen, shaping
+            brands and building products from the ground up.
           </p>
           <p className="text-[#979797]">
             Currently rebuilding my portfolio, but you can find me on{' '}
-            <br className="hidden md:block" />
             <a
               className="underline underline-offset-2"
               href="https://www.linkedin.com/in/ana-laudado/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Linkedin
             </a>
