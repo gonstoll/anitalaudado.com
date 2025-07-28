@@ -35,7 +35,8 @@ export default function Index() {
             <a
               className="underline underline-offset-2"
               href="/docs/resume.pdf"
-              download
+              target="_blank"
+              rel="noopener noreferrer"
             >
               what I’ve been up to
             </a>{' '}
