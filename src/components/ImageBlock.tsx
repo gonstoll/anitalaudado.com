@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function ImageBlock({type, images}: Props) {
-  const isRelative = images.some(img => img.fill)
+  const isRelative = images.some((img) => img.fill)
   const imageClass = isRelative
     ? 'h-auto max-h-full max-w-full object-cover'
     : ''
@@ -24,12 +24,12 @@ export default function ImageBlock({type, images}: Props) {
         isRelative ? 'relative' : ''
       }`}
     >
-      {images.map(img => (
+      {images.map((img) => (
         <div key={img._key} className="col-span-1">
           <NextImage
             {...img}
             loading="lazy"
-            placeholder="blur"
+            // placeholder="blur"
             className={`rounded ${imageClass}`}
           />
 

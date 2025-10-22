@@ -63,7 +63,7 @@ export default function Project({
               }
             : undefined
         }
-        tags={post.tags?.map(t => t?.title)}
+        tags={post.tags?.map((t) => t?.title)}
         summary={post.subtitle}
         intro={{
           challenge: post.challenge,
@@ -71,7 +71,7 @@ export default function Project({
           year: post.year,
         }}
       >
-        {post.pageBuilder?.map(block => {
+        {post.pageBuilder?.map((block) => {
           if (!block) return null
 
           if (block._type === 'editor') {
@@ -88,12 +88,12 @@ export default function Project({
             )
           }
           if (block._type === 'imagesLayout') {
-            const images = block.images.map(img => ({
+            const images = block.images.map((img) => ({
               ...img,
               src: img.asset.url,
               width: img.asset.metadata.dimensions.width,
               height: img.asset.metadata.dimensions.height,
-              blurDataURL: img.asset.metadata.lqip,
+              // blurDataURL: img.asset.metadata.lqip,
               alt: img.asset.altText || 'Project image',
             }))
 
@@ -137,7 +137,7 @@ export async function getStaticPaths() {
   const slugs = await getAllSlugs()
 
   return {
-    paths: slugs.map(slug => ({
+    paths: slugs.map((slug) => ({
       params: {slug: slug.current},
     })),
     fallback: 'blocking',
