@@ -3,7 +3,7 @@ import * as React from 'react'
 import {useThemeContext} from '~/context/theme'
 import ActiveLink from './ActiveLink'
 import LinkButton from './LinkButton'
-import Logo from './Logo'
+import {Logo} from './Logo'
 
 function useStickyHeader() {
   const [isVisible, setIsVisible] = React.useState(false)

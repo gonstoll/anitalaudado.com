@@ -1,4 +1,4 @@
-export default function Logo() {
+export function Logo() {
   return (
     <svg
       width="24"
@@ -6,7 +6,6 @@ export default function Logo() {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="[@media(hover:hover)]:hover:rotate-360 [@media(pointer:fine)]:hover:rotate-360 duration-1250 transition-transform"
     >
       <path
         className="fill-black dark:fill-white"
