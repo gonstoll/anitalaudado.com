@@ -58,7 +58,7 @@ export default function Home({
         <h3 className="mt-20 md:mt-40 mb-10 text-4-1/2xl text-black dark:text-white">
           Selected <b>work</b>
         </h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {posts.map((post, postIndex) => {
             const thumbnailImage = getThumbnailImage(post)
 
