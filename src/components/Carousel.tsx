@@ -2,13 +2,13 @@ import {useQuery} from '@tanstack/react-query'
 import Image from 'next/image'
 import {getAllCarouselImages} from '~/models/asset'
 
-export default function Carousel() {
+export function Carousel() {
   const {data: carouselImages} = useQuery({
     queryKey: ['carouselImages'],
     queryFn: getAllCarouselImages,
   })
 
-  const images = carouselImages?.map(img => (
+  const images = carouselImages?.map((img) => (
     <div
       key={img._id}
       className="w-80 md:w-98 h-80 md:h-98 bg-gray-400 rounded shrink-0 snap-center relative"
@@ -29,16 +29,9 @@ export default function Carousel() {
   if (!images || !images.length) return null
 
   return (
-    <div className="mt-40">
-      <div className="max-w-screen-2xl mx-auto px-6 md:px-20">
-        <h3 className="mb-10 text-4-1/2xl text-black dark:text-white">
-          I also love to <b>draw</b>
-        </h3>
-      </div>
-      <div className="overflow-y-hidden overflow-x-scroll scrollbar-hide snap-x snap-mandatory snap-always gap-4 flex relative w-screen">
-        {images}
-        {images}
-      </div>
+    <div className="mt-40 overflow-y-hidden overflow-x-scroll scrollbar-hide snap-x snap-mandatory snap-always gap-4 flex relative w-screen max-w-full">
+      {images}
+      {images}
     </div>
   )
 }

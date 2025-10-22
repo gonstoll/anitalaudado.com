@@ -4,7 +4,7 @@ import Image, {ImageProps} from 'next/image'
 import Link from 'next/link'
 import * as React from 'react'
 import {getResume} from '~/models/asset'
-import Carousel from './Carousel'
+import {Carousel} from './Carousel'
 import Header from './Header'
 import LinkButton from './LinkButton'
 import Tag from './Tag'
@@ -37,7 +37,6 @@ export default function Layout({
   children,
   ...props
 }: React.PropsWithChildren<Props>) {
-  // Fetched on the client
   const {data: resume} = useQuery({
     queryKey: ['resume'],
     queryFn: getResume,
@@ -85,9 +84,7 @@ export default function Layout({
               {title}
             </h1>
             <div className="my-10 flex flex-wrap items-center gap-4">
-              {props.tags?.map(tag => (
-                <Tag key={tag} title={tag} />
-              ))}
+              {props.tags?.map((tag) => <Tag key={tag} title={tag} />)}
             </div>
             <div className="mb-20 grid grid-cols-1 gap-10 md:grid-cols-2">
               <h2 className="text-3-1/2xl text-black dark:text-white">
